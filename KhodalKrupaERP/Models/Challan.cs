@@ -43,7 +43,7 @@ namespace KhodalKrupaERP.Models
         // Call this method before saving updates
         public void UpdateTimestamp()
         {
-            this.UpdatedAt = DateTime.UtcNow;
+            this.updatedAt = DateTime.UtcNow;
         }
     }
 }

@@ -1,56 +1,105 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
 
 namespace KhodalKrupaERP.Models
 {
-    public class ChallanTransaction
+    public class ChallanTransaction : INotifyPropertyChanged
     {
-        // Empty Constructor for EF
-        public ChallanTransaction() { }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private int _diamond;
+        private float _rate;
+        private int _paper;
+        private float _total;
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Auto-generate ID
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ChallanTransactionId { get; private set; }
 
-        // Foreign Key
-        [ForeignKey("Challan")]
-        public int ChallanId { get; set; }
-        public virtual Challan Challan { get; set; } // Navigation Property
+        //// Foreign Key
+        //[Required]
+        //[ForeignKey("Challan")]
+        //public int ChallanId { get; set; }
+        //public virtual Challan challan { get; set; } // Navigation Property
 
-        public int Diamond { get; set; }
-        public float Rate { get; set; }
-        public int Paper { get; set; }
+        public int Diamond
+        {
+            get => _diamond;
+            set
+            {
+                if (_diamond != value)
+                {
+                    _diamond = value;
+                    OnPropertyChanged(nameof(Diamond));
+                    CalculateTotal();
+                }
+            }
+        }
 
-        public float Total { get; private set; } // Store total in DB
+        public float Rate
+        {
+            get => _rate;
+            set
+            {
+                if (_rate != value)
+                {
+                    _rate = value;
+                    OnPropertyChanged(nameof(Rate));
+                    CalculateTotal();
+                }
+            }
+        }
+
+        public int Paper
+        {
+            get => _paper;
+            set
+            {
+                if (_paper != value)
+                {
+                    _paper = value;
+                    OnPropertyChanged(nameof(Paper));
+                    CalculateTotal();
+                }
+            }
+        }
+
+        public float Total
+        {
+            get => _total;
+            private set
+            {
+                if (_total != value)
+                {
+                    _total = value;
+                    OnPropertyChanged(nameof(Total));
+                }
+            }
+        }
 
         public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
 
-        // Constructor
         public ChallanTransaction(int challanId, int diamond, float rate, int paper)
         {
-            this.ChallanId = challanId;
-            this.Diamond = diamond;
-            this.Rate = rate;
-            this.Paper = paper;
-            this.Total = CalculateTotal();
-            this.UpdatedAt = DateTime.UtcNow;
+            //ChallanId = challanId;
+            Diamond = diamond;
+            Rate = rate;
+            Paper = paper;
+            CalculateTotal();
         }
 
-        private float CalculateTotal()
+        private void CalculateTotal()
         {
-            return Diamond * Rate + Paper;
-        }
-
-        // Call this method before saving updates
-        public void UpdateValues(int diamond, float rate, int paper)
-        {
-            this.Diamond = diamond;
-            this.Rate = rate;
-            this.Paper = paper;
-            this.Total = CalculateTotal();
+            Total = Diamond * Rate + Paper;
             UpdatedAt = DateTime.UtcNow;
         }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
+
 }

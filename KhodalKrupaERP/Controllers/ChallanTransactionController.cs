@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
@@ -17,6 +18,14 @@ namespace KhodalKrupaERP.Controllers
                 db.challanTransactions.Add(transaction);
                 db.SaveChanges();
                 Console.WriteLine("Challan transaction added successfully!");
+            }
+        }
+
+        public BindingList<ChallanTransaction> GetAllChallanTransactions()
+        {
+            using (var db = new AppDbContext())
+            {
+                return new BindingList<ChallanTransaction>(db.challanTransactions.ToList());
             }
         }
 
@@ -46,7 +55,6 @@ namespace KhodalKrupaERP.Controllers
                 var transaction = db.challanTransactions.Find(id);
                 if (transaction != null)
                 {
-                    transaction.UpdateValues(diamond, rate, paper);
                     db.SaveChanges();
                     Console.WriteLine("Challan transaction updated successfully!");
                 }

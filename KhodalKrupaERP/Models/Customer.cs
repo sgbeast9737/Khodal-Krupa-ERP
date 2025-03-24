@@ -30,7 +30,7 @@ namespace KhodalKrupaERP.Models
             Phone_No = phoneNo;
             createdAt = DateTime.UtcNow;
             updatedAt = DateTime.UtcNow;
-            Challans = new List<Challan>();
+            //Challans = new List<Challan>();
         }
 
         // Empty Constructor for EF
