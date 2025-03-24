@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KhodalKrupaERP.Core;
+using KhodalKrupaERP.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,18 @@ namespace KhodalKrupaERP
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            using (var db = new AppDbContext())
+            {
+                var customers = db.customers.ToList();
+                foreach (var customer in customers)
+                {
+                    Console.WriteLine($"ID: {customer.CustomerId}");
+                }
+            }
         }
     }
 }

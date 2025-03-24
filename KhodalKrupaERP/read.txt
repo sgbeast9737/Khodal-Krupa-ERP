@@ -1,0 +1,7 @@
+﻿import this packages 
+
+Install-Package System.Data.SQLite
+Install-Package System.Data.SQLite.EF6
+Install-Package EntityFramework
+Install-Package System.Data.SQLite.Core
+Install-Package System.Data.SQLite.Linq
