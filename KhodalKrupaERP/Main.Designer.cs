@@ -78,13 +78,17 @@
             // 
             // tabControlMain
             // 
+            this.tabControlMain.ActiveTabColor = System.Drawing.Color.White;
             this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControlMain.Location = new System.Drawing.Point(7, 35);
+            this.tabControlMain.Location = new System.Drawing.Point(2, 34);
             this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.Size = new System.Drawing.Size(1043, 595);
+            this.tabControlMain.ShowCloseButtonHighLightBackColor = true;
+            this.tabControlMain.ShowTabCloseButton = true;
+            this.tabControlMain.Size = new System.Drawing.Size(1050, 600);
             this.tabControlMain.TabIndex = 1;
+            this.tabControlMain.ThemeStyle.PrimitiveButtonStyle.DisabledNextPageImage = null;
             // 
             // Main
             // 
@@ -97,7 +101,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Khodal Krupa ERP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).EndInit();
             this.ResumeLayout(false);
 

@@ -22,11 +22,6 @@ namespace KhodalKrupaERP
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            CustomerController.GetAllcustomers();
-        }
-
         private void biCustomer_Click(object sender, EventArgs e)
         {
             AddFormToTab(new Temp(),"temp form");
@@ -35,22 +30,36 @@ namespace KhodalKrupaERP
 
         private void AddFormToTab(Form childForm, string tabName)
         {
-            // Create a new tab page
-            TabPageAdv tabPage = new TabPageAdv(tabName);
-            
             // Set form properties
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
+            childForm.BackColor = System.Drawing.Color.White;
+
+            addTab(childForm,tabName);
+            // Show the form inside the tab
+            childForm.Show();
+        }
+
+        private void addTab(Control control, string tabName)
+        {
+            // Create a new tab page
+            TabPageAdv tabPage = new TabPageAdv(tabName);
+            tabPage.Padding = new System.Windows.Forms.Padding(10);
+
+            tabPage.BackColor = System.Drawing.Color.White;
+            tabPage.TabBackColor = System.Drawing.Color.White;
 
             // Add form to tab
-            tabPage.Controls.Add(childForm);
+            tabPage.Controls.Add(control);
             tabControlMain.TabPages.Add(tabPage);
             // Set the newly added tab as active
             tabControlMain.SelectedTab = tabPage;
+        }
 
-            // Show the form inside the tab
-            childForm.Show();
+        private void tabPageAdv1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

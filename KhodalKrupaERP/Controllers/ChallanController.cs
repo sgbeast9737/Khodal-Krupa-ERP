@@ -14,7 +14,7 @@ namespace KhodalKrupaERP.Controllers
         using (var db = new AppDbContext())
         {
             var challan = new Challan(customerId, designNo, challanDate);
-            db.challans.Add(challan);
+            db.Challans.Add(challan);
             db.SaveChanges();
             Console.WriteLine("Challan added successfully!");
         }
@@ -25,7 +25,7 @@ namespace KhodalKrupaERP.Controllers
     {
         using (var db = new AppDbContext())
         {
-            return db.challans.ToList();
+            return db.Challans.ToList();
         }
     }
 
@@ -34,7 +34,7 @@ namespace KhodalKrupaERP.Controllers
     {
         using (var db = new AppDbContext())
         {
-            return db.challans.Find(id);
+            return db.Challans.Find(id);
         }
     }
 
@@ -43,7 +43,7 @@ namespace KhodalKrupaERP.Controllers
     {
         using (var db = new AppDbContext())
         {
-            var challan = db.challans.Find(id);
+            var challan = db.Challans.Find(id);
             if (challan != null)
             {
                 challan.ChallanDate = newChallanDate;
@@ -64,10 +64,10 @@ namespace KhodalKrupaERP.Controllers
     {
         using (var db = new AppDbContext())
         {
-            var challan = db.challans.Find(id);
+            var challan = db.Challans.Find(id);
             if (challan != null)
             {
-                db.challans.Remove(challan);
+                db.Challans.Remove(challan);
                 db.SaveChanges();
                 Console.WriteLine("Challan deleted successfully!");
             }

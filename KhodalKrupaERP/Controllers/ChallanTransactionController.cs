@@ -15,7 +15,7 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
-                db.challanTransactions.Add(transaction);
+                db.ChallanTransactions.Add(transaction);
                 db.SaveChanges();
                 Console.WriteLine("Challan transaction added successfully!");
             }
@@ -25,7 +25,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                return new BindingList<ChallanTransaction>(db.challanTransactions.ToList());
+                return new BindingList<ChallanTransaction>(db.ChallanTransactions.ToList());
             }
         }
 
@@ -34,7 +34,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                return db.challanTransactions.ToList();
+                return db.ChallanTransactions.ToList();
             }
         }
 
@@ -43,7 +43,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                return db.challanTransactions.Find(id);
+                return db.ChallanTransactions.Find(id);
             }
         }
 
@@ -52,7 +52,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                var transaction = db.challanTransactions.Find(id);
+                var transaction = db.ChallanTransactions.Find(id);
                 if (transaction != null)
                 {
                     db.SaveChanges();
@@ -70,10 +70,10 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                var transaction = db.challanTransactions.Find(id);
+                var transaction = db.ChallanTransactions.Find(id);
                 if (transaction != null)
                 {
-                    db.challanTransactions.Remove(transaction);
+                    db.ChallanTransactions.Remove(transaction);
                     db.SaveChanges();
                     Console.WriteLine("Challan transaction deleted successfully!");
                 }
