@@ -84,6 +84,12 @@
     <Compile Include="Controllers\ChallanTransactionController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Core\AppDbContext.cs" />
+    <Compile Include="Forms\FrmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCustomer.Designer.cs">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Temp.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,9 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\FrmCustomer.resx">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Temp.resx">
       <DependentUpon>Temp.cs</DependentUpon>
     </EmbeddedResource>

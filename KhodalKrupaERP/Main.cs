@@ -24,8 +24,7 @@ namespace KhodalKrupaERP
 
         private void biCustomer_Click(object sender, EventArgs e)
         {
-            AddFormToTab(new Temp(),"temp form");
-            //tabControlMain.TabPages.Add();
+            AddFormToTab(new FrmCustomer(),"Customer management");
         }
 
         private void AddFormToTab(Form childForm, string tabName)
@@ -55,11 +54,6 @@ namespace KhodalKrupaERP
             tabControlMain.TabPages.Add(tabPage);
             // Set the newly added tab as active
             tabControlMain.SelectedTab = tabPage;
-        }
-
-        private void tabPageAdv1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
