@@ -48,7 +48,7 @@ namespace KhodalKrupaERP.Controllers
             {
                 challan.ChallanDate = newChallanDate;
                 challan.DesignNo = newDesignNo;
-                challan.UpdateTimestamp(); // Update the timestamp
+                challan.UpdatedAt = DateTime.UtcNow; // Update the timestamp
                 db.SaveChanges();
                 Console.WriteLine("Challan updated successfully!");
             }

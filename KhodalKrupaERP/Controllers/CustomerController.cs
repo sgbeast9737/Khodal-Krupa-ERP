@@ -47,8 +47,8 @@ namespace KhodalKrupaERP.Controllers
                 if (customer != null)
                 {
                     customer.Name = newName;
-                    customer.Phone_No = newPhoneNo;
-                    customer.updatedAt = DateTime.UtcNow;
+                    customer.PhoneNo = newPhoneNo;
+                    customer.UpdatedAt = DateTime.UtcNow;
                     db.SaveChanges();
                 }
                 else
@@ -65,7 +65,7 @@ namespace KhodalKrupaERP.Controllers
             {
                 if (customer != null)
                 {
-                    customer.updatedAt = DateTime.UtcNow;
+                    customer.UpdatedAt = DateTime.UtcNow;
                     db.Entry(customer).State = EntityState.Modified;
                     db.SaveChanges();
                 }
@@ -82,7 +82,7 @@ namespace KhodalKrupaERP.Controllers
             {
                 if (customer != null)
                 {
-                    customer.updatedAt = DateTime.UtcNow;
+                    customer.UpdatedAt = DateTime.UtcNow;
                     db.customers.Attach(customer);
                     db.Entry(customer).State = EntityState.Modified;
                     db.SaveChanges();
@@ -110,10 +110,10 @@ namespace KhodalKrupaERP.Controllers
                 {
                     if (existingCustomer.Name != customer.Name)
                         existingCustomer.Name = customer.Name;
-                    if (existingCustomer.Phone_No != customer.Phone_No)
-                        existingCustomer.Phone_No= customer.Phone_No;
+                    if (existingCustomer.PhoneNo != customer.PhoneNo)
+                        existingCustomer.PhoneNo= customer.PhoneNo;
 
-                    existingCustomer.updatedAt = DateTime.UtcNow;
+                    existingCustomer.UpdatedAt = DateTime.UtcNow;
                     db.SaveChanges();
                 }
             }

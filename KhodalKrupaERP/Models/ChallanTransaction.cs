@@ -12,17 +12,15 @@ namespace KhodalKrupaERP.Models
         private int _diamond;
         private float _rate;
         private int _paper;
-        private float _total;
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ChallanTransactionId { get; private set; }
 
-        //// Foreign Key
-        //[Required]
-        //[ForeignKey("Challan")]
-        //public int ChallanId { get; set; }
-        //public virtual Challan challan { get; set; } // Navigation Property
+        // Foreign Key
+        [Required]
+        public int ChallanId { get; private set; }
+        public virtual Challan Challan { get; set; } // Navigation Property
 
         public int Diamond
         {
@@ -66,34 +64,24 @@ namespace KhodalKrupaERP.Models
             }
         }
 
-        public float Total
-        {
-            get => _total;
-            private set
-            {
-                if (_total != value)
-                {
-                    _total = value;
-                    OnPropertyChanged(nameof(Total));
-                }
-            }
-        }
+        public float Total { get; private set; }
 
         public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
 
         public ChallanTransaction(int challanId, int diamond, float rate, int paper)
         {
-            //ChallanId = challanId;
-            Diamond = diamond;
-            Rate = rate;
-            Paper = paper;
+            this.ChallanId = challanId;
+            this.Diamond = diamond;
+            this.Rate = rate;
+            this.Paper = paper;
+            this.UpdatedAt = DateTime.UtcNow;
             CalculateTotal();
         }
 
         private void CalculateTotal()
         {
-            Total = Diamond * Rate + Paper;
-            UpdatedAt = DateTime.UtcNow;
+            this.Total = this.Diamond * this.Rate + this.Paper;
+            this.UpdatedAt = DateTime.UtcNow;
         }
 
         protected void OnPropertyChanged(string propertyName)
@@ -101,5 +89,4 @@ namespace KhodalKrupaERP.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

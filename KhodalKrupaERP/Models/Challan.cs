@@ -14,9 +14,7 @@ namespace KhodalKrupaERP.Models
 
         // Foreign Key
         [Required]
-        [ForeignKey("Customer")]
         public int CustomerId { get; set; }
-        public virtual Customer Customer { get; set; } // Navigation Property
 
         [Required]
         public int DesignNo { get; set; }
@@ -24,8 +22,12 @@ namespace KhodalKrupaERP.Models
         [Required]
         public DateTime ChallanDate { get; set; }
 
-        public DateTime? createdAt { get; private set; } = DateTime.UtcNow;
-        public DateTime? updatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+
+        // Navigation Properties
+        public virtual Customer Customer { get; set; }
+        public virtual ICollection<ChallanTransaction> ChallanTransactions { get; set; }
 
         // Constructor
         public Challan(int customerId, int designNo, DateTime challanDate)
@@ -33,17 +35,12 @@ namespace KhodalKrupaERP.Models
             this.CustomerId = customerId;
             this.DesignNo = designNo;
             this.ChallanDate = challanDate;
-            this.createdAt = DateTime.UtcNow;
-            this.updatedAt = DateTime.UtcNow;
+            this.CreatedAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.UtcNow;
+            this.ChallanTransactions = new List<ChallanTransaction>();
         }
 
         // Empty Constructor for EF
         public Challan() { }
-
-        // Call this method before saving updates
-        public void UpdateTimestamp()
-        {
-            this.updatedAt = DateTime.UtcNow;
-        }
     }
 }

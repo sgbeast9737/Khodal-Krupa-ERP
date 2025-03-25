@@ -17,7 +17,7 @@ namespace KhodalKrupaERP.Models
         [Required]
         [Index(IsUnique = true)]
         public string PhoneNo { get; set; }
-        public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; private set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
 
         //Navigation Property for Relationship(One Customer can have multiple Challans)
@@ -26,11 +26,11 @@ namespace KhodalKrupaERP.Models
         // Constructor
         public Customer(string name, string phoneNo)
         {
-            Name = name;
-            Phone_No = phoneNo;
-            CreatedAt = DateTime.UtcNow;
-            UpdatedAt = DateTime.UtcNow;
-            //Challans = new List<Challan>();
+            this.Name = name;
+            this.PhoneNo = phoneNo;
+            this.CreatedAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.UtcNow;
+            Challans = new List<Challan>();
         }
 
         // Empty Constructor for EF
