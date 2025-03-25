@@ -7,8 +7,8 @@ namespace KhodalKrupaERP.Core
     {
         public AppDbContext() : base("name=SQLiteDbConnection") { }
 
-        public DbSet<Customer> customers { get; set; }
-        public DbSet<Challan> challans{ get; set; }
-        public DbSet<ChallanTransaction> challanTransactions{ get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Challan> Challans{ get; set; }
+        public DbSet<ChallanTransaction> ChallanTransactions{ get; set; }
     }
 }

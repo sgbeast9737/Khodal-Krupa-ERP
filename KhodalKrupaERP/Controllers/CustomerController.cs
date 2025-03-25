@@ -2,6 +2,7 @@
 using KhodalKrupaERP.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 
@@ -15,17 +16,26 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 var customer = new Customer(name, phoneNo);
-                db.customers.Add(customer);
+                db.Customers.Add(customer);
                 db.SaveChanges();
             }
         }
 
-        // ✅ Get all customers
-        public static List<Customer> GetAllcustomers()
+        // ✅ Get all bindable customers
+        public static BindingList<Customer> GetAllBindableCustomers()
         {
             using (var db = new AppDbContext())
             {
-                return db.customers.ToList();
+                return new BindingList<Customer>(db.Customers.ToList());
+            }
+        }
+
+        // ✅ Get all customers
+        public static List<Customer> GetAllCustomers()
+        {
+            using (var db = new AppDbContext())
+            {
+                return db.Customers.ToList();
             }
         }
 
@@ -34,7 +44,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                return db.customers.Find(id);
+                return db.Customers.Find(id);
             }
         }
 
@@ -43,7 +53,7 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                var customer = db.customers.Find(id);
+                var customer = db.Customers.Find(id);
                 if (customer != null)
                 {
                     customer.Name = newName;
@@ -58,77 +68,79 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        //TODO : unable to decide which update method is working for accept whole customer object
-        public static void UpdateCustomer(Customer customer)
-        {
-            using (var db = new AppDbContext())
-            {
-                if (customer != null)
-                {
-                    customer.UpdatedAt = DateTime.UtcNow;
-                    db.Entry(customer).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Please provide a valid customer for the update process!");
-                }
-            }
-        }
-
-        public static void UpdateCustomer2(Customer customer)
-        {
-            using (var db = new AppDbContext())
-            {
-                if (customer != null)
-                {
-                    customer.UpdatedAt = DateTime.UtcNow;
-                    db.customers.Attach(customer);
-                    db.Entry(customer).State = EntityState.Modified;
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Please provide a valid customer for the update process!");
-                }
-            }
-        }
-
         //Hybrid Approach – Pass Whole Object but Track Changes Manually
 
         //Only Updates Modified Fields – Prevents unnecessary database writes.
         //✔ No Need to Manually Pass Fields in Function Call – You pass the whole object, but only changed fields are updated.
         //✔ Scalable – Works well even if the Customer model has 20+ properties.
 
-
-        public static void hybridUpdateCustomer(Customer customer)
+        public static void UpdateCustomer(Customer customer)
         {
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "Customer object cannot be null. error while updating record.");
+
             using (var db = new AppDbContext())
             {
-                var existingCustomer = db.customers.Find(customer.CustomerId);
+                var existingCustomer = db.Customers.Find(customer.CustomerId);
+
                 if (existingCustomer != null)
                 {
+                    // Update fields
                     if (existingCustomer.Name != customer.Name)
                         existingCustomer.Name = customer.Name;
                     if (existingCustomer.PhoneNo != customer.PhoneNo)
-                        existingCustomer.PhoneNo= customer.PhoneNo;
+                        existingCustomer.PhoneNo = customer.PhoneNo;
 
                     existingCustomer.UpdatedAt = DateTime.UtcNow;
+
                     db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception($"Customer with ID {customer.CustomerId} not found. error while updating record.");
                 }
             }
         }
 
+
+        public static void UpdateOrAddCustomer(Customer customer)
+        {
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "Customer object cannot be null. error while updating record");
+
+            using (var db = new AppDbContext())
+            {
+                customer.UpdatedAt = DateTime.UtcNow;
+
+                // Check if the customer already exists in the database
+                var existingCustomer = db.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+
+                if (existingCustomer != null)
+                {
+                    // If the entity exists, update it
+                    db.Customers.Attach(customer);
+                    db.Entry(customer).State = EntityState.Modified;
+                }
+                else
+                {
+                    // If the entity does not exist, add it as a new entity
+                    db.Customers.Add(customer);
+                }
+
+                customer.UpdatedAt = DateTime.UtcNow;
+                db.SaveChanges();
+            }
+        }
 
         // ✅ Delete a customer
         public static void DeleteCustomer(int id)
         {
             using (var db = new AppDbContext())
             {
-                var customer = db.customers.Find(id);
+                var customer = db.Customers.Find(id);
                 if (customer != null)
                 {
-                    db.customers.Remove(customer);
+                    db.Customers.Remove(customer);
                     db.SaveChanges();
                 }
                 else
