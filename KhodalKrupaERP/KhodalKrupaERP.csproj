@@ -132,6 +132,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\KhodalKrupaDB.sql" />
     <Content Include="read.txt" />
   </ItemGroup>
   <ItemGroup />
