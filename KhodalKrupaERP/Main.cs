@@ -22,11 +22,6 @@ namespace KhodalKrupaERP
             InitializeComponent();
         }
 
-        private void biCustomer_Click(object sender, EventArgs e)
-        {
-            AddFormToTab(new FrmCustomer(),"Customer management");
-        }
-
         private void AddFormToTab(Form childForm, string tabName)
         {
             // Set form properties
@@ -35,7 +30,7 @@ namespace KhodalKrupaERP
             childForm.Dock = DockStyle.Fill;
             childForm.BackColor = System.Drawing.Color.White;
 
-            addTab(childForm,tabName);
+            addTab(childForm, tabName);
             // Show the form inside the tab
             childForm.Show();
         }
@@ -54,6 +49,16 @@ namespace KhodalKrupaERP
             tabControlMain.TabPages.Add(tabPage);
             // Set the newly added tab as active
             tabControlMain.SelectedTab = tabPage;
+        }
+
+        private void biCustomer_Click(object sender, EventArgs e) //customer option click
+        {
+            AddFormToTab(new FrmCustomer(),"Customer Management");
+        }
+
+        private void biChallan_Click(object sender, EventArgs e) // challan option click
+        {
+            AddFormToTab(new FrmChallan(), "Challan Management");
         }
     }
 }

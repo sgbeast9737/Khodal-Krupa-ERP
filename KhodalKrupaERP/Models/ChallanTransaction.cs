@@ -66,7 +66,7 @@ namespace KhodalKrupaERP.Models
 
         public float Total { get; private set; }
 
-        public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 
         public ChallanTransaction(int challanId, int diamond, float rate, int paper)
         {
@@ -88,5 +88,9 @@ namespace KhodalKrupaERP.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+        // Empty Constructor for EF
+        public ChallanTransaction() { }
     }
 }

@@ -70,7 +70,7 @@ namespace KhodalKrupaERP.Forms
                 {
                     MessageBox.Show("Error occured", "Error while adding or updating record : " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
         }
 

@@ -10,18 +10,17 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanTransactionController
     {
         // ✅ Create a new ChallanTransaction
-        public void AddChallanTransaction(int challanId, int diamond, float rate, int paper)
+        public static void AddChallanTransaction(int challanId, int diamond, float rate, int paper)
         {
             using (var db = new AppDbContext())
             {
                 var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
                 db.ChallanTransactions.Add(transaction);
                 db.SaveChanges();
-                Console.WriteLine("Challan transaction added successfully!");
             }
         }
 
-        public BindingList<ChallanTransaction> GetAllChallanTransactions()
+        public static BindingList<ChallanTransaction> GetAllChallanTransactions()
         {
             using (var db = new AppDbContext())
             {
@@ -30,7 +29,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Get all challanTransactions
-        public List<ChallanTransaction> GetAllchallanTransactions()
+        public static List<ChallanTransaction> GetAllchallanTransactions()
         {
             using (var db = new AppDbContext())
             {
@@ -39,7 +38,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Get a specific ChallanTransaction by ID
-        public ChallanTransaction GetChallanTransactionById(int id)
+        public static ChallanTransaction GetChallanTransactionById(int id)
         {
             using (var db = new AppDbContext())
             {
@@ -48,25 +47,64 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a ChallanTransaction
-        public void UpdateChallanTransaction(int id, int diamond, float rate, int paper)
+        public static void UpdateChallanTransaction(int id, int diamond, float rate, int paper)
         {
             using (var db = new AppDbContext())
             {
                 var transaction = db.ChallanTransactions.Find(id);
                 if (transaction != null)
                 {
+                    transaction.Diamond = diamond;
+                    transaction.Rate = rate;
+                    transaction.Paper = paper;
                     db.SaveChanges();
-                    Console.WriteLine("Challan transaction updated successfully!");
                 }
                 else
                 {
-                    Console.WriteLine("Challan transaction not found!");
+                    throw new Exception($"Challan Transaction not found of given id {id} for update process");
+                }
+            }
+        }
+
+        //Hybrid Approach – Pass Whole Object but Track Changes Manually
+
+        //Only Updates Modified Fields – Prevents unnecessary database writes.
+        //✔ No Need to Manually Pass Fields in Function Call – You pass the whole object, but only changed fields are updated.
+        //✔ Scalable – Works well even if the Customer model has 20+ properties.
+
+        public static void UpdateChallanTransaction(ChallanTransaction transaction)
+        {
+            if (transaction == null)
+                throw new ArgumentNullException(nameof(transaction), "Customer object cannot be null. error while updating record.");
+
+            using (var db = new AppDbContext())
+            {
+                var existingTransaction = db.ChallanTransactions.Find(transaction.ChallanTransactionId);
+
+                if (existingTransaction != null)
+                {
+                    // Update fields
+                    if (existingTransaction.Diamond != transaction.Diamond)
+                        existingTransaction.Diamond = transaction.Diamond;
+
+                    if (existingTransaction.Rate != transaction.Rate)
+                        existingTransaction.Rate = transaction.Rate;
+
+                    if (existingTransaction.Paper != transaction.Paper)
+                        existingTransaction.Paper = transaction.Paper;
+
+                    existingTransaction.UpdatedAt = DateTime.UtcNow;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception($"Challan transaction with ID {transaction.ChallanTransactionId} not found. error while updating record.");
                 }
             }
         }
 
         // ✅ Delete a ChallanTransaction
-        public void DeleteChallanTransaction(int id)
+        public static void DeleteChallanTransaction(int id)
         {
             using (var db = new AppDbContext())
             {
@@ -75,11 +113,10 @@ namespace KhodalKrupaERP.Controllers
                 {
                     db.ChallanTransactions.Remove(transaction);
                     db.SaveChanges();
-                    Console.WriteLine("Challan transaction deleted successfully!");
                 }
                 else
                 {
-                    Console.WriteLine("Challan transaction not found!");
+                    throw new Exception($"Challan transaction not found of given id {id} for delete process");
                 }
             }
         }
