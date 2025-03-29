@@ -22,8 +22,8 @@ namespace KhodalKrupaERP.Models
         [Required]
         public DateTime ChallanDate { get; set; }
 
-        public DateTime? CreatedAt { get; private set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; private set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
 
         // Navigation Properties
         public virtual Customer Customer { get; set; }
@@ -35,8 +35,8 @@ namespace KhodalKrupaERP.Models
             this.CustomerId = customerId;
             this.DesignNo = designNo;
             this.ChallanDate = challanDate;
-            this.CreatedAt = DateTime.UtcNow;
-            this.UpdatedAt = DateTime.UtcNow;
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
             this.ChallanTransactions = new List<ChallanTransaction>();
         }
 

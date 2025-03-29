@@ -134,6 +134,7 @@
             this.sfDataGrid1.Size = new System.Drawing.Size(968, 342);
             this.sfDataGrid1.TabIndex = 0;
             this.sfDataGrid1.Text = "sfDataGrid1";
+            this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
             // 
             // btnSave
             // 

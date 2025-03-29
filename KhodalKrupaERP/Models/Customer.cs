@@ -17,8 +17,8 @@ namespace KhodalKrupaERP.Models
         [Required]
         [Index(IsUnique = true)]
         public string PhoneNo { get; set; }
-        public DateTime? CreatedAt { get; private set; } = DateTime.UtcNow;
-        public DateTime? UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedAt { get; private set; } = DateTime.Now;
+        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
 
         //Navigation Property for Relationship(One Customer can have multiple Challans)
         public virtual ICollection<Challan> Challans { get; set; }
@@ -28,8 +28,8 @@ namespace KhodalKrupaERP.Models
         {
             this.Name = name;
             this.PhoneNo = phoneNo;
-            this.CreatedAt = DateTime.UtcNow;
-            this.UpdatedAt = DateTime.UtcNow;
+            this.CreatedAt = DateTime.Now;
+            this.UpdatedAt = DateTime.Now;
             Challans = new List<Challan>();
         }
 

@@ -18,6 +18,14 @@ namespace KhodalKrupaERP.Controllers
                 db.ChallanTransactions.Add(transaction);
                 db.SaveChanges();
             }
+        }  
+
+        // ✅ Create a new ChallanTransaction
+        public static void AddChallanTransaction(AppDbContext context,int challanId, int diamond, float rate, int paper)
+        {
+            var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
+            context.ChallanTransactions.Add(transaction);
+            context.SaveChanges();
         }
 
         public static BindingList<ChallanTransaction> GetAllChallanTransactions()
@@ -66,6 +74,23 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
+        // ✅ Update a ChallanTransaction
+        public static void UpdateChallanTransaction(AppDbContext context, int id, int diamond, float rate, int paper)
+        {
+            var transaction = context.ChallanTransactions.Find(id);
+            if (transaction != null)
+            {
+                transaction.Diamond = diamond;
+                transaction.Rate = rate;
+                transaction.Paper = paper;
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Challan Transaction not found of given id {id} for update process");
+            }
+        }
+
         //Hybrid Approach – Pass Whole Object but Track Changes Manually
 
         //Only Updates Modified Fields – Prevents unnecessary database writes.
@@ -93,13 +118,41 @@ namespace KhodalKrupaERP.Controllers
                     if (existingTransaction.Paper != transaction.Paper)
                         existingTransaction.Paper = transaction.Paper;
 
-                    existingTransaction.UpdatedAt = DateTime.UtcNow;
+                    existingTransaction.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
                 }
                 else
                 {
                     throw new Exception($"Challan transaction with ID {transaction.ChallanTransactionId} not found. error while updating record.");
                 }
+            }
+        }
+
+        public static void UpdateChallanTransaction(AppDbContext context,ChallanTransaction transaction)
+        {
+            if (transaction == null)
+                throw new ArgumentNullException(nameof(transaction), "Customer object cannot be null. error while updating record.");
+           
+                var existingTransaction = context.ChallanTransactions.Find(transaction.ChallanTransactionId);
+
+            if (existingTransaction != null)
+            {
+                // Update fields
+                if (existingTransaction.Diamond != transaction.Diamond)
+                    existingTransaction.Diamond = transaction.Diamond;
+
+                if (existingTransaction.Rate != transaction.Rate)
+                    existingTransaction.Rate = transaction.Rate;
+
+                if (existingTransaction.Paper != transaction.Paper)
+                    existingTransaction.Paper = transaction.Paper;
+
+                existingTransaction.UpdatedAt = DateTime.Now;
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Challan transaction with ID {transaction.ChallanTransactionId} not found. error while updating record.");
             }
         }
 
@@ -118,6 +171,20 @@ namespace KhodalKrupaERP.Controllers
                 {
                     throw new Exception($"Challan transaction not found of given id {id} for delete process");
                 }
+            }
+        }
+
+        public static void DeleteChallanTransaction(AppDbContext context,int id)
+        {
+            var transaction = context.ChallanTransactions.Find(id);
+            if (transaction != null)
+            {
+                context.ChallanTransactions.Remove(transaction);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Challan transaction not found of given id {id} for delete process");
             }
         }
     }

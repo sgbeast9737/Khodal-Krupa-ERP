@@ -22,8 +22,11 @@ namespace KhodalKrupaERP
             InitializeComponent();
         }
 
-        private void AddFormToTab(Form childForm, string tabName)
+        public void AddFormToTab(Form childForm, string tabName)
         {
+            if (childForm.IsDisposed)
+                return;
+
             // Set form properties
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
@@ -49,6 +52,9 @@ namespace KhodalKrupaERP
             tabControlMain.TabPages.Add(tabPage);
             // Set the newly added tab as active
             tabControlMain.SelectedTab = tabPage;
+
+            if(control is Form childForm)
+                childForm.FormClosed += (sender, e) => tabPage.Close();
         }
 
         private void biCustomer_Click(object sender, EventArgs e) //customer option click
@@ -58,7 +64,7 @@ namespace KhodalKrupaERP
 
         private void biChallan_Click(object sender, EventArgs e) // challan option click
         {
-            AddFormToTab(new FrmChallan(), "Challan Management");
+            AddFormToTab(new FrmChallanList(), "Challan List");
         }
     }
 }

@@ -58,7 +58,7 @@ namespace KhodalKrupaERP.Controllers
                 {
                     customer.Name = newName;
                     customer.PhoneNo = newPhoneNo;
-                    customer.UpdatedAt = DateTime.UtcNow;
+                    customer.UpdatedAt = DateTime.Now;
                     db.SaveChanges();
                 }
                 else
@@ -91,7 +91,7 @@ namespace KhodalKrupaERP.Controllers
                     if (existingCustomer.PhoneNo != customer.PhoneNo)
                         existingCustomer.PhoneNo = customer.PhoneNo;
 
-                    existingCustomer.UpdatedAt = DateTime.UtcNow;
+                    existingCustomer.UpdatedAt = DateTime.Now;
 
                     db.SaveChanges();
                 }
@@ -110,7 +110,7 @@ namespace KhodalKrupaERP.Controllers
 
             using (var db = new AppDbContext())
             {
-                customer.UpdatedAt = DateTime.UtcNow;
+                customer.UpdatedAt = DateTime.Now;
 
                 // Check if the customer already exists in the database
                 var existingCustomer = db.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == customer.CustomerId);
@@ -127,7 +127,7 @@ namespace KhodalKrupaERP.Controllers
                     db.Customers.Add(customer);
                 }
 
-                customer.UpdatedAt = DateTime.UtcNow;
+                customer.UpdatedAt = DateTime.Now;
                 db.SaveChanges();
             }
         }

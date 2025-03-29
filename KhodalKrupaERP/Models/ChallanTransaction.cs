@@ -66,7 +66,7 @@ namespace KhodalKrupaERP.Models
 
         public float Total { get; private set; }
 
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         public ChallanTransaction(int challanId, int diamond, float rate, int paper)
         {
@@ -74,14 +74,14 @@ namespace KhodalKrupaERP.Models
             this.Diamond = diamond;
             this.Rate = rate;
             this.Paper = paper;
-            this.UpdatedAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.Now;
             CalculateTotal();
         }
 
         private void CalculateTotal()
         {
             this.Total = this.Diamond * this.Rate + this.Paper;
-            this.UpdatedAt = DateTime.UtcNow;
+            this.UpdatedAt = DateTime.Now;
         }
 
         protected void OnPropertyChanged(string propertyName)
