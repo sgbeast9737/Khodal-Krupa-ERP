@@ -9,10 +9,12 @@ namespace KhodalKrupaERP.Models
     public class ChallanInfo
     {
         public int ChallanId { get; set; }
+        public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public string CustomerPhoneNo { get; set; }
-        public int DesignNo { get; set; }
+        public string DesignNo { get; set; }
         public DateTime ChallanDate { get; set; }
-        public float TotalPaid { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public float Total { get; set; }
     }
 }

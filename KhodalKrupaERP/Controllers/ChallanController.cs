@@ -10,7 +10,7 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanController
     {
         // ✅ Create a new Challan
-        public static void AddChallan(DateTime challanDate, int designNo, int customerId)
+        public static void AddChallan(DateTime challanDate, string designNo, int customerId)
         {
             using (var db = new AppDbContext())
             {
@@ -21,7 +21,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Create a new Challan
-        public static int AddChallan(AppDbContext context,DateTime challanDate, int designNo, int customerId)
+        public static int AddChallan(AppDbContext context,DateTime challanDate, string designNo, int customerId)
         {
             var challan = new Challan(customerId, designNo, challanDate);
             context.Challans.Add(challan);
@@ -55,11 +55,13 @@ namespace KhodalKrupaERP.Controllers
                return context.Database.SqlQuery<ChallanInfo>(
                     @"SELECT
                       c.ChallanId,
-                      cus.Name AS CustomerName,
-                      cus.PhoneNo AS CustomerPhoneNo,
                       c.DesignNo,
                       c.ChallanDate,
-                      COALESCE(SUM(trans.Total), 0) AS TotalPaid
+                      CAST(strftime('%m', c.ChallanDate) AS INTEGER) AS Month,  
+                      CAST(strftime('%Y', c.ChallanDate) AS INTEGER) AS Year,   
+                      cus.CustomerId,
+                      cus.Name AS CustomerName,
+                      COALESCE(SUM(trans.Total), 0) AS Total
                     FROM
                       Challans c
                       INNER JOIN Customers cus ON c.CustomerId = cus.CustomerId
@@ -69,7 +71,8 @@ namespace KhodalKrupaERP.Controllers
                       cus.Name,
                       cus.PhoneNo,
                       c.DesignNo,
-                      c.ChallanDate"
+                      c.ChallanDate
+                    ORDER BY c.ChallanDate desc"
                 ).ToList();
             }
         }
@@ -87,7 +90,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a Challan
-        public static void UpdateChallan(int id, int newCustomerId, int newDesignNo, DateTime newChallanDate)
+        public static void UpdateChallan(int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
         {
             using (var db = new AppDbContext())
             {
@@ -108,7 +111,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a Challan
-        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, int newDesignNo, DateTime newChallanDate)
+        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
         {
             var challan = context.Challans.Find(id);
             if (challan != null)

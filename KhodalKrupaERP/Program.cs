@@ -11,12 +11,21 @@ namespace KhodalKrupaERP
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        private static Main mainForm;
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+
+            mainForm = new Main();
+            Application.Run(mainForm);
+        }
+
+        public static void AddFormToTab(Form childForm,string tabName)
+        {
+            mainForm?.AddFormToTab(childForm, tabName);
         }
     }
 }

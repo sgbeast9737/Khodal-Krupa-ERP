@@ -17,7 +17,7 @@ namespace KhodalKrupaERP.Models
         public int CustomerId { get; set; }
 
         [Required]
-        public int DesignNo { get; set; }
+        public string DesignNo { get; set; }
 
         [Required]
         public DateTime ChallanDate { get; set; }
@@ -30,7 +30,7 @@ namespace KhodalKrupaERP.Models
         public virtual ICollection<ChallanTransaction> ChallanTransactions { get; set; }
 
         // Constructor
-        public Challan(int customerId, int designNo, DateTime challanDate)
+        public Challan(int customerId, string designNo, DateTime challanDate)
         {
             this.CustomerId = customerId;
             this.DesignNo = designNo;

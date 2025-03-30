@@ -27,25 +27,20 @@ namespace KhodalKrupaERP.Forms
                  this.challan = ChallanController.GetChallanById((int)challanId);
             }
 
-            InitializeComponent();
-
             List<Customer> customers = CustomerController.GetAllCustomers();
             if (customers.Count == 0)
             {
-                MessageBox.Show("Please first add customers to create challan","Invalid operation",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Please first add customers to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if(this.Parent is Main main)
-                {
-                    main.AddFormToTab(new FrmCustomer(),"Customer Management");
-                }
+                Program.AddFormToTab(new FrmCustomer(), "Customer Management");
+
                 this.Close();
-            }
-            else
-            {
-                cbCustomer.DataSource = customers;
+                return;
             }
 
+            InitializeComponent();
 
+            cbCustomer.DataSource = customers;
             dtChallanDate.Format = "dd-MM-yyyy";
 
             if (this.challan != null)
@@ -70,7 +65,7 @@ namespace KhodalKrupaERP.Forms
             if (this.challan != null)
             {
                 cbCustomer.SelectedValue = this.challan.CustomerId;
-                nupDesignNo.Value = this.challan.DesignNo;
+                txtDesignNo.Text = this.challan.DesignNo;
 
                 this.btnSave.Text = "Update";
             }
@@ -86,9 +81,9 @@ namespace KhodalKrupaERP.Forms
             sfDataGrid1.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
             sfDataGrid1.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom;
 
-            hideColumn("ChallanTransactionId");
-            hideColumn("ChallanId");
-            hideColumn("UpdatedAt");
+            Helper.hideColumn(sfDataGrid1,"ChallanTransactionId");
+            Helper.hideColumn(sfDataGrid1,"ChallanId");
+            Helper.hideColumn(sfDataGrid1,"UpdatedAt");
 
             var groupSummaryColumn = new GridTableSummaryRow()
             {
@@ -106,14 +101,6 @@ namespace KhodalKrupaERP.Forms
             sfDataGrid1.TableSummaryRows.Add(groupSummaryColumn);
         }
 
-        private void hideColumn(string text)
-        {
-            GridColumn column = sfDataGrid1.Columns[text];
-
-            if (column != null)
-                column.Visible = false;
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(cbCustomer.SelectedValue == null)
@@ -127,7 +114,7 @@ namespace KhodalKrupaERP.Forms
                     {
                         if (this.challan != null) // update 
                         {
-                            ChallanController.UpdateChallan(context,challan.ChallanId, (int)cbCustomer.SelectedValue, (int)nupDesignNo.Value, dtChallanDate.Value ?? DateTime.Now);
+                            ChallanController.UpdateChallan(context,challan.ChallanId, (int)cbCustomer.SelectedValue, txtDesignNo.Text, dtChallanDate.Value ?? DateTime.Now);
 
                             foreach (var val in challanTransactions)
                             {
@@ -148,7 +135,7 @@ namespace KhodalKrupaERP.Forms
                         }
                         else // insert 
                         {
-                            int challanId = ChallanController.AddChallan(context, dtChallanDate.Value ?? DateTime.Now, (int)nupDesignNo.Value, (int)cbCustomer.SelectedValue);
+                            int challanId = ChallanController.AddChallan(context, dtChallanDate.Value ?? DateTime.Now, txtDesignNo.Text, (int)cbCustomer.SelectedValue);
 
                             foreach (var val in challanTransactions)
                             {

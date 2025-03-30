@@ -34,25 +34,24 @@
             this.lblDesignNo = new System.Windows.Forms.Label();
             this.cbCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
             this.dtChallanDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
-            this.nupDesignNo = new System.Windows.Forms.NumericUpDown();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtDesignNo = new System.Windows.Forms.TextBox();
             this.inputPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupDesignNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // inputPanel
             // 
+            this.inputPanel.Controls.Add(this.txtDesignNo);
             this.inputPanel.Controls.Add(this.lblCustomer);
             this.inputPanel.Controls.Add(this.lblChallanDate);
             this.inputPanel.Controls.Add(this.lblDesignNo);
             this.inputPanel.Controls.Add(this.cbCustomer);
             this.inputPanel.Controls.Add(this.dtChallanDate);
-            this.inputPanel.Controls.Add(this.nupDesignNo);
             this.inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.inputPanel.Location = new System.Drawing.Point(0, 0);
             this.inputPanel.Name = "inputPanel";
@@ -101,7 +100,7 @@
             this.cbCustomer.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCustomer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbCustomer.Style.TokenStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCustomer.TabIndex = 3;
+            this.cbCustomer.TabIndex = 1;
             this.cbCustomer.TabStop = false;
             // 
             // dtChallanDate
@@ -111,16 +110,8 @@
             this.dtChallanDate.Location = new System.Drawing.Point(194, 77);
             this.dtChallanDate.Name = "dtChallanDate";
             this.dtChallanDate.Size = new System.Drawing.Size(232, 36);
-            this.dtChallanDate.TabIndex = 1;
+            this.dtChallanDate.TabIndex = 3;
             this.dtChallanDate.ToolTipText = "";
-            // 
-            // nupDesignNo
-            // 
-            this.nupDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nupDesignNo.Location = new System.Drawing.Point(194, 17);
-            this.nupDesignNo.Name = "nupDesignNo";
-            this.nupDesignNo.Size = new System.Drawing.Size(232, 34);
-            this.nupDesignNo.TabIndex = 0;
             // 
             // sfDataGrid1
             // 
@@ -157,6 +148,14 @@
             this.panel1.Size = new System.Drawing.Size(969, 62);
             this.panel1.TabIndex = 1;
             // 
+            // txtDesignNo
+            // 
+            this.txtDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesignNo.Location = new System.Drawing.Point(194, 20);
+            this.txtDesignNo.Name = "txtDesignNo";
+            this.txtDesignNo.Size = new System.Drawing.Size(232, 34);
+            this.txtDesignNo.TabIndex = 7;
+            // 
             // FrmChallan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -171,7 +170,6 @@
             this.inputPanel.ResumeLayout(false);
             this.inputPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupDesignNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -187,8 +185,8 @@
         private System.Windows.Forms.Label lblDesignNo;
         private Syncfusion.WinForms.ListView.SfComboBox cbCustomer;
         private Syncfusion.WinForms.Input.SfDateTimeEdit dtChallanDate;
-        private System.Windows.Forms.NumericUpDown nupDesignNo;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtDesignNo;
     }
 }

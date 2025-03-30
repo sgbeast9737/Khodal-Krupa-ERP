@@ -22,6 +22,9 @@ namespace KhodalKrupaERP.Forms
             customerBindingList = CustomerController.GetAllBindableCustomers();
             sfDataGrid1.DataSource = customerBindingList;
 
+            Helper.hideColumn(sfDataGrid1, "CreatedAt");
+            Helper.hideColumn(sfDataGrid1, "UpdatedAt");
+
             sfDataGrid1.AllowDeleting = true;
             sfDataGrid1.AllowEditing = true;
             sfDataGrid1.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom;
