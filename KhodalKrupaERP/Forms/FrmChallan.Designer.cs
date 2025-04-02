@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.inputPanel = new System.Windows.Forms.Panel();
+            this.txtDesignNo = new System.Windows.Forms.TextBox();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.lblChallanDate = new System.Windows.Forms.Label();
             this.lblDesignNo = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.btnSave = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtDesignNo = new System.Windows.Forms.TextBox();
             this.inputPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
@@ -55,8 +55,16 @@
             this.inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.inputPanel.Location = new System.Drawing.Point(0, 0);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(969, 133);
+            this.inputPanel.Size = new System.Drawing.Size(958, 133);
             this.inputPanel.TabIndex = 0;
+            // 
+            // txtDesignNo
+            // 
+            this.txtDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDesignNo.Location = new System.Drawing.Point(194, 20);
+            this.txtDesignNo.Name = "txtDesignNo";
+            this.txtDesignNo.Size = new System.Drawing.Size(232, 34);
+            this.txtDesignNo.TabIndex = 7;
             // 
             // lblCustomer
             // 
@@ -122,7 +130,7 @@
             this.sfDataGrid1.Location = new System.Drawing.Point(0, 138);
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
-            this.sfDataGrid1.Size = new System.Drawing.Size(968, 342);
+            this.sfDataGrid1.Size = new System.Drawing.Size(957, 406);
             this.sfDataGrid1.TabIndex = 0;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
@@ -130,41 +138,35 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.LightGray;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(842, 8);
+            this.btnSave.Location = new System.Drawing.Point(831, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 46);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 486);
+            this.panel1.Location = new System.Drawing.Point(0, 550);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(969, 62);
+            this.panel1.Size = new System.Drawing.Size(958, 62);
             this.panel1.TabIndex = 1;
-            // 
-            // txtDesignNo
-            // 
-            this.txtDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesignNo.Location = new System.Drawing.Point(194, 20);
-            this.txtDesignNo.Name = "txtDesignNo";
-            this.txtDesignNo.Size = new System.Drawing.Size(232, 34);
-            this.txtDesignNo.TabIndex = 7;
             // 
             // FrmChallan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 548);
+            this.ClientSize = new System.Drawing.Size(958, 612);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.sfDataGrid1);
             this.Controls.Add(this.inputPanel);
             this.Name = "FrmChallan";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmChallan";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmChallan_KeyDown);
             this.inputPanel.ResumeLayout(false);

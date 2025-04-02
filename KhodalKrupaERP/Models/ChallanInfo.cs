@@ -16,5 +16,6 @@ namespace KhodalKrupaERP.Models
         public int Year { get; set; }
         public int Month { get; set; }
         public float Total { get; set; }
+        public string PhoneNo { get; set; }
     }
 }

@@ -60,6 +60,7 @@ namespace KhodalKrupaERP.Controllers
                       CAST(strftime('%m', c.ChallanDate) AS INTEGER) AS Month,  
                       CAST(strftime('%Y', c.ChallanDate) AS INTEGER) AS Year,   
                       cus.CustomerId,
+                      cus.PhoneNo,
                       cus.Name AS CustomerName,
                       COALESCE(SUM(trans.Total), 0) AS Total
                     FROM

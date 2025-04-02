@@ -33,9 +33,22 @@ namespace KhodalKrupaERP.Forms
         {
             sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
 
-            Helper.setDefaultConfig(sfDataGrid1, true);
+            Helper.setAnalysisConfig(sfDataGrid1, true);
             Helper.hideColumn(sfDataGrid1, columnsToHide);
-           
+
+            //add button column 
+            this.sfDataGrid1.Columns.Add(new GridButtonColumn()
+            {
+                MappingName = "PhoneNo",
+                HeaderText = "Send to Whatsapp",
+                Image = SystemIcons.Information.ToBitmap(),
+                ImageSize = new Size(16, 16),
+                TextImageRelation = TextImageRelation.ImageBeforeText,
+            });
+
+            this.sfDataGrid1.Style.ButtonStyle.BackColor = Color.Green;
+            this.sfDataGrid1.Style.ButtonStyle.TextColor = Color.White;
+
             summaryConfig();
         }
 
@@ -111,6 +124,19 @@ namespace KhodalKrupaERP.Forms
         private void columnChooserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             columnChooser.Show();
+        }
+
+        //send info to whatsapp
+        private void sfDataGrid1_CellButtonClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)
+        {
+            if(e.Record is Syncfusion.WinForms.DataGrid.DataRow dataRow)
+            {
+                if(dataRow.RowData is ChallanInfo challanInfo)
+                {
+                    MessageBox.Show(challanInfo.PhoneNo,challanInfo.ChallanId.ToString());
+
+                }
+            }
         }
     }
 }

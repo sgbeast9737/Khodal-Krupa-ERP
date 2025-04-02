@@ -31,12 +31,12 @@
             this.toolBar = new Syncfusion.Windows.Forms.Tools.XPMenus.XPToolBar();
             this.pbiMaster = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biCustomer = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.tabControlMain = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.pbiBills = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
-            this.pbiReports = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
-            this.pbiAccounts = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biChallan = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.pbiReports = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biMonthlyBillReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.pbiAccounts = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
+            this.tabControlMain = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +55,7 @@
             this.toolBar.Location = new System.Drawing.Point(0, 0);
             this.toolBar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.toolBar.Name = "toolBar";
-            this.toolBar.Size = new System.Drawing.Size(1055, 30);
+            this.toolBar.Size = new System.Drawing.Size(1181, 30);
             this.toolBar.Style = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
             this.toolBar.TabIndex = 0;
             this.toolBar.Text = "Tool Bar";
@@ -84,20 +84,6 @@
             this.biCustomer.Text = "Customer";
             this.biCustomer.Click += new System.EventHandler(this.biCustomer_Click);
             // 
-            // tabControlMain
-            // 
-            this.tabControlMain.ActiveTabColor = System.Drawing.Color.White;
-            this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControlMain.Location = new System.Drawing.Point(2, 34);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.ShowCloseButtonHighLightBackColor = true;
-            this.tabControlMain.ShowTabCloseButton = true;
-            this.tabControlMain.Size = new System.Drawing.Size(1050, 600);
-            this.tabControlMain.TabIndex = 1;
-            this.tabControlMain.ThemeStyle.PrimitiveButtonStyle.DisabledNextPageImage = null;
-            // 
             // pbiBills
             // 
             this.pbiBills.BarName = "pbiBills";
@@ -111,6 +97,15 @@
             this.pbiBills.Style = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
             this.pbiBills.Text = "Bills";
             this.pbiBills.WrapLength = 20;
+            // 
+            // biChallan
+            // 
+            this.biChallan.BarName = "biChallan";
+            this.biChallan.ID = "Challan";
+            this.biChallan.ShowToolTipInPopUp = false;
+            this.biChallan.SizeToFit = true;
+            this.biChallan.Text = "Challan";
+            this.biChallan.Click += new System.EventHandler(this.biChallan_Click);
             // 
             // pbiReports
             // 
@@ -126,6 +121,14 @@
             this.pbiReports.Text = "Reports";
             this.pbiReports.WrapLength = 20;
             // 
+            // biMonthlyBillReport
+            // 
+            this.biMonthlyBillReport.BarName = "biMonthlyBillReport";
+            this.biMonthlyBillReport.ID = "Monthly Bill Report";
+            this.biMonthlyBillReport.ShowToolTipInPopUp = false;
+            this.biMonthlyBillReport.SizeToFit = true;
+            this.biMonthlyBillReport.Text = "Monthly Bill Report";
+            // 
             // pbiAccounts
             // 
             this.pbiAccounts.BarName = "pbiAccounts";
@@ -138,31 +141,29 @@
             this.pbiAccounts.Text = "Accounts";
             this.pbiAccounts.WrapLength = 20;
             // 
-            // biChallan
+            // tabControlMain
             // 
-            this.biChallan.BarName = "biChallan";
-            this.biChallan.ID = "Challan";
-            this.biChallan.ShowToolTipInPopUp = false;
-            this.biChallan.SizeToFit = true;
-            this.biChallan.Text = "Challan";
-            this.biChallan.Click += new System.EventHandler(this.biChallan_Click);
-            // 
-            // biMonthlyBillReport
-            // 
-            this.biMonthlyBillReport.BarName = "biMonthlyBillReport";
-            this.biMonthlyBillReport.ID = "Monthly Bill Report";
-            this.biMonthlyBillReport.ShowToolTipInPopUp = false;
-            this.biMonthlyBillReport.SizeToFit = true;
-            this.biMonthlyBillReport.Text = "Monthly Bill Report";
+            this.tabControlMain.ActiveTabColor = System.Drawing.Color.White;
+            this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlMain.Location = new System.Drawing.Point(2, 34);
+            this.tabControlMain.Name = "tabControlMain";
+            this.tabControlMain.ShowCloseButtonHighLightBackColor = true;
+            this.tabControlMain.ShowTabCloseButton = true;
+            this.tabControlMain.Size = new System.Drawing.Size(1176, 635);
+            this.tabControlMain.TabIndex = 1;
+            this.tabControlMain.ThemeStyle.PrimitiveButtonStyle.DisabledNextPageImage = null;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1055, 635);
+            this.ClientSize = new System.Drawing.Size(1181, 670);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolBar);
+            this.MinimumSize = new System.Drawing.Size(1010, 670);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Khodal Krupa ERP";

@@ -56,13 +56,14 @@
             // 
             // btnAddChallan
             // 
+            this.btnAddChallan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnAddChallan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddChallan.Location = new System.Drawing.Point(12, 19);
             this.btnAddChallan.Name = "btnAddChallan";
             this.btnAddChallan.Size = new System.Drawing.Size(121, 43);
             this.btnAddChallan.TabIndex = 1;
             this.btnAddChallan.Text = "Add Challan";
-            this.btnAddChallan.UseVisualStyleBackColor = true;
+            this.btnAddChallan.UseVisualStyleBackColor = false;
             this.btnAddChallan.Click += new System.EventHandler(this.btnAddChallan_Click);
             // 
             // sfDataGrid1
@@ -78,6 +79,7 @@
             this.sfDataGrid1.TabIndex = 1;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);
+            this.sfDataGrid1.CellButtonClick += new Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventHandler(this.sfDataGrid1_CellButtonClick);
             // 
             // contextMenuStripGrid
             // 
@@ -89,12 +91,12 @@
             this.collapseAllToolStripMenuItem,
             this.columnChooserToolStripMenuItem});
             this.contextMenuStripGrid.Name = "contextMenuStripGrid";
-            this.contextMenuStripGrid.Size = new System.Drawing.Size(211, 152);
+            this.contextMenuStripGrid.Size = new System.Drawing.Size(186, 124);
             // 
             // clearGroupingToolStripMenuItem
             // 
             this.clearGroupingToolStripMenuItem.Name = "clearGroupingToolStripMenuItem";
-            this.clearGroupingToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.clearGroupingToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.clearGroupingToolStripMenuItem.Text = "Clear grouping";
             this.clearGroupingToolStripMenuItem.Click += new System.EventHandler(this.clearGroupingToolStripMenuItem_Click);
             // 
@@ -104,41 +106,41 @@
             this.dateToolStripMenuItem,
             this.customerToolStripMenuItem});
             this.groupDataByToolStripMenuItem.Name = "groupDataByToolStripMenuItem";
-            this.groupDataByToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.groupDataByToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.groupDataByToolStripMenuItem.Text = "Group data by";
             // 
             // dateToolStripMenuItem
             // 
             this.dateToolStripMenuItem.Name = "dateToolStripMenuItem";
-            this.dateToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.dateToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.dateToolStripMenuItem.Text = "Date";
             this.dateToolStripMenuItem.Click += new System.EventHandler(this.dateToolStripMenuItem_Click);
             // 
             // customerToolStripMenuItem
             // 
             this.customerToolStripMenuItem.Name = "customerToolStripMenuItem";
-            this.customerToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.customerToolStripMenuItem.Size = new System.Drawing.Size(147, 26);
             this.customerToolStripMenuItem.Text = "Customer";
             this.customerToolStripMenuItem.Click += new System.EventHandler(this.customerToolStripMenuItem_Click);
             // 
             // expandeAllToolStripMenuItem
             // 
             this.expandeAllToolStripMenuItem.Name = "expandeAllToolStripMenuItem";
-            this.expandeAllToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.expandeAllToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.expandeAllToolStripMenuItem.Text = "Expande all";
             this.expandeAllToolStripMenuItem.Click += new System.EventHandler(this.expandeAllToolStripMenuItem_Click);
             // 
             // collapseAllToolStripMenuItem
             // 
             this.collapseAllToolStripMenuItem.Name = "collapseAllToolStripMenuItem";
-            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.collapseAllToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.collapseAllToolStripMenuItem.Text = "Collapse all";
             this.collapseAllToolStripMenuItem.Click += new System.EventHandler(this.collapseAllToolStripMenuItem_Click);
             // 
             // columnChooserToolStripMenuItem
             // 
             this.columnChooserToolStripMenuItem.Name = "columnChooserToolStripMenuItem";
-            this.columnChooserToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.columnChooserToolStripMenuItem.Size = new System.Drawing.Size(185, 24);
             this.columnChooserToolStripMenuItem.Text = "Column chooser";
             this.columnChooserToolStripMenuItem.Click += new System.EventHandler(this.columnChooserToolStripMenuItem_Click);
             // 

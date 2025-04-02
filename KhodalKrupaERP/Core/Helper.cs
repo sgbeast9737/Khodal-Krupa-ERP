@@ -20,25 +20,34 @@ namespace KhodalKrupaERP.Core
             }
         }
 
-        public static void setDefaultConfig(SfDataGrid dataGrid,bool addAnalysisTool = false)
+        public static void setAnalysisConfig(SfDataGrid dataGrid, bool showGroupDropArea = true)
         {
             dataGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
 
-            if (addAnalysisTool)
-            {
-                dataGrid.ShowGroupDropArea = true;
-                dataGrid.AllowGrouping = true;
-                dataGrid.AllowSorting = true;
-                dataGrid.AllowFiltering = true;
+            //grouping setting
+            dataGrid.ShowGroupDropArea = showGroupDropArea;
+            dataGrid.AllowGrouping = true;
 
-                dataGrid.AllowDeleting = false;
-                dataGrid.AllowEditing = false;
-            }
-            else
-            {
-                dataGrid.AllowEditing = true;
-                dataGrid.AllowDeleting = true;
-            }
+            //sorting setting
+            dataGrid.AllowTriStateSorting = true;
+            dataGrid.ShowSortNumbers = true;
+
+            dataGrid.AllowDraggingColumns = true;
+            dataGrid.AllowFiltering = true;
+
+            dataGrid.AllowDeleting = false;
+            dataGrid.AllowEditing = false;
+        }
+
+        public static void setDataInputConfig(SfDataGrid dataGrid,bool addNewRowBottom = true)
+        {
+            dataGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
+            
+            dataGrid.AllowEditing = true;
+            dataGrid.AllowDeleting = true;
+
+            dataGrid.AllowSorting = false;
+            dataGrid.AddNewRowPosition = addNewRowBottom ? Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom : Syncfusion.WinForms.DataGrid.Enums.RowPosition.Top;
         } 
 
         public static void addGrouping(SfDataGrid dataGrid, params string[] columnNames)

@@ -22,7 +22,7 @@ namespace KhodalKrupaERP.Forms
 
         public FrmChallan(int? challanId = null)
         {
-            if(challanId != null)
+            if(challanId != null) // meaning it is update challan
             {
                  this.challan = ChallanController.GetChallanById((int)challanId);
             }
@@ -40,27 +40,15 @@ namespace KhodalKrupaERP.Forms
 
             InitializeComponent();
 
-            cbCustomer.DataSource = customers;
-            dtChallanDate.Format = "dd-MM-yyyy";
+            //customer popup config
+            setCustomerDropDown(customers);
 
+            //Date configuration
+            dtChallanDate.Format = "dd-MM-yyyy";
             if (this.challan != null)
                 dtChallanDate.Value = this.challan.ChallanDate;
             else
                 dtChallanDate.Value = DateTime.Now;
-
-            //customer popup config
-            cbCustomer.DisplayMember = "Name";
-            cbCustomer.ValueMember = "CustomerId";
-            cbCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
-
-            cbCustomer.Validating += (cbSender, cbE) =>
-            {
-                if (!customers.Contains(cbCustomer.SelectedItem))
-                {
-                    MessageBox.Show("Select valid customer");
-                    cbE.Cancel = true;
-                }
-            };
 
             if (this.challan != null)
             {
@@ -76,29 +64,28 @@ namespace KhodalKrupaERP.Forms
 
             sfDataGrid1.DataSource = challanTransactions;
 
-            sfDataGrid1.AllowEditing = true;
-            sfDataGrid1.AllowDeleting = true;
-            sfDataGrid1.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
-            sfDataGrid1.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom;
+            Helper.setDataInputConfig(sfDataGrid1);
+            Helper.hideColumn(sfDataGrid1,"ChallanTransactionId","ChallanId", "UpdatedAt");
 
-            Helper.hideColumn(sfDataGrid1,"ChallanTransactionId");
-            Helper.hideColumn(sfDataGrid1,"ChallanId");
-            Helper.hideColumn(sfDataGrid1,"UpdatedAt");
+            Helper.addSummary(sfDataGrid1,"Total");
+        }
 
-            var groupSummaryColumn = new GridTableSummaryRow()
+        private void setCustomerDropDown(List<Customer> customers)
+        {
+            cbCustomer.DataSource = customers;
+
+            cbCustomer.DisplayMember = "Name";
+            cbCustomer.ValueMember = "CustomerId";
+            cbCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
+
+            cbCustomer.Validating += (cbSender, cbE) =>
             {
-                ShowSummaryInRow = false,
-                Title = "Grand Total: {Sum}",
-                SummaryColumns = { new GridSummaryColumn()
+                if (!customers.Contains(cbCustomer.SelectedItem))
                 {
-                    MappingName = "Total",
-                    Name = "TotalSum",
-                    Format = "{Sum:C}", // Format as currency
-                    SummaryType = SummaryType.DoubleAggregate
-                }}
+                    MessageBox.Show("Select valid customer");
+                    cbE.Cancel = true;
+                }
             };
-
-            sfDataGrid1.TableSummaryRows.Add(groupSummaryColumn);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
