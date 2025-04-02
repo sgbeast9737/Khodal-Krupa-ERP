@@ -5,3 +5,8 @@ Install-Package System.Data.SQLite.EF6
 Install-Package EntityFramework
 Install-Package System.Data.SQLite.Core
 Install-Package System.Data.SQLite.Linq
+
+command to install fast report 
+
+Install-Package FastReport.OpenSource -Version 2021.4.0
+Install-Package FastReport.Compat -Version 2021.3.0

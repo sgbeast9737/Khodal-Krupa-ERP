@@ -1,4 +1,5 @@
-﻿using KhodalKrupaERP.Controllers;
+﻿using FastReport;
+using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
 using Syncfusion.Data;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -133,8 +135,43 @@ namespace KhodalKrupaERP.Forms
             {
                 if(dataRow.RowData is ChallanInfo challanInfo)
                 {
-                    MessageBox.Show(challanInfo.PhoneNo,challanInfo.ChallanId.ToString());
+                    Report report = new Report();
+                    report.Load(@"C:\dot-net-projects\@Test Reports\Challan_Report2.frx"); // Load your designed invoice
 
+                    string query = @"SELECT
+                                    C.ChallanId,
+                                    C.DesignNo,
+                                    C2.Name,
+                                    C2.PhoneNo,
+                                    C1.Diamond,
+                                    C1.ChallanId,
+                                    C1.Rate,
+                                    C1.Paper,
+                                    C1.Total
+                                FROM
+                                    `Challans` C,
+                                    `ChallanTransactions` C1,
+                                    `Customers` C2
+                                where
+                                    C.`ChallanId` = 1";
+
+                    string connectionString = @"Data Source=C:\dot-net-projects\KhodalKrupaERP\KhodalKrupaERP\bin\Debug\Database\KhodalKrupaDB.sqlite;Version=3;";
+
+                    DataTable data = new DataTable();
+                    using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(query, connectionString))
+                    {
+                        dataAdapter.Fill(data);
+                    }
+                    //FastReport.Config.CompilerSettings.Language = "CSharp";
+
+                    report.RegisterData(data, "Challan"); // Ensure the name matches the FastReport data source
+                    report.GetDataSource("Challan").Enabled = true; // Enable the dataset
+
+                    // Prepare and Export PDF
+                    report.Prepare();
+
+                    string storagePath = $@"{Application.StartupPath}\Invoices\Invoice_1234.pdf";
+                    report.Export(new FastReport.Export.ExportBase(), storagePath);
                 }
             }
         }
