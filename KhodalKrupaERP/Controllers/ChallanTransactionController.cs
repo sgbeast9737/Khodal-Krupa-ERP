@@ -10,23 +10,57 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanTransactionController
     {
         // ✅ Create a new ChallanTransaction
-        public static void AddChallanTransaction(int challanId, int diamond, float rate, int paper)
-        {
-            using (var db = new AppDbContext())
-            {
-                var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
-                db.ChallanTransactions.Add(transaction);
-                db.SaveChanges();
-            }
-        }  
-
-        // ✅ Create a new ChallanTransaction
         public static void AddChallanTransaction(AppDbContext context,int challanId, int diamond, float rate, int paper)
         {
             var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
             context.ChallanTransactions.Add(transaction);
             context.SaveChanges();
+        }       
+
+        public static void UpdateChallanTransaction(AppDbContext context, ChallanTransaction transaction)
+        {
+            if (transaction == null)
+                throw new ArgumentNullException(nameof(transaction), "Challan transaction object cannot be null. error while updating record.");
+
+            var existingTransaction = context.ChallanTransactions.Find(transaction.ChallanTransactionId);
+
+            if (existingTransaction != null)
+            {
+                // Update fields
+                if (existingTransaction.Diamond != transaction.Diamond)
+                    existingTransaction.Diamond = transaction.Diamond;
+
+                if (existingTransaction.Rate != transaction.Rate)
+                    existingTransaction.Rate = transaction.Rate;
+
+                if (existingTransaction.Paper != transaction.Paper)
+                    existingTransaction.Paper = transaction.Paper;
+
+                existingTransaction.UpdatedAt = DateTime.Now;
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Challan transaction with ID {transaction.ChallanTransactionId} not found. error while updating record.");
+            }
         }
+
+        public static void DeleteChallanTransaction(AppDbContext context, int id)
+        {
+            var transaction = context.ChallanTransactions.Find(id);
+            if (transaction != null)
+            {
+                context.ChallanTransactions.Remove(transaction);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"Challan transaction not found of given id {id} for delete process");
+            }
+        }
+        
+
+        #region less_used_methods
 
         public static BindingList<ChallanTransaction> GetAllChallanTransactions()
         {
@@ -51,6 +85,17 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 return db.ChallanTransactions.Find(id);
+            }
+        }
+
+        // ✅ Create a new ChallanTransaction
+        public static void AddChallanTransaction(int challanId, int diamond, float rate, int paper)
+        {
+            using (var db = new AppDbContext())
+            {
+                var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
+                db.ChallanTransactions.Add(transaction);
+                db.SaveChanges();
             }
         }
 
@@ -128,34 +173,6 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        public static void UpdateChallanTransaction(AppDbContext context,ChallanTransaction transaction)
-        {
-            if (transaction == null)
-                throw new ArgumentNullException(nameof(transaction), "Customer object cannot be null. error while updating record.");
-           
-                var existingTransaction = context.ChallanTransactions.Find(transaction.ChallanTransactionId);
-
-            if (existingTransaction != null)
-            {
-                // Update fields
-                if (existingTransaction.Diamond != transaction.Diamond)
-                    existingTransaction.Diamond = transaction.Diamond;
-
-                if (existingTransaction.Rate != transaction.Rate)
-                    existingTransaction.Rate = transaction.Rate;
-
-                if (existingTransaction.Paper != transaction.Paper)
-                    existingTransaction.Paper = transaction.Paper;
-
-                existingTransaction.UpdatedAt = DateTime.Now;
-                context.SaveChanges();
-            }
-            else
-            {
-                throw new Exception($"Challan transaction with ID {transaction.ChallanTransactionId} not found. error while updating record.");
-            }
-        }
-
         // ✅ Delete a ChallanTransaction
         public static void DeleteChallanTransaction(int id)
         {
@@ -174,18 +191,6 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        public static void DeleteChallanTransaction(AppDbContext context,int id)
-        {
-            var transaction = context.ChallanTransactions.Find(id);
-            if (transaction != null)
-            {
-                context.ChallanTransactions.Remove(transaction);
-                context.SaveChanges();
-            }
-            else
-            {
-                throw new Exception($"Challan transaction not found of given id {id} for delete process");
-            }
-        }
+        #endregion less_used_methods
     }
 }

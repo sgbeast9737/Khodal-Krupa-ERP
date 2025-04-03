@@ -23,7 +23,7 @@ namespace KhodalKrupaERP.Forms
     public partial class FrmChallanList : Form
     {
         private ColumnChooserPopup columnChooser;
-        string[] columnsToHide = new string[] { "ChallanId", "Year", "Month" };
+        string[] columnsToHide = new string[] { "ChallanId", "Year", "Month", "PhoneNo"};
 
         public FrmChallanList()
         {
@@ -79,16 +79,16 @@ namespace KhodalKrupaERP.Forms
             {
                 DialogResult result = MessageBox.Show("Are sure you want to delete this challan ?", "Delete challan", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                foreach (Challan challan in e.Items)
+                if (result == DialogResult.Yes)
                 {
-                    if(result == DialogResult.Yes)
+                    foreach (Challan challan in e.Items)
                     {
                         ChallanController.DeleteChallan(challan.ChallanId);
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                    }
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
             catch (Exception ex)

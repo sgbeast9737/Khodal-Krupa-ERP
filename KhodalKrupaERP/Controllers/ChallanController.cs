@@ -9,19 +9,20 @@ namespace KhodalKrupaERP.Controllers
 {
     public class ChallanController
     {
-        // ✅ Create a new Challan
-        public static void AddChallan(DateTime challanDate, string designNo, int customerId)
+        // ✅ Get a specific Challan by ID
+        public static Challan GetChallanById(int id)
         {
             using (var db = new AppDbContext())
             {
-                var challan = new Challan(customerId, designNo, challanDate);
-                db.Challans.Add(challan);
-                db.SaveChanges();
+                Challan challan = db.Challans.Find(id);
+                var transactions = challan.ChallanTransactions;
+
+                return challan;
             }
         }
 
         // ✅ Create a new Challan
-        public static int AddChallan(AppDbContext context,DateTime challanDate, string designNo, int customerId)
+        public static int AddChallan(AppDbContext context, int customerId, string designNo, DateTime challanDate)
         {
             var challan = new Challan(customerId, designNo, challanDate);
             context.Challans.Add(challan);
@@ -30,21 +31,39 @@ namespace KhodalKrupaERP.Controllers
             return challan.ChallanId;
         }
 
-        // ✅ Get all bindable challans
-        public static BindingList<Challan> GetAllBindableCustomers()
+        // ✅ Update a Challan
+        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
         {
-            using (var db = new AppDbContext())
+            var challan = context.Challans.Find(id);
+            if (challan != null)
             {
-                return new BindingList<Challan>(db.Challans.ToList());
+                challan.CustomerId = newCustomerId;
+                challan.DesignNo = newDesignNo;
+                challan.ChallanDate = newChallanDate;
+                challan.UpdatedAt = DateTime.Now; // Update the timestamp
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception($"challan not found of given id {id} for update process");
             }
         }
 
-        // ✅ Get all challans
-        public static List<Challan> GetAllchallans()
+        // ✅ Delete a Challan
+        public static void DeleteChallan(int id)
         {
             using (var db = new AppDbContext())
             {
-                return db.Challans.ToList();
+                var challan = db.Challans.Find(id);
+                if (challan != null)
+                {
+                    db.Challans.Remove(challan);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception($"challan not found of given id {id} for delete process");
+                }
             }
         }
 
@@ -52,8 +71,8 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var context = new AppDbContext())
             {
-               return context.Database.SqlQuery<ChallanInfo>(
-                    @"SELECT
+                return context.Database.SqlQuery<ChallanInfo>(
+                     @"SELECT
                       c.ChallanId,
                       c.DesignNo,
                       c.ChallanDate,
@@ -74,22 +93,41 @@ namespace KhodalKrupaERP.Controllers
                       c.DesignNo,
                       c.ChallanDate
                     ORDER BY c.ChallanDate desc"
-                ).ToList();
+                 ).ToList();
             }
         }
 
-        // ✅ Get a specific Challan by ID
-        public static Challan GetChallanById(int id)
+        // ✅ Get all bindable challans
+        public static BindingList<Challan> GetAllBindableChallans()
         {
             using (var db = new AppDbContext())
             {
-                Challan challan = db.Challans.Find(id);
-                var transactions = challan.ChallanTransactions;
-
-                return challan;
+                return new BindingList<Challan>(db.Challans.ToList());
             }
         }
 
+        // ✅ Get all challans
+        public static List<Challan> GetAllchallans()
+        {
+            using (var db = new AppDbContext())
+            {
+                return db.Challans.ToList();
+            }
+        }
+
+        #region less_used_methods
+
+        // ✅ Create a new Challan
+        public static void AddChallan(DateTime challanDate, string designNo, int customerId)
+        {
+            using (var db = new AppDbContext())
+            {
+                var challan = new Challan(customerId, designNo, challanDate);
+                db.Challans.Add(challan);
+                db.SaveChanges();
+            }
+        }
+   
         // ✅ Update a Challan
         public static void UpdateChallan(int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
         {
@@ -111,24 +149,6 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        // ✅ Update a Challan
-        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
-        {
-            var challan = context.Challans.Find(id);
-            if (challan != null)
-            {
-                challan.CustomerId = newCustomerId;
-                challan.ChallanDate = newChallanDate;
-                challan.DesignNo = newDesignNo;
-                challan.UpdatedAt = DateTime.Now; // Update the timestamp
-                context.SaveChanges();
-            }
-            else
-            {
-                throw new Exception($"challan not found of given id {id} for update process");
-            }
-        }
-
         //Hybrid Approach – Pass Whole Object but Track Changes Manually
 
         //Only Updates Modified Fields – Prevents unnecessary database writes.
@@ -138,7 +158,7 @@ namespace KhodalKrupaERP.Controllers
         public static void UpdateChallan(Challan challan)
         {
             if (challan == null)
-                throw new ArgumentNullException(nameof(challan), "Customer object cannot be null. error while updating record.");
+                throw new ArgumentNullException(nameof(challan), "Challan object cannot be null. error while updating record.");
 
             using (var db = new AppDbContext())
             {
@@ -147,6 +167,7 @@ namespace KhodalKrupaERP.Controllers
                 if (existingChallan != null)
                 {
                     // Update fields
+
                     if (existingChallan.CustomerId != challan.CustomerId)
                         existingChallan.CustomerId = challan.CustomerId;
 
@@ -167,22 +188,6 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        // ✅ Delete a Challan
-        public static void DeleteChallan(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                var challan = db.Challans.Find(id);
-                if (challan != null)
-                {
-                    db.Challans.Remove(challan);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception($"challan not found of given id {id} for delete process");
-                }
-            }
-        }
+        #endregion less_used_methods
     }
 }

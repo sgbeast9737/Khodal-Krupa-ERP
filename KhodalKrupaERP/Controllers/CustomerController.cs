@@ -10,17 +10,6 @@ namespace KhodalKrupaERP.Controllers
 {
     public class CustomerController
     {
-        // ✅ Create a new customer
-        public static void AddCustomer(string name, string phoneNo)
-        {
-            using (var db = new AppDbContext())
-            {
-                var customer = new Customer(name, phoneNo);
-                db.Customers.Add(customer);
-                db.SaveChanges();
-            }
-        }
-
         // ✅ Get all bindable customers
         public static BindingList<Customer> GetAllBindableCustomers()
         {
@@ -45,6 +34,69 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 return db.Customers.Find(id);
+            }
+        }
+
+        public static void UpdateOrAddCustomer(Customer customer)
+        {
+            if (customer == null)
+                throw new ArgumentNullException(nameof(customer), "Customer object cannot be null. error while updating record");
+
+            using (var db = new AppDbContext())
+            {
+                // Check if the customer already exists in the database
+                //var existingCustomer = db.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+                Customer existingCustomer = db.Customers.Find(customer.CustomerId);
+
+                if (existingCustomer != null)
+                {
+                    // If the entity exists, update it
+                    if (existingCustomer.Name != customer.Name)
+                        existingCustomer.Name = customer.Name;
+                    if (existingCustomer.PhoneNo != customer.PhoneNo)
+                        existingCustomer.PhoneNo = customer.PhoneNo;
+
+                    existingCustomer.UpdatedAt = DateTime.Now;
+                }
+                else
+                {
+                    // If the entity does not exist, add it as a new entity
+                    Customer newCustomer = new Customer(customer.Name, customer.PhoneNo);
+                    db.Customers.Add(newCustomer);
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        // ✅ Delete a customer
+        public static void DeleteCustomer(int id)
+        {
+            using (var db = new AppDbContext())
+            {
+                var customer = db.Customers.Find(id);
+                if (customer != null)
+                {
+                    db.Customers.Remove(customer);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception($"customer not found of given id {id} for delete process");
+                }
+            }
+        }
+
+        #region less_used_methods
+
+        // ✅ Create a new customer
+        public static void AddCustomer(string name, string phoneNo)
+        {
+            using (var db = new AppDbContext())
+            {
+                var customer = new Customer(name, phoneNo);
+                db.Customers.Add(customer);
+                db.SaveChanges();
             }
         }
 
@@ -102,53 +154,7 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-
-        public static void UpdateOrAddCustomer(Customer customer)
-        {
-            if (customer == null)
-                throw new ArgumentNullException(nameof(customer), "Customer object cannot be null. error while updating record");
-
-            using (var db = new AppDbContext())
-            {
-                customer.UpdatedAt = DateTime.Now;
-
-                // Check if the customer already exists in the database
-                var existingCustomer = db.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == customer.CustomerId);
-
-                if (existingCustomer != null)
-                {
-                    // If the entity exists, update it
-                    db.Customers.Attach(customer);
-                    db.Entry(customer).State = EntityState.Modified;
-                }
-                else
-                {
-                    // If the entity does not exist, add it as a new entity
-                    db.Customers.Add(customer);
-                }
-
-                customer.UpdatedAt = DateTime.Now;
-                db.SaveChanges();
-            }
-        }
-
-        // ✅ Delete a customer
-        public static void DeleteCustomer(int id)
-        {
-            using (var db = new AppDbContext())
-            {
-                var customer = db.Customers.Find(id);
-                if (customer != null)
-                {
-                    db.Customers.Remove(customer);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception($"customer not found of given id {id} for delete process");
-                }
-            }
-        }
+        #endregion less_used_methods
     }
 }
 

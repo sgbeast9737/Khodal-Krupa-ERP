@@ -25,10 +25,7 @@ namespace KhodalKrupaERP.Forms
             Helper.hideColumn(sfDataGrid1, "CreatedAt");
             Helper.hideColumn(sfDataGrid1, "UpdatedAt");
 
-            sfDataGrid1.AllowDeleting = true;
-            sfDataGrid1.AllowEditing = true;
-            sfDataGrid1.AddNewRowPosition = Syncfusion.WinForms.DataGrid.Enums.RowPosition.Bottom;
-            sfDataGrid1.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.Fill;
+            Helper.setDataInputConfig(sfDataGrid1,false);
         }
 
         private void sfDataGrid1_RowValidating(object sender, Syncfusion.WinForms.DataGrid.Events.RowValidatingEventArgs e)
@@ -43,14 +40,14 @@ namespace KhodalKrupaERP.Forms
                 }
 
                 // Example: Validate PhoneNo field
-                if (string.IsNullOrWhiteSpace(customer.PhoneNo) || customer.PhoneNo.Length < 10)
+                if (string.IsNullOrWhiteSpace(customer.PhoneNo) || customer.PhoneNo.Length != 10)
                 {
                     e.IsValid = false;
                     e.ErrorMessage = "Valid phone number is required!";
                 }
 
                 if (!e.IsValid)
-                    MessageBox.Show("Invalid","Invalid value please correct it",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show(e.ErrorMessage,"Invalid",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -60,20 +57,12 @@ namespace KhodalKrupaERP.Forms
             {
                 try
                 {
-                    if (customer.CustomerId == 0) // INSERT CASE
-                    {
-                        CustomerController.AddCustomer(customer.Name, customer.PhoneNo);
-                    }
-                    else // UPDATE CASE
-                    {
-                        CustomerController.UpdateCustomer(customer); // Pass whole object
-                    }
+                    CustomerController.UpdateOrAddCustomer(customer);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error occured", "Error while adding or updating record : " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
         }
 

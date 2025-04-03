@@ -88,10 +88,26 @@ namespace KhodalKrupaERP.Forms
             };
         }
 
+        private bool isValid()
+        {
+            if (cbCustomer.SelectedValue == null)
+            {
+                MessageBox.Show("Plese select customer", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            else if(String.IsNullOrEmpty(txtDesignNo.Text))
+            {
+                MessageBox.Show("Plese provide design no", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtDesignNo.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(cbCustomer.SelectedValue == null)
-                MessageBox.Show("Plese select customer", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!isValid()) return;
 
             using (var context = new AppDbContext())
             {
@@ -105,7 +121,14 @@ namespace KhodalKrupaERP.Forms
 
                             foreach (var val in challanTransactions)
                             {
-                                ChallanTransactionController.UpdateChallanTransaction(context,val);
+                                if(val.ChallanId == 0)
+                                {
+                                    ChallanTransactionController.AddChallanTransaction(context, challan.ChallanId, val.Diamond, val.Rate, val.Paper);
+                                }
+                                else
+                                {
+                                    ChallanTransactionController.UpdateChallanTransaction(context,val);
+                                }
                             }
 
                             //delete challan transaction but first compare which challan transaction need to delete
@@ -122,7 +145,7 @@ namespace KhodalKrupaERP.Forms
                         }
                         else // insert 
                         {
-                            int challanId = ChallanController.AddChallan(context, dtChallanDate.Value ?? DateTime.Now, txtDesignNo.Text, (int)cbCustomer.SelectedValue);
+                            int challanId = ChallanController.AddChallan(context, (int)cbCustomer.SelectedValue, txtDesignNo.Text, dtChallanDate.Value ?? DateTime.Now);
 
                             foreach (var val in challanTransactions)
                             {
