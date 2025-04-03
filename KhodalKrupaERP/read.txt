@@ -10,3 +10,8 @@ command to install fast report
 
 Install-Package FastReport.OpenSource -Version 2021.4.0
 Install-Package FastReport.Compat -Version 2021.3.0
+
+for export to pdf you need to install below package from package manager
+
+FastReport.Export.PdfSimple
+version = 2021.4.0;

@@ -50,6 +50,9 @@
     <Reference Include="FastReport.Compat, Version=2021.3.0.0, Culture=neutral, PublicKeyToken=406e1f4c3c8ef97e, processorArchitecture=MSIL">
       <HintPath>..\packages\FastReport.Compat.2021.3.0\lib\net40\FastReport.Compat.dll</HintPath>
     </Reference>
+    <Reference Include="FastReport.OpenSource.Export.PdfSimple, Version=2021.4.0.0, Culture=neutral, PublicKeyToken=b33a9a06fcc00c4c, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastReport.OpenSource.Export.PdfSimple.2021.4.0\lib\net40\FastReport.OpenSource.Export.PdfSimple.dll</HintPath>
+    </Reference>
     <Reference Include="Syncfusion.Core.WinForms, Version=28.1462.33.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Data.WinForms, Version=28.1462.33.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
     <Reference Include="Syncfusion.Grid.Base, Version=28.1462.33.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
@@ -178,6 +181,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Database\DB_creation_script.sql" />
     <Content Include="Core\KhodalKrupaDB.sql" />
     <Content Include="read.txt" />
   </ItemGroup>
