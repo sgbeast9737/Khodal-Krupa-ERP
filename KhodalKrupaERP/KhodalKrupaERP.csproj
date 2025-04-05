@@ -184,7 +184,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bin\Debug\Database\DB_creation_script.sql" />
     <Content Include="Core\DB_creation_script.sql" />
     <Content Include="read.txt" />
   </ItemGroup>

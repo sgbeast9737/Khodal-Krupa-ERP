@@ -19,7 +19,6 @@ namespace KhodalKrupaERP.Models
 
         // Foreign Key
         [Required]
-        [ForeignKey("Challan")]
         public int ChallanId { get; private set; }
         public virtual Challan Challan { get; set; } // Navigation Property
 

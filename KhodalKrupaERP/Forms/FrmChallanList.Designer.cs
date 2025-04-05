@@ -40,6 +40,7 @@
             this.expandeAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.columnChooserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorkerReportGeneration = new System.ComponentModel.BackgroundWorker();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
             this.contextMenuStripGrid.SuspendLayout();
@@ -145,6 +146,11 @@
             this.columnChooserToolStripMenuItem.Text = "Column chooser";
             this.columnChooserToolStripMenuItem.Click += new System.EventHandler(this.columnChooserToolStripMenuItem_Click);
             // 
+            // backgroundWorkerReportGeneration
+            // 
+            this.backgroundWorkerReportGeneration.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerReportGeneration_DoWork);
+            this.backgroundWorkerReportGeneration.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorkerReportGeneration_RunWorkerCompleted);
+            // 
             // FrmChallanList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -176,5 +182,6 @@
         private System.Windows.Forms.ToolStripMenuItem collapseAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearGroupingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem columnChooserToolStripMenuItem;
+        private System.ComponentModel.BackgroundWorker backgroundWorkerReportGeneration;
     }
 }

@@ -26,7 +26,7 @@ namespace KhodalKrupaERP.Forms
     public partial class FrmChallanList : Form
     {
         private ColumnChooserPopup columnChooser;
-        string[] columnsToHide = new string[] { "ChallanId", "Year", "Month", "PhoneNo"};
+        string[] columnsToHide = new string[] { "ChallanId", "Year", "Month", "PhoneNo" };
 
         public FrmChallanList()
         {
@@ -99,7 +99,7 @@ namespace KhodalKrupaERP.Forms
             catch (Exception ex)
             {
                 e.Cancel = true;
-                MessageBox.Show("Error while deleting record \nError : " + ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Error while deleting record \nError : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -134,20 +134,47 @@ namespace KhodalKrupaERP.Forms
         }
 
         //send info to whatsapp
-        private async void sfDataGrid1_CellButtonClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)
+        private void sfDataGrid1_CellButtonClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)
         {
             if (e.Record is Syncfusion.WinForms.DataGrid.DataRow dataRow)
             {
-                if(dataRow.RowData is ChallanInfo challanInfo)
+                if (dataRow.RowData is ChallanInfo challanInfo)
                 {
-                    ChallanReport report = new ChallanReport(challanInfo);
-                    //ShowLoadingAnimation();
-                    await Task.Run(() => report.savePdf());
-                    //HideLoadingAnimation();
-
-                    MessageBox.Show("invoice saved successfully","PDF Saved Succcessfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    if (!backgroundWorkerReportGeneration.IsBusy)
+                    {
+                        backgroundWorkerReportGeneration.RunWorkerAsync(challanInfo);
+                    }
+                    else
+                    {
+                        DialogResult res = MessageBox.Show("Report generation task is still running wait while running task is complete", "Report generation Task running", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
+        }
+
+        private void backgroundWorkerReportGeneration_DoWork(object sender, DoWorkEventArgs e)
+        {
+            ChallanInfo challanInfo = (ChallanInfo)e.Argument;
+
+            try
+            {
+                ChallanReport report = new ChallanReport(challanInfo);
+                //ShowLoadingAnimation();
+                report.savePdf();
+                //HideLoadingAnimation();
+
+                MessageBox.Show("invoice saved successfully", "PDF Saved Succcessfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Error occured while generating report \nError Message : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void backgroundWorkerReportGeneration_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled) return;
         }
     }
 }
