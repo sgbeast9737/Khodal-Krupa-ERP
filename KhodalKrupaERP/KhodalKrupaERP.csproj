@@ -138,6 +138,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\ChallanReport.cs" />
     <EmbeddedResource Include="Forms\FrmChallan.resx">
       <DependentUpon>FrmChallan.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +164,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="bin\Debug\Database\KhodalKrupaDB.sqlite" />
+    <None Include="bin\Debug\Report Design\challan_invoice.frx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.Challan.datasource" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.ChallanTransaction.datasource" />

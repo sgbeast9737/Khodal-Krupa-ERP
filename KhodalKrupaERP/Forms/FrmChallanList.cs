@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FastReport.Export.PdfSimple;
+using KhodalKrupaERP.Reports;
 
 namespace KhodalKrupaERP.Forms
 {
@@ -131,58 +132,18 @@ namespace KhodalKrupaERP.Forms
         }
 
         //send info to whatsapp
-        private void sfDataGrid1_CellButtonClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)
+        private async void sfDataGrid1_CellButtonClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellButtonClickEventArgs e)
         {
-            if(e.Record is Syncfusion.WinForms.DataGrid.DataRow dataRow)
+            if (e.Record is Syncfusion.WinForms.DataGrid.DataRow dataRow)
             {
                 if(dataRow.RowData is ChallanInfo challanInfo)
                 {
-                    try
-                    {
-                        Report report = new Report();
-                        report.Load(@"C:\dot-net-projects\@Test Reports\New_Challan_Report.frx"); // Load your designed invoice
+                    ChallanReport report = new ChallanReport(challanInfo);
+                    //ShowLoadingAnimation();
+                    await Task.Run(() => report.savePdf());
+                    //HideLoadingAnimation();
 
-                        string query = @"SELECT
-                                        C.ChallanId,
-                                        C.DesignNo,
-                                        C2.Name,
-                                        C2.PhoneNo,
-                                        C1.Diamond,
-                                        C1.Rate,
-                                        C1.Paper,
-                                        C1.Total
-                                    FROM
-                                        `Challans` C,
-                                        `ChallanTransactions` C1,
-                                        `Customers` C2
-                                    where
-                                        C.`ChallanId` = 1";
-
-                        string connectionString = @"Data Source=C:\dot-net-projects\KhodalKrupaERP\KhodalKrupaERP\bin\Debug\Database\KhodalKrupaDB.sqlite;Version=3;";
-
-                        DataTable data = new DataTable();
-                        using (SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(query, connectionString))
-                        {
-                            dataAdapter.Fill(data);
-                        }
-
-                        report.RegisterData(data, "Challan"); // Ensure the name matches the FastReport data source
-                        report.GetDataSource("Challan").Enabled = true; // Enable the dataset
-
-                        // Prepare and Export PDF
-                        report.Prepare();
-
-                        string storagePath = $@"{Application.StartupPath}\Invoices\Invoice_1234.pdf";
-
-                        PDFSimpleExport pdfExport = new PDFSimpleExport();
-
-                        pdfExport.Export(report, storagePath);
-
-                    }
-                    catch (Exception err)
-                    {
-                        MessageBox.Show(err.ToString());
-                    }
+                    MessageBox.Show("invoice saved successfully","PDF Saved Succcessfully",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
         }
