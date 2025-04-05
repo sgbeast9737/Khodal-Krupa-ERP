@@ -164,7 +164,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="bin\Debug\Database\KhodalKrupaDB.sqlite" />
-    <None Include="bin\Debug\Report Design\challan_invoice.frx" />
+    <None Include="bin\Debug\Report Design\report.frx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.Challan.datasource" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.ChallanTransaction.datasource" />
@@ -178,13 +178,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="ReportDesign\report.frx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Debug\Database\DB_creation_script.sql" />
-    <Content Include="Core\KhodalKrupaDB.sql" />
+    <Content Include="Core\DB_creation_script.sql" />
     <Content Include="read.txt" />
   </ItemGroup>
   <ItemGroup>
