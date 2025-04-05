@@ -39,6 +39,8 @@ namespace KhodalKrupaERP.Forms
             sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
 
             Helper.setAnalysisConfig(sfDataGrid1, true);
+            sfDataGrid1.AllowDeleting = true;
+
             Helper.hideColumn(sfDataGrid1, columnsToHide);
 
             //add button column 
@@ -84,7 +86,7 @@ namespace KhodalKrupaERP.Forms
 
                 if (result == DialogResult.Yes)
                 {
-                    foreach (Challan challan in e.Items)
+                    foreach (ChallanInfo challan in e.Items)
                     {
                         ChallanController.DeleteChallan(challan.ChallanId);
                     }
