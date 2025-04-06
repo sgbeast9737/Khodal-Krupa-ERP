@@ -33,6 +33,9 @@
             this.btnGet = new System.Windows.Forms.Button();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.cbCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.dteChallanDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            this.lblChallanDate = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
@@ -53,6 +56,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.lblChallanDate);
+            this.panel1.Controls.Add(this.dteChallanDate);
             this.panel1.Controls.Add(this.btnGet);
             this.panel1.Controls.Add(this.lblCustomer);
             this.panel1.Controls.Add(this.cbCustomer);
@@ -67,7 +73,7 @@
             this.btnGet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGet.BackColor = System.Drawing.Color.LightGray;
             this.btnGet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGet.Location = new System.Drawing.Point(788, 73);
+            this.btnGet.Location = new System.Drawing.Point(788, 72);
             this.btnGet.Name = "btnGet";
             this.btnGet.Size = new System.Drawing.Size(117, 46);
             this.btnGet.TabIndex = 2;
@@ -102,6 +108,41 @@
             this.cbCustomer.TabIndex = 1;
             this.cbCustomer.TabStop = false;
             // 
+            // dteChallanDate
+            // 
+            this.dteChallanDate.AllowValueChangeOnMouseWheel = true;
+            this.dteChallanDate.DateTimeIcon = null;
+            this.dteChallanDate.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.YearMonth;
+            this.dteChallanDate.Location = new System.Drawing.Point(200, 25);
+            this.dteChallanDate.Name = "dteChallanDate";
+            this.dteChallanDate.Size = new System.Drawing.Size(211, 31);
+            this.dteChallanDate.TabIndex = 4;
+            this.dteChallanDate.ToolTipText = "";
+            this.dteChallanDate.Value = new System.DateTime(2025, 4, 1, 0, 0, 0, 0);
+            // 
+            // lblChallanDate
+            // 
+            this.lblChallanDate.AutoSize = true;
+            this.lblChallanDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChallanDate.Location = new System.Drawing.Point(25, 25);
+            this.lblChallanDate.Name = "lblChallanDate";
+            this.lblChallanDate.Size = new System.Drawing.Size(122, 28);
+            this.lblChallanDate.TabIndex = 9;
+            this.lblChallanDate.Text = "Challan Date";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRefresh.BackColor = System.Drawing.Color.LightGray;
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Location = new System.Drawing.Point(30, 72);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(117, 46);
+            this.btnRefresh.TabIndex = 10;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FrmChallanTransactionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -127,5 +168,8 @@
         private System.Windows.Forms.Label lblCustomer;
         private Syncfusion.WinForms.ListView.SfComboBox cbCustomer;
         private System.Windows.Forms.Button btnGet;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit dteChallanDate;
+        private System.Windows.Forms.Label lblChallanDate;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

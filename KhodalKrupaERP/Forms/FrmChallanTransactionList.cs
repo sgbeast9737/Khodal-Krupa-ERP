@@ -1,6 +1,7 @@
 ﻿using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
+using KhodalKrupaERP.Models.Analysis;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,7 +25,7 @@ namespace KhodalKrupaERP.Forms
         private void FrmChallanTransactionList_Load(object sender, EventArgs e)
         {
             setCustomerDropDown(CustomerController.GetAllCustomers());
-            sfDataGrid1.DataSource = ChallanTransactionController.GetAllChallanTransactions();
+            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
         }
 
         private void setCustomerDropDown(List<Customer> customers)
@@ -53,7 +54,15 @@ namespace KhodalKrupaERP.Forms
                 return;
             }
 
+            int? month = dteChallanDate.Value?.Month;
+            int? year = dteChallanDate.Value?.Year;
 
+            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue,month,year);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
         }
     }
 }

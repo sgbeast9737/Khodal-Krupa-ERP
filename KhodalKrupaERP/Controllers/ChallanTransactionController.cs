@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
+using KhodalKrupaERP.Models.Analysis;
 
 namespace KhodalKrupaERP.Controllers
 {
@@ -68,6 +69,33 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
+        public static List<ChallanTransactionInfo> GetInfoOfAllChallanTransactions(int? customerId = null,int? month = null,int? year = null)
+        {
+            using (var context = new AppDbContext())
+            {
+                return context.Database.SqlQuery<ChallanTransactionInfo>(
+                     $@"SELECT 
+	                    cus.CustomerId,
+	                    cus.Name AS CustomerName,
+	                    c.DesignNo,
+	                    c.ChallanDate,
+	                    CAST(strftime('%m', c.ChallanDate) AS INTEGER) AS Month,  
+	                    CAST(strftime('%Y', c.ChallanDate) AS INTEGER) AS Year, 
+	                    trans.*
+                    FROM
+	                    ChallanTransactions trans
+	                    LEFT JOIN Challans c ON c.ChallanId = trans.ChallanId
+	                    LEFT JOIN Customers cus ON c.CustomerId = cus.CustomerId
+                    WHERE
+                        1 = 1
+	                    {(customerId == null ? "" : "AND c.CustomerId = " + customerId)} 
+                        {(month == null ? "" : "AND CAST(strftime('%m', c.ChallanDate) AS INTEGER) = " + month)} 
+                        {(year == null ? "" : "AND CAST(strftime('%Y', c.ChallanDate) AS INTEGER) = " + year)} 
+                    ORDER BY c.ChallanDate DESC"
+                 ).ToList();
+            }
+        }
+       
         #region less_used_methods
         public static BindingList<ChallanTransaction> GetAllBindableChallanTransactions()
         {
