@@ -72,7 +72,7 @@ namespace KhodalKrupaERP.Forms
 
         private void sfDataGrid1_CellDoubleClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellClickEventArgs e)
         {
-            if (e.DataRow.RowData is ChallanInfo challanInfo && this.ParentForm is Main mainForm)
+            if (e.DataRow.RowData is ChallanInfo challanInfo)
             {
                 Program.AddFormToTab(new FrmChallan(challanInfo.ChallanId), "Edit Challan");
             }

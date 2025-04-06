@@ -53,6 +53,7 @@
             this.sfDataGrid1.Size = new System.Drawing.Size(919, 445);
             this.sfDataGrid1.TabIndex = 2;
             this.sfDataGrid1.Text = "sfDataGrid1";
+            this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);
             // 
             // panel1
             // 
@@ -76,7 +77,7 @@
             this.btnGet.Location = new System.Drawing.Point(788, 72);
             this.btnGet.Name = "btnGet";
             this.btnGet.Size = new System.Drawing.Size(117, 46);
-            this.btnGet.TabIndex = 2;
+            this.btnGet.TabIndex = 3;
             this.btnGet.Text = "Get";
             this.btnGet.UseVisualStyleBackColor = false;
             this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
@@ -105,7 +106,7 @@
             this.cbCustomer.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCustomer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbCustomer.Style.TokenStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCustomer.TabIndex = 1;
+            this.cbCustomer.TabIndex = 2;
             this.cbCustomer.TabStop = false;
             // 
             // dteChallanDate
@@ -116,7 +117,7 @@
             this.dteChallanDate.Location = new System.Drawing.Point(200, 25);
             this.dteChallanDate.Name = "dteChallanDate";
             this.dteChallanDate.Size = new System.Drawing.Size(211, 31);
-            this.dteChallanDate.TabIndex = 4;
+            this.dteChallanDate.TabIndex = 1;
             this.dteChallanDate.ToolTipText = "";
             this.dteChallanDate.Value = new System.DateTime(2025, 4, 1, 0, 0, 0, 0);
             // 
@@ -138,13 +139,14 @@
             this.btnRefresh.Location = new System.Drawing.Point(30, 72);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(117, 46);
-            this.btnRefresh.TabIndex = 10;
+            this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // FrmChallanTransactionList
             // 
+            this.AcceptButton = this.btnGet;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 585);

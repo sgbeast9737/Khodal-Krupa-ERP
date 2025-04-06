@@ -20,12 +20,26 @@ namespace KhodalKrupaERP.Forms
         {
             InitializeComponent();
             Helper.setAnalysisConfig(sfDataGrid1);
+
+            Helper.addSummary(sfDataGrid1, "Total");
+            Helper.addGroupSummary(sfDataGrid1, "Total");
         }
+
+        private void refreshGrid()
+        {
+            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
+            hideColumns();
+
+            Helper.addGrouping(sfDataGrid1, "CustomerId");
+            sfDataGrid1.ExpandAllGroup();
+        }
+
+        private void hideColumns() => Helper.hideColumn(sfDataGrid1, "CustomerId", "ChallanDate", "Month", "Year", "ChallanTransactionId", "ChallanId", "UpdatedAt");
 
         private void FrmChallanTransactionList_Load(object sender, EventArgs e)
         {
             setCustomerDropDown(CustomerController.GetAllCustomers());
-            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
+            refreshGrid();
         }
 
         private void setCustomerDropDown(List<Customer> customers)
@@ -58,11 +72,20 @@ namespace KhodalKrupaERP.Forms
             int? year = dteChallanDate.Value?.Year;
 
             sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue,month,year);
+            hideColumns();
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
+            refreshGrid();
+        }
+
+        private void sfDataGrid1_CellDoubleClick(object sender, Syncfusion.WinForms.DataGrid.Events.CellClickEventArgs e)
+        {
+            if (e.DataRow.RowData is ChallanTransactionInfo challanTransactionInfo)
+            {
+                Program.AddFormToTab(new FrmChallan(challanTransactionInfo.ChallanId), "Edit Challan");
+            }
         }
     }
 }
