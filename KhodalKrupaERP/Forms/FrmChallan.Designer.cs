@@ -64,7 +64,7 @@
             this.txtDesignNo.Location = new System.Drawing.Point(194, 20);
             this.txtDesignNo.Name = "txtDesignNo";
             this.txtDesignNo.Size = new System.Drawing.Size(232, 34);
-            this.txtDesignNo.TabIndex = 7;
+            this.txtDesignNo.TabIndex = 1;
             // 
             // lblCustomer
             // 
@@ -108,7 +108,7 @@
             this.cbCustomer.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCustomer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cbCustomer.Style.TokenStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCustomer.TabIndex = 1;
+            this.cbCustomer.TabIndex = 2;
             this.cbCustomer.TabStop = false;
             // 
             // dtChallanDate
@@ -131,7 +131,7 @@
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
             this.sfDataGrid1.Size = new System.Drawing.Size(957, 406);
-            this.sfDataGrid1.TabIndex = 0;
+            this.sfDataGrid1.TabIndex = 4;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
             // 
@@ -143,7 +143,7 @@
             this.btnSave.Location = new System.Drawing.Point(831, 8);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(117, 46);
-            this.btnSave.TabIndex = 0;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);

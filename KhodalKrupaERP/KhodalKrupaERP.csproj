@@ -114,6 +114,12 @@
     <Compile Include="Forms\FrmChallanList.Designer.cs">
       <DependentUpon>FrmChallanList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FrmChallanTransactionList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmChallanTransactionList.Designer.cs">
+      <DependentUpon>FrmChallanTransactionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,8 +138,9 @@
     <Compile Include="Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Analysis\ChallanTransactionInfo.cs" />
     <Compile Include="Models\Challan.cs" />
-    <Compile Include="Models\ChallanInfo.cs" />
+    <Compile Include="Models\Analysis\ChallanInfo.cs" />
     <Compile Include="Models\ChallanTransaction.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Program.cs" />
@@ -144,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmChallanList.resx">
       <DependentUpon>FrmChallanList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmChallanTransactionList.resx">
+      <DependentUpon>FrmChallanTransactionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>

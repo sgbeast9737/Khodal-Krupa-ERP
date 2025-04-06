@@ -66,5 +66,10 @@ namespace KhodalKrupaERP
         {
             AddFormToTab(new FrmChallanList(), "Challan List");
         }
+
+        private void biMonthlyBillReport_Click(object sender, EventArgs e)
+        {
+            AddFormToTab(new FrmChallanTransactionList(),"Challan Transaction List");
+        }
     }
 }

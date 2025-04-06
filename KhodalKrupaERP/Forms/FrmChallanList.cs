@@ -1,7 +1,7 @@
 ﻿using FastReport;
 using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
-using KhodalKrupaERP.Models;
+using KhodalKrupaERP.Models.Analysis;
 using Syncfusion.Data;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.WinForms.DataGrid;

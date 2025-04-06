@@ -4,7 +4,7 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using FastReport;
 using FastReport.Export.PdfSimple;
-using KhodalKrupaERP.Models;
+using KhodalKrupaERP.Models.Analysis;
 
 namespace KhodalKrupaERP.Reports
 {
@@ -24,7 +24,7 @@ namespace KhodalKrupaERP.Reports
             Report report = new Report();
 
             // load the existing report
-            report.Load($@"{Environment.CurrentDirectory}\Report Design\report.frx"); // Load your designed invoice
+            report.Load($@"{Environment.CurrentDirectory}\Report Design\test.frx"); // Load your designed invoice
 
             // register the dataset
             report.RegisterData(getDataSource());

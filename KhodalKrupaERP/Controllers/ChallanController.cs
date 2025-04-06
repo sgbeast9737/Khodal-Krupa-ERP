@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using KhodalKrupaERP.Core;
+using KhodalKrupaERP.Models.Analysis;
 using KhodalKrupaERP.Models;
 
 namespace KhodalKrupaERP.Controllers
@@ -84,8 +85,8 @@ namespace KhodalKrupaERP.Controllers
                       COALESCE(SUM(trans.Total), 0) AS Total
                     FROM
                       Challans c
-                      INNER JOIN Customers cus ON c.CustomerId = cus.CustomerId
-                      INNER JOIN ChallanTransactions trans ON c.ChallanId = trans.ChallanId
+                      LEFT JOIN Customers cus ON c.CustomerId = cus.CustomerId
+                      LEFT JOIN ChallanTransactions trans ON c.ChallanId = trans.ChallanId
                     GROUP BY
                       c.ChallanId,
                       cus.Name,

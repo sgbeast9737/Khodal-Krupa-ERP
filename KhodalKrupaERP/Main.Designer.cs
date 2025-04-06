@@ -128,6 +128,7 @@
             this.biMonthlyBillReport.ShowToolTipInPopUp = false;
             this.biMonthlyBillReport.SizeToFit = true;
             this.biMonthlyBillReport.Text = "Monthly Bill Report";
+            this.biMonthlyBillReport.Click += new System.EventHandler(this.biMonthlyBillReport_Click);
             // 
             // pbiAccounts
             // 

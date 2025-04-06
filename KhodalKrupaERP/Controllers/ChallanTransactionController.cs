@@ -58,24 +58,22 @@ namespace KhodalKrupaERP.Controllers
                 throw new Exception($"Challan transaction not found of given id {id} for delete process");
             }
         }
-        
-
-        #region less_used_methods
-
-        public static BindingList<ChallanTransaction> GetAllChallanTransactions()
-        {
-            using (var db = new AppDbContext())
-            {
-                return new BindingList<ChallanTransaction>(db.ChallanTransactions.ToList());
-            }
-        }
 
         // ✅ Get all challanTransactions
-        public static List<ChallanTransaction> GetAllchallanTransactions()
+        public static List<ChallanTransaction> GetAllChallanTransactions()
         {
             using (var db = new AppDbContext())
             {
                 return db.ChallanTransactions.ToList();
+            }
+        }
+
+        #region less_used_methods
+        public static BindingList<ChallanTransaction> GetAllBindableChallanTransactions()
+        {
+            using (var db = new AppDbContext())
+            {
+                return new BindingList<ChallanTransaction>(db.ChallanTransactions.ToList());
             }
         }
 
