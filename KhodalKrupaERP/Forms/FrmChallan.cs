@@ -3,6 +3,7 @@ using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
 using Syncfusion.Data;
 using Syncfusion.WinForms.DataGrid;
+using Syncfusion.WinForms.ListView.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,10 +39,24 @@ namespace KhodalKrupaERP.Forms
                 return;
             }
 
+            List<Service> services = ServiceController.GetAllServices();
+            if (services.Count == 0)
+            {
+                MessageBox.Show("Please first add Services to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Program.AddFormToTab(new FrmService(), "Service Management");
+
+                this.Close();
+                return;
+            }
+
             InitializeComponent();
 
             //customer popup config
             setCustomerDropDown(customers);
+            
+            //service column combobox config
+            setServiceDropDown(services);
 
             //Date configuration
             dtChallanDate.Format = "dd-MM-yyyy";
@@ -53,7 +68,6 @@ namespace KhodalKrupaERP.Forms
             if (this.challan != null)
             {
                 cbCustomer.SelectedValue = this.challan.CustomerId;
-                txtDesignNo.Text = this.challan.DesignNo;
 
                 this.btnSave.Text = "Update";
             }
@@ -88,17 +102,25 @@ namespace KhodalKrupaERP.Forms
             };
         }
 
+        private void setServiceDropDown(List<Service> services)
+        {
+            // Create a new GridComboBoxColumn and set the DataSource for combo box column.
+            GridComboBoxColumn gridComboBoxColumn = new GridComboBoxColumn();
+            gridComboBoxColumn.MappingName = "ServiceId";
+            gridComboBoxColumn.HeaderText = "Service";
+            gridComboBoxColumn.ValueMember = "ServiceId";
+            gridComboBoxColumn.DisplayMember = "Name";
+            gridComboBoxColumn.DropDownStyle = DropDownStyle.DropDownList;
+            gridComboBoxColumn.DataSource = services;
+
+            this.sfDataGrid1.Columns.Add(gridComboBoxColumn);
+        }
+
         private bool isValid()
         {
             if (cbCustomer.SelectedValue == null)
             {
                 MessageBox.Show("Plese select customer", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            else if(String.IsNullOrEmpty(txtDesignNo.Text))
-            {
-                MessageBox.Show("Plese provide design no", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtDesignNo.Focus();
                 return false;
             }
 
@@ -117,13 +139,13 @@ namespace KhodalKrupaERP.Forms
                     {
                         if (this.challan != null) // update 
                         {
-                            ChallanController.UpdateChallan(context,challan.ChallanId, (int)cbCustomer.SelectedValue, txtDesignNo.Text, dtChallanDate.Value ?? DateTime.Now);
+                            ChallanController.UpdateChallan(context,challan.ChallanId, (int)cbCustomer.SelectedValue, dtChallanDate.Value ?? DateTime.Now);
 
                             foreach (var val in challanTransactions)
                             {
                                 if(val.ChallanId == 0)
                                 {
-                                    ChallanTransactionController.AddChallanTransaction(context, challan.ChallanId, val.Diamond, val.Rate, val.Paper);
+                                    ChallanTransactionController.AddChallanTransaction(context, challan.ChallanId, val.DesignNo, val.ServiceId, val.Diamond, val.Rate, val.Paper);
                                 }
                                 else
                                 {
@@ -145,11 +167,11 @@ namespace KhodalKrupaERP.Forms
                         }
                         else // insert 
                         {
-                            int challanId = ChallanController.AddChallan(context, (int)cbCustomer.SelectedValue, txtDesignNo.Text, dtChallanDate.Value ?? DateTime.Now);
+                            int challanId = ChallanController.AddChallan(context, (int)cbCustomer.SelectedValue, dtChallanDate.Value ?? DateTime.Now);
 
                             foreach (var val in challanTransactions)
                             {
-                                ChallanTransactionController.AddChallanTransaction(context, challanId, val.Diamond, val.Rate, val.Paper);
+                                ChallanTransactionController.AddChallanTransaction(context, challanId, val.DesignNo, val.ServiceId, val.Diamond, val.Rate, val.Paper);
                             }
                         }
 

@@ -31,11 +31,11 @@
             this.toolBar = new Syncfusion.Windows.Forms.Tools.XPMenus.XPToolBar();
             this.pbiMaster = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biCustomer = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
+            this.biService = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.pbiBills = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biChallan = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
             this.pbiReports = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.biMonthlyBillReport = new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem();
-            this.pbiAccounts = new Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem();
             this.tabControlMain = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlMain)).BeginInit();
             this.SuspendLayout();
@@ -49,8 +49,7 @@
             this.toolBar.Bar.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.pbiMaster,
             this.pbiBills,
-            this.pbiReports,
-            this.pbiAccounts});
+            this.pbiReports});
             this.toolBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.toolBar.Location = new System.Drawing.Point(0, 0);
             this.toolBar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
@@ -66,7 +65,8 @@
             this.pbiMaster.BarName = "pbiMaster";
             this.pbiMaster.ID = "Masters";
             this.pbiMaster.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
-            this.biCustomer});
+            this.biCustomer,
+            this.biService});
             this.pbiMaster.Manager = null;
             this.pbiMaster.MetroColor = System.Drawing.Color.LightSkyBlue;
             this.pbiMaster.ShowToolTipInPopUp = false;
@@ -81,8 +81,17 @@
             this.biCustomer.ID = "Customer";
             this.biCustomer.ShowToolTipInPopUp = false;
             this.biCustomer.SizeToFit = true;
-            this.biCustomer.Text = "Customer";
+            this.biCustomer.Text = "Customers";
             this.biCustomer.Click += new System.EventHandler(this.biCustomer_Click);
+            // 
+            // biService
+            // 
+            this.biService.BarName = "biService";
+            this.biService.ID = "Services";
+            this.biService.ShowToolTipInPopUp = false;
+            this.biService.SizeToFit = true;
+            this.biService.Text = "Services";
+            this.biService.Click += new System.EventHandler(this.biService_Click);
             // 
             // pbiBills
             // 
@@ -130,18 +139,6 @@
             this.biMonthlyBillReport.Text = "Monthly Bill Report";
             this.biMonthlyBillReport.Click += new System.EventHandler(this.biMonthlyBillReport_Click);
             // 
-            // pbiAccounts
-            // 
-            this.pbiAccounts.BarName = "pbiAccounts";
-            this.pbiAccounts.ID = "Accounts";
-            this.pbiAccounts.Manager = null;
-            this.pbiAccounts.MetroColor = System.Drawing.Color.LightSkyBlue;
-            this.pbiAccounts.ShowToolTipInPopUp = false;
-            this.pbiAccounts.SizeToFit = true;
-            this.pbiAccounts.Style = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
-            this.pbiAccounts.Text = "Accounts";
-            this.pbiAccounts.WrapLength = 20;
-            // 
             // tabControlMain
             // 
             this.tabControlMain.ActiveTabColor = System.Drawing.Color.White;
@@ -184,7 +181,7 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biChallan;
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem pbiReports;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biMonthlyBillReport;
-        private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem pbiAccounts;
+        private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biService;
     }
 }
 

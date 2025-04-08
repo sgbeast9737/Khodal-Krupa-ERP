@@ -49,17 +49,18 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAddChallan);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 376);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 74);
             this.panel1.TabIndex = 0;
             // 
             // btnAddChallan
             // 
+            this.btnAddChallan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddChallan.BackColor = System.Drawing.SystemColors.ControlLight;
             this.btnAddChallan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddChallan.Location = new System.Drawing.Point(12, 19);
+            this.btnAddChallan.Location = new System.Drawing.Point(665, 18);
             this.btnAddChallan.Name = "btnAddChallan";
             this.btnAddChallan.Size = new System.Drawing.Size(121, 43);
             this.btnAddChallan.TabIndex = 1;
@@ -73,10 +74,10 @@
             this.sfDataGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfDataGrid1.Location = new System.Drawing.Point(2, 4);
+            this.sfDataGrid1.Location = new System.Drawing.Point(2, 80);
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
-            this.sfDataGrid1.Size = new System.Drawing.Size(794, 368);
+            this.sfDataGrid1.Size = new System.Drawing.Size(794, 370);
             this.sfDataGrid1.TabIndex = 1;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);

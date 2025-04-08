@@ -13,37 +13,30 @@ using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Forms
 {
-    public partial class FrmCustomer : Form
+    public partial class FrmService : Form
     {
-        private BindingList<Customer> customerBindingList;
+        private BindingList<Service> serviceBindingList;
 
-        public FrmCustomer()
+        public FrmService()
         {
             InitializeComponent();
-            customerBindingList = CustomerController.GetAllBindableCustomers();
-            sfDataGrid1.DataSource = customerBindingList;
+            serviceBindingList = ServiceController.GetAllBindableServices();
+            sfDataGrid1.DataSource = serviceBindingList;
 
-            Helper.hideColumn(sfDataGrid1, "CreatedAt","UpdatedAt");
+            Helper.hideColumn(sfDataGrid1, "UpdatedAt");
 
             Helper.setDataInputConfig(sfDataGrid1,false);
         }
 
         private void sfDataGrid1_RowValidating(object sender, Syncfusion.WinForms.DataGrid.Events.RowValidatingEventArgs e)
         {
-            if (e.DataRow.RowData is Customer customer)
+            if (e.DataRow.RowData is Service service)
             {
                 // Example: Validate Name field
-                if (string.IsNullOrWhiteSpace(customer.Name))
+                if (string.IsNullOrWhiteSpace(service.Name))
                 {
                     e.IsValid = false;
-                    e.ErrorMessage = "Customer name is required!";
-                }
-
-                // Example: Validate PhoneNo field
-                if (string.IsNullOrWhiteSpace(customer.PhoneNo) || customer.PhoneNo.Length != 10)
-                {
-                    e.IsValid = false;
-                    e.ErrorMessage = "Valid phone number is required!";
+                    e.ErrorMessage = "Service name is required!";
                 }
 
                 if (!e.IsValid)
@@ -53,11 +46,11 @@ namespace KhodalKrupaERP.Forms
 
         private void sfDataGrid1_RowValidated(object sender, Syncfusion.WinForms.DataGrid.Events.RowValidatedEventArgs e)
         {
-            if (e.DataRow.RowData is Customer customer)
+            if (e.DataRow.RowData is Service service)
             {
                 try
                 {
-                    CustomerController.UpdateOrAddCustomer(customer);
+                    ServiceController.UpdateOrAddService(service);
                 }
                 catch (Exception ex)
                 {
@@ -70,9 +63,9 @@ namespace KhodalKrupaERP.Forms
         {
             try
             {
-                foreach (Customer customer in e.Items)
+                foreach (Service service in e.Items)
                 {
-                    CustomerController.DeleteCustomer(customer.CustomerId);
+                    ServiceController.DeleteService(service.ServiceId);
                 }
             }
             catch (Exception ex)

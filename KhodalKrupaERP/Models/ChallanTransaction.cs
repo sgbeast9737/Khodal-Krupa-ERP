@@ -22,6 +22,14 @@ namespace KhodalKrupaERP.Models
         public int ChallanId { get; private set; }
         public virtual Challan Challan { get; set; } // Navigation Property
 
+        [Required]
+        public string DesignNo { get; set; }
+
+        // Foreign Key
+        [Required]
+        public int ServiceId { get; private set; }
+        public virtual Service Service { get; set; } // Navigation Property
+
         public int Diamond
         {
             get => _diamond;
@@ -68,9 +76,11 @@ namespace KhodalKrupaERP.Models
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public ChallanTransaction(int challanId, int diamond, float rate, int paper)
+        public ChallanTransaction(int challanId, string designNo, int serviceId, int diamond, float rate, int paper)
         {
             this.ChallanId = challanId;
+            this.DesignNo = designNo;
+            this.ServiceId = serviceId;
             this.Diamond = diamond;
             this.Rate = rate;
             this.Paper = paper;

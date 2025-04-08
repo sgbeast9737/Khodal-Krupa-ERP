@@ -11,9 +11,9 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanTransactionController
     {
         // ✅ Create a new ChallanTransaction
-        public static void AddChallanTransaction(AppDbContext context,int challanId, int diamond, float rate, int paper)
+        public static void AddChallanTransaction(AppDbContext context,int challanId, string designNo, int serviceId, int diamond, float rate, int paper)
         {
-            var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
+            var transaction = new ChallanTransaction(challanId, designNo, serviceId, diamond, rate, paper);
             context.ChallanTransactions.Add(transaction);
             context.SaveChanges();
         }       
@@ -77,7 +77,7 @@ namespace KhodalKrupaERP.Controllers
                      $@"SELECT 
 	                    cus.CustomerId,
 	                    cus.Name AS CustomerName,
-	                    c.DesignNo,
+	                    trans.DesignNo,
 	                    c.ChallanDate,
 	                    CAST(strftime('%m', c.ChallanDate) AS INTEGER) AS Month,  
 	                    CAST(strftime('%Y', c.ChallanDate) AS INTEGER) AS Year, 
@@ -115,11 +115,11 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Create a new ChallanTransaction
-        public static void AddChallanTransaction(int challanId, int diamond, float rate, int paper)
+        public static void AddChallanTransaction(int challanId, string designNo, int serviceId,int diamond, float rate, int paper)
         {
             using (var db = new AppDbContext())
             {
-                var transaction = new ChallanTransaction(challanId, diamond, rate, paper);
+                var transaction = new ChallanTransaction(challanId, designNo, serviceId, diamond, rate, paper);
                 db.ChallanTransactions.Add(transaction);
                 db.SaveChanges();
             }

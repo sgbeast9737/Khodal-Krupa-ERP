@@ -11,6 +11,7 @@ namespace KhodalKrupaERP.Core
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Service> Services { get; set; }
         public DbSet<Challan> Challans{ get; set; }
         public DbSet<ChallanTransaction> ChallanTransactions{ get; set; }
     }

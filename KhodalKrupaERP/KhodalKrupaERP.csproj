@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ChallanController.cs" />
     <Compile Include="Controllers\ChallanTransactionController.cs" />
+    <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Core\AppDbContext.cs" />
     <Compile Include="Core\Helper.cs" />
@@ -119,6 +120,12 @@
     </Compile>
     <Compile Include="Forms\FrmChallanTransactionList.Designer.cs">
       <DependentUpon>FrmChallanTransactionList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmService.Designer.cs">
+      <DependentUpon>FrmService.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmCustomer.cs">
       <SubType>Form</SubType>
@@ -142,6 +149,7 @@
     <Compile Include="Models\Challan.cs" />
     <Compile Include="Models\Analysis\ChallanInfo.cs" />
     <Compile Include="Models\ChallanTransaction.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmChallanTransactionList.resx">
       <DependentUpon>FrmChallanTransactionList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmService.resx">
+      <DependentUpon>FrmService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>

@@ -36,27 +36,34 @@ namespace KhodalKrupaERP.Forms
 
         private void FrmChallanList_Load(object sender, EventArgs e)
         {
-            sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
-
-            Helper.setAnalysisConfig(sfDataGrid1, true);
-            sfDataGrid1.AllowDeleting = true;
-
-            Helper.hideColumn(sfDataGrid1, columnsToHide);
-
-            //add button column 
-            this.sfDataGrid1.Columns.Add(new GridButtonColumn()
+            try
             {
-                MappingName = "PhoneNo",
-                HeaderText = "Send to Whatsapp",
-                Image = SystemIcons.Information.ToBitmap(),
-                ImageSize = new Size(16, 16),
-                TextImageRelation = TextImageRelation.ImageBeforeText,
-            });
+                sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
 
-            this.sfDataGrid1.Style.ButtonStyle.BackColor = Color.Green;
-            this.sfDataGrid1.Style.ButtonStyle.TextColor = Color.White;
+                Helper.setAnalysisConfig(sfDataGrid1, true);
+                sfDataGrid1.AllowDeleting = true;
 
-            summaryConfig();
+                Helper.hideColumn(sfDataGrid1, columnsToHide);
+
+                //add button column 
+                this.sfDataGrid1.Columns.Add(new GridButtonColumn()
+                {
+                    MappingName = "ChallanId",
+                    HeaderText = "Generate Report",
+                    Image = SystemIcons.Information.ToBitmap(),
+                    ImageSize = new Size(16, 16),
+                    TextImageRelation = TextImageRelation.ImageBeforeText,
+                });
+
+                this.sfDataGrid1.Style.ButtonStyle.BackColor = Color.SkyBlue;
+                this.sfDataGrid1.Style.ButtonStyle.TextColor = Color.White;
+
+                summaryConfig();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("error : " + ex.Message);
+            }
         }
 
         private void summaryConfig()

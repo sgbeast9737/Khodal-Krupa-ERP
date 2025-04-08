@@ -29,27 +29,22 @@
         private void InitializeComponent()
         {
             this.inputPanel = new System.Windows.Forms.Panel();
-            this.txtDesignNo = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.lblCustomer = new System.Windows.Forms.Label();
             this.lblChallanDate = new System.Windows.Forms.Label();
-            this.lblDesignNo = new System.Windows.Forms.Label();
             this.cbCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
             this.dtChallanDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.inputPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // inputPanel
             // 
-            this.inputPanel.Controls.Add(this.txtDesignNo);
+            this.inputPanel.Controls.Add(this.btnSave);
             this.inputPanel.Controls.Add(this.lblCustomer);
             this.inputPanel.Controls.Add(this.lblChallanDate);
-            this.inputPanel.Controls.Add(this.lblDesignNo);
             this.inputPanel.Controls.Add(this.cbCustomer);
             this.inputPanel.Controls.Add(this.dtChallanDate);
             this.inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -58,19 +53,24 @@
             this.inputPanel.Size = new System.Drawing.Size(958, 133);
             this.inputPanel.TabIndex = 0;
             // 
-            // txtDesignNo
+            // btnSave
             // 
-            this.txtDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDesignNo.Location = new System.Drawing.Point(194, 20);
-            this.txtDesignNo.Name = "txtDesignNo";
-            this.txtDesignNo.Size = new System.Drawing.Size(232, 34);
-            this.txtDesignNo.TabIndex = 1;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.LightGray;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(829, 76);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(117, 46);
+            this.btnSave.TabIndex = 5;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(556, 23);
+            this.lblCustomer.Location = new System.Drawing.Point(49, 21);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(96, 28);
             this.lblCustomer.TabIndex = 6;
@@ -80,27 +80,17 @@
             // 
             this.lblChallanDate.AutoSize = true;
             this.lblChallanDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChallanDate.Location = new System.Drawing.Point(25, 85);
+            this.lblChallanDate.Location = new System.Drawing.Point(18, 76);
             this.lblChallanDate.Name = "lblChallanDate";
             this.lblChallanDate.Size = new System.Drawing.Size(127, 28);
             this.lblChallanDate.TabIndex = 5;
             this.lblChallanDate.Text = "Challan Date ";
             // 
-            // lblDesignNo
-            // 
-            this.lblDesignNo.AutoSize = true;
-            this.lblDesignNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesignNo.Location = new System.Drawing.Point(25, 23);
-            this.lblDesignNo.Name = "lblDesignNo";
-            this.lblDesignNo.Size = new System.Drawing.Size(104, 28);
-            this.lblDesignNo.TabIndex = 4;
-            this.lblDesignNo.Text = "Design No";
-            // 
             // cbCustomer
             // 
             this.cbCustomer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.cbCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCustomer.Location = new System.Drawing.Point(695, 20);
+            this.cbCustomer.Location = new System.Drawing.Point(188, 21);
             this.cbCustomer.Name = "cbCustomer";
             this.cbCustomer.Size = new System.Drawing.Size(239, 31);
             this.cbCustomer.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
@@ -115,9 +105,9 @@
             // 
             this.dtChallanDate.DateTimeIcon = null;
             this.dtChallanDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtChallanDate.Location = new System.Drawing.Point(194, 77);
+            this.dtChallanDate.Location = new System.Drawing.Point(188, 76);
             this.dtChallanDate.Name = "dtChallanDate";
-            this.dtChallanDate.Size = new System.Drawing.Size(232, 36);
+            this.dtChallanDate.Size = new System.Drawing.Size(239, 36);
             this.dtChallanDate.TabIndex = 3;
             this.dtChallanDate.ToolTipText = "";
             // 
@@ -130,39 +120,16 @@
             this.sfDataGrid1.Location = new System.Drawing.Point(0, 138);
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
-            this.sfDataGrid1.Size = new System.Drawing.Size(957, 406);
+            this.sfDataGrid1.Size = new System.Drawing.Size(957, 472);
             this.sfDataGrid1.TabIndex = 4;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.LightGray;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(831, 8);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(117, 46);
-            this.btnSave.TabIndex = 5;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 550);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(958, 62);
-            this.panel1.TabIndex = 1;
             // 
             // FrmChallan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(958, 612);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.sfDataGrid1);
             this.Controls.Add(this.inputPanel);
             this.Name = "FrmChallan";
@@ -173,7 +140,6 @@
             this.inputPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -184,11 +150,8 @@
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label lblChallanDate;
-        private System.Windows.Forms.Label lblDesignNo;
         private Syncfusion.WinForms.ListView.SfComboBox cbCustomer;
         private Syncfusion.WinForms.Input.SfDateTimeEdit dtChallanDate;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtDesignNo;
     }
 }

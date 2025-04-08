@@ -23,9 +23,9 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Create a new Challan
-        public static int AddChallan(AppDbContext context, int customerId, string designNo, DateTime challanDate)
+        public static int AddChallan(AppDbContext context, int customerId, DateTime challanDate)
         {
-            var challan = new Challan(customerId, designNo, challanDate);
+            var challan = new Challan(customerId, challanDate);
             context.Challans.Add(challan);
             context.SaveChanges();
 
@@ -33,13 +33,12 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a Challan
-        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
+        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, DateTime newChallanDate)
         {
             var challan = context.Challans.Find(id);
             if (challan != null)
             {
                 challan.CustomerId = newCustomerId;
-                challan.DesignNo = newDesignNo;
                 challan.ChallanDate = newChallanDate;
                 challan.UpdatedAt = DateTime.Now; // Update the timestamp
                 context.SaveChanges();
@@ -75,9 +74,9 @@ namespace KhodalKrupaERP.Controllers
                 return context.Database.SqlQuery<ChallanInfo>(
                      @"SELECT
                       c.ChallanId,
-                      c.DesignNo,
+                      trans.DesignNo,
                       c.ChallanDate,
-                      CAST(strftime('%m', c.ChallanDate) AS INTEGER) AS Month,  
+                      CAST(strftime('%Y%m', c.ChallanDate) AS INTEGER) AS Month,  
                       CAST(strftime('%Y', c.ChallanDate) AS INTEGER) AS Year,   
                       cus.CustomerId,
                       cus.PhoneNo,
@@ -88,11 +87,7 @@ namespace KhodalKrupaERP.Controllers
                       LEFT JOIN Customers cus ON c.CustomerId = cus.CustomerId
                       LEFT JOIN ChallanTransactions trans ON c.ChallanId = trans.ChallanId
                     GROUP BY
-                      c.ChallanId,
-                      cus.Name,
-                      cus.PhoneNo,
-                      c.DesignNo,
-                      c.ChallanDate
+                      c.ChallanId
                     ORDER BY c.ChallanDate desc"
                  ).ToList();
             }
@@ -123,14 +118,14 @@ namespace KhodalKrupaERP.Controllers
         {
             using (var db = new AppDbContext())
             {
-                var challan = new Challan(customerId, designNo, challanDate);
+                var challan = new Challan(customerId, challanDate);
                 db.Challans.Add(challan);
                 db.SaveChanges();
             }
         }
    
         // ✅ Update a Challan
-        public static void UpdateChallan(int id, int newCustomerId, string newDesignNo, DateTime newChallanDate)
+        public static void UpdateChallan(int id, int newCustomerId, DateTime newChallanDate)
         {
             using (var db = new AppDbContext())
             {
@@ -139,7 +134,6 @@ namespace KhodalKrupaERP.Controllers
                 {
                     challan.CustomerId = newCustomerId;
                     challan.ChallanDate = newChallanDate;
-                    challan.DesignNo = newDesignNo;
                     challan.UpdatedAt = DateTime.Now; // Update the timestamp
                     db.SaveChanges();
                 }
@@ -171,9 +165,6 @@ namespace KhodalKrupaERP.Controllers
 
                     if (existingChallan.CustomerId != challan.CustomerId)
                         existingChallan.CustomerId = challan.CustomerId;
-
-                    if (existingChallan.DesignNo != challan.DesignNo)
-                        existingChallan.DesignNo = challan.DesignNo;
 
                     if (existingChallan.ChallanDate != challan.ChallanDate)
                         existingChallan.ChallanDate = challan.ChallanDate;

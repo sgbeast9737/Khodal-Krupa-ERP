@@ -3,40 +3,33 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-
 namespace KhodalKrupaERP.Models
 {
-    public class Challan
+    public class Service
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ChallanId { get; private set; }
-
-        // Foreign Key
-        [Required]
-        public int CustomerId { get; set; }
+        public int ServiceId { get; private set; }
 
         [Required]
-        public DateTime ChallanDate { get; set; }
+        public string Name { get; set; }
 
         public DateTime? CreatedAt { get; private set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
 
-        // Navigation Properties
-        public virtual Customer Customer { get; set; }
+        //Navigation Property for Relationship(One Service can have multiple ChallanTransactions)
         public virtual ICollection<ChallanTransaction> ChallanTransactions { get; set; }
 
         // Constructor
-        public Challan(int customerId, DateTime challanDate)
+        public Service(string name)
         {
-            this.CustomerId = customerId;
-            this.ChallanDate = challanDate;
+            this.Name = name;
             this.CreatedAt = DateTime.Now;
             this.UpdatedAt = DateTime.Now;
-            this.ChallanTransactions = new List<ChallanTransaction>();
+            ChallanTransactions = new List<ChallanTransaction>();
         }
 
         // Empty Constructor for EF
-        public Challan() { }
+        public Service() { }
     }
 }

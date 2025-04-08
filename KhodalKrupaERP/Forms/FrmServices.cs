@@ -13,17 +13,17 @@ using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Forms
 {
-    public partial class FrmCustomer : Form
+    public partial class FrmCustomers : Form
     {
         private BindingList<Customer> customerBindingList;
-
-        public FrmCustomer()
+        public FrmCustomers()
         {
             InitializeComponent();
             customerBindingList = CustomerController.GetAllBindableCustomers();
             sfDataGrid1.DataSource = customerBindingList;
 
-            Helper.hideColumn(sfDataGrid1, "CreatedAt","UpdatedAt");
+            Helper.hideColumn(sfDataGrid1, "CreatedAt");
+            Helper.hideColumn(sfDataGrid1, "UpdatedAt");
 
             Helper.setDataInputConfig(sfDataGrid1,false);
         }

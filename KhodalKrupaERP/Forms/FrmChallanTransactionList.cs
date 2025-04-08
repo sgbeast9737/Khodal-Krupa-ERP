@@ -40,6 +40,8 @@ namespace KhodalKrupaERP.Forms
         {
             setCustomerDropDown(CustomerController.GetAllCustomers());
             refreshGrid();
+
+            dteChallanDate.Value = DateTime.Now;
         }
 
         private void setCustomerDropDown(List<Customer> customers)
