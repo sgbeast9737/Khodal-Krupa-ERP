@@ -58,17 +58,19 @@ namespace KhodalKrupaERP.Reports
 
             string query = @"SELECT
                                 C.ChallanId,
-                                C.DesignNo,
-                                C2.Name,
-                                C2.PhoneNo,
-                                C1.Diamond,
-                                C1.Rate,
-                                C1.Paper,
-                                C1.Total
+                                trans.DesignNo,
+                                ser.Name AS `ServiceName`,
+                                cust.Name,
+                                cust.PhoneNo,
+                                trans.Diamond,
+                                trans.Rate,
+                                trans.Paper,
+                                trans.Total
                             FROM
                                 `Challans` C
-                                INNER JOIN `ChallanTransactions` C1 ON C1.`ChallanId` = C.`ChallanId`
-                                INNER JOIN `Customers` C2 ON C2.`CustomerId` = C.`CustomerId`
+                                INNER JOIN `ChallanTransactions` trans ON trans.`ChallanId` = C.`ChallanId`
+                                INNER JOIN `Customers` cust ON cust.`CustomerId` = C.`CustomerId`
+                                INNER JOIN `Services` ser ON ser.`ServiceId` = trans.`ServiceId`	
                             where
                                 C.`ChallanId` = " + challanInfo.ChallanId;
 

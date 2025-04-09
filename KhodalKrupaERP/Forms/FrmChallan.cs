@@ -23,65 +23,72 @@ namespace KhodalKrupaERP.Forms
 
         public FrmChallan(int? challanId = null)
         {
-            if(challanId != null) // meaning it is update challan
+            try
             {
-                 this.challan = ChallanController.GetChallanById((int)challanId);
-            }
+                if (challanId != null) // meaning it is update challan
+                {
+                    this.challan = ChallanController.GetChallanById((int)challanId);
+                }
 
-            List<Customer> customers = CustomerController.GetAllCustomers();
-            if (customers.Count == 0)
+                List<Customer> customers = CustomerController.GetAllCustomers();
+                if (customers.Count == 0)
+                {
+                    MessageBox.Show("Please first add customers to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Program.AddFormToTab(new FrmCustomer(), "Customer Management");
+
+                    this.Close();
+                    return;
+                }
+
+                List<Service> services = ServiceController.GetAllServices();
+                if (services.Count == 0)
+                {
+                    MessageBox.Show("Please first add Services to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Program.AddFormToTab(new FrmService(), "Service Management");
+
+                    this.Close();
+                    return;
+                }
+
+                InitializeComponent();
+
+                //customer popup config
+                setCustomerDropDown(customers);
+
+                //service column combobox config
+                setServiceDropDown(services);
+
+                //Date configuration
+                dtChallanDate.Format = "dd-MM-yyyy";
+                if (this.challan != null)
+                    dtChallanDate.Value = this.challan.ChallanDate;
+                else
+                    dtChallanDate.Value = DateTime.Now;
+
+                if (this.challan != null)
+                {
+                    cbCustomer.SelectedValue = this.challan.CustomerId;
+
+                    this.btnSave.Text = "Update";
+                }
+
+                //grid config
+                if (this.challan != null)
+                    challanTransactions = new BindingList<ChallanTransaction>(this.challan.ChallanTransactions.ToList());
+
+                sfDataGrid1.DataSource = challanTransactions;
+
+                Helper.setDataInputConfig(sfDataGrid1);
+                Helper.hideColumn(sfDataGrid1, "ChallanTransactionId", "ChallanId", "UpdatedAt");
+
+                Helper.addSummary(sfDataGrid1, "Total");
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Please first add customers to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Program.AddFormToTab(new FrmCustomer(), "Customer Management");
-
-                this.Close();
-                return;
+                MessageBox.Show("Error Message : " + ex.Message);
             }
-
-            List<Service> services = ServiceController.GetAllServices();
-            if (services.Count == 0)
-            {
-                MessageBox.Show("Please first add Services to create challan", "Invalid operation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                Program.AddFormToTab(new FrmService(), "Service Management");
-
-                this.Close();
-                return;
-            }
-
-            InitializeComponent();
-
-            //customer popup config
-            setCustomerDropDown(customers);
-            
-            //service column combobox config
-            setServiceDropDown(services);
-
-            //Date configuration
-            dtChallanDate.Format = "dd-MM-yyyy";
-            if (this.challan != null)
-                dtChallanDate.Value = this.challan.ChallanDate;
-            else
-                dtChallanDate.Value = DateTime.Now;
-
-            if (this.challan != null)
-            {
-                cbCustomer.SelectedValue = this.challan.CustomerId;
-
-                this.btnSave.Text = "Update";
-            }
-
-            //grid config
-            if (this.challan != null)
-                challanTransactions = new BindingList<ChallanTransaction>(this.challan.ChallanTransactions.ToList());
-
-            sfDataGrid1.DataSource = challanTransactions;
-
-            Helper.setDataInputConfig(sfDataGrid1);
-            Helper.hideColumn(sfDataGrid1,"ChallanTransactionId","ChallanId", "UpdatedAt");
-
-            Helper.addSummary(sfDataGrid1,"Total");
         }
 
         private void setCustomerDropDown(List<Customer> customers)

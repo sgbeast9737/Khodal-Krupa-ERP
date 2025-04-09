@@ -19,12 +19,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FastReport.Export.PdfSimple;
 using KhodalKrupaERP.Reports;
+using System.Collections.ObjectModel;
 
 namespace KhodalKrupaERP.Forms
 {
 
     public partial class FrmChallanList : Form
     {
+        private ObservableCollection<ChallanInfo> challanInfo = null;
         private ColumnChooserPopup columnChooser;
         string[] columnsToHide = new string[] { "ChallanId", "Year", "Month", "PhoneNo" };
 
@@ -38,7 +40,8 @@ namespace KhodalKrupaERP.Forms
         {
             try
             {
-                sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
+                challanInfo = ChallanController.GetInfoOfAllChallans();
+                sfDataGrid1.DataSource = challanInfo;
 
                 Helper.setAnalysisConfig(sfDataGrid1, true);
                 sfDataGrid1.AllowDeleting = true;

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="04/10/2025 00:42:18" ReportInfo.CreatorVersion="2025.1.0.0">
+<Report ScriptLanguage="CSharp" ReportInfo.Created="06/20/2009 22:40:42" ReportInfo.Modified="04/06/2025 03:57:35" ReportInfo.CreatorVersion="2025.1.0.0">
   <Dictionary>
     <TableDataSource Name="Challan" ReferenceName="Data.Employees" DataType="System.Int32" PropName="Employees" Enabled="true">
       <Column Name="ID" Enabled="false" DataType="System.Int32"/>
@@ -19,13 +19,15 @@
     <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="132.3" Border.Lines="All">
       <LineObject Name="Line1" Left="359.1" Height="132.3"/>
       <TextObject Name="Text30" Left="9.45" Top="9.45" Width="283.5" Height="18.9" Text="Kodal Krupa Laser and CNC cutting " Font="Segoe UI, 12pt, style=Bold" TextFill.Color="Red"/>
-      <TextObject Name="Text9" Left="396.9" Top="47.25" Width="75.6" Height="18.9" Text="Challan Id " HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
-      <TextObject Name="Text10" Left="585.9" Top="47.25" Width="94.5" Height="18.9" Text="Invoice Date " HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="481.95" Top="47.25" Width="94.5" Height="18.9" Text="Design No" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text9" Left="368.55" Top="47.25" Width="75.6" Height="18.9" Text="Challan Id " HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="614.25" Top="47.25" Width="94.5" Height="18.9" Text="Invoice Date " HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="Text28" Left="9.45" Top="103.95" Width="85.05" Height="18.9" Text="Phone No :" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
       <TextObject Name="Text46" Left="-9450" Top="-9450" Width="94.5" Height="18.9" Text="SELECT&#13;&#10;                                        C.ChallanId,&#13;&#10;                                        C.DesignNo,&#13;&#10;                                        C2.Name,&#13;&#10;                                        C2.PhoneNo,&#13;&#10;                                        C1.Diamond,&#13;&#10;                                        C1.Rate,&#13;&#10;                                        C1.Paper,&#13;&#10;                                        C1.Total&#13;&#10;                                    FROM&#13;&#10;                                        `Challans` C&#13;&#10;                                        INNER JOIN `ChallanTransactions` C1 ON C1.`ChallanId` = C.`ChallanId`&#13;&#10;                                        INNER JOIN `Customers` C2 ON C2.`CustomerId` = C.`CustomerId`&#13;&#10;                                    where&#13;&#10;                                        C.`ChallanId`" Font="Arial, 10pt"/>
-      <TextObject Name="Text48" Left="396.9" Top="66.15" Width="94.5" Height="18.9" Text="[Challan.ChallanId]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text48" Left="368.55" Top="66.15" Width="94.5" Height="18.9" Text="[Challan.ChallanId]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text49" Left="481.95" Top="66.15" Width="94.5" Height="18.9" Text="[Challan.DesignNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
       <TextObject Name="Text58" Left="9.45" Top="47.25" Width="283.5" Height="47.25" Text="B-26, Lakshmi Palace, Next to Ishwarnagar, Opposite Vikramnagar, Sitanagar Chowk, Punagam" Font="Arial, 10pt"/>
-      <TextObject Name="Text61" Left="576.45" Top="66.15" Width="103.95" Height="18.9" Text="[ToString(DateTime.Now.ToShortDateString())]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text61" Left="604.8" Top="66.15" Width="103.95" Height="18.9" Text="[ToString(DateTime.Now.ToShortDateString())]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
       <TextObject Name="Text64" Left="94.5" Top="103.95" Width="103.95" Height="18.9" Text="80007 38396" VertAlign="Center" Font="Arial, 10pt"/>
       <ChildBand Name="Child1" Top="136.3" Width="718.2" Height="75.6" Border.Lines="All">
         <ContainerObject Name="Container1" Top="9.45" Width="302.4" Height="56.7">
@@ -37,35 +39,31 @@
       </ChildBand>
     </ReportTitleBand>
     <GroupHeaderBand Name="GroupHeader1" Top="215.9" Width="718.2" Height="28.35" Condition="[Challan.ChallanId]">
-      <TextObject Name="Text36" Width="226.8" Height="28.35" Border.Lines="Left, Top, Bottom" Fill.Color="WhiteSmoke" Text="Service" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text37" Left="302.4" Width="103.95" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Diamond" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text38" Left="406.35" Width="103.95" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Rate&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text39" Left="510.3" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Paper" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text40" Left="604.8" Width="113.4" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-      <TextObject Name="Text65" Left="217.35" Width="85.05" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Design No" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text36" Width="264.6" Height="28.35" Border.Lines="Left, Top, Bottom" Fill.Color="WhiteSmoke" Text="Service" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text37" Left="264.6" Width="122.85" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Diamond" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text38" Left="387.45" Width="103.95" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Rate&#13;&#10;" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text39" Left="491.4" Width="103.95" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Paper" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text40" Left="595.35" Width="122.85" Height="28.35" Border.Lines="All" Fill.Color="WhiteSmoke" Text="Total" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
       <DataBand Name="Data1" Top="248.25" Width="718.2" Height="28.35" Border.Lines="Left, Right" DataSource="Challan">
-        <TextObject Name="Text35" Width="217.35" Height="28.35" Text="[Challan.ServiceName]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-        <LineObject Name="Line10" Left="217.35" Height="28.35"/>
-        <LineObject Name="Line11" Left="406.35" Height="28.35"/>
-        <LineObject Name="Line12" Left="510.3" Height="28.35"/>
-        <LineObject Name="Line13" Left="604.8" Height="28.35"/>
-        <TextObject Name="Text52" Left="302.4" Width="103.95" Height="28.35" Text="[Challan.Diamond]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-        <TextObject Name="Text53" Left="406.35" Width="103.95" Height="28.35" Text="[Challan.Rate]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
-        <TextObject Name="Text54" Left="510.3" Width="94.5" Height="28.35" Text="[Challan.Paper]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
-        <TextObject Name="Text55" Left="604.8" Width="113.4" Height="28.35" Text="[Challan.Total]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
-        <LineObject Name="Line23" Left="302.4" Height="28.35"/>
-        <TextObject Name="Text66" Left="217.35" Width="85.05" Height="28.35" Text=" [Challan.DesignNo]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+        <TextObject Name="Text35" Left="18.9" Width="226.8" Height="28.35" Text="Laser cutting" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+        <LineObject Name="Line10" Left="264.6" Height="28.35"/>
+        <LineObject Name="Line11" Left="387.45" Height="28.35"/>
+        <LineObject Name="Line12" Left="491.4" Height="28.35"/>
+        <LineObject Name="Line13" Left="595.35" Height="28.35"/>
+        <TextObject Name="Text52" Left="264.6" Width="122.85" Height="28.35" Text="[Challan.Diamond]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+        <TextObject Name="Text53" Left="387.45" Width="103.95" Height="28.35" Text="[Challan.Rate]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text54" Left="491.4" Width="103.95" Height="28.35" Text="[Challan.Paper]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+        <TextObject Name="Text55" Left="595.35" Width="122.85" Height="28.35" Text="[Challan.Total]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 10pt" Trimming="EllipsisCharacter"/>
       </DataBand>
       <GroupFooterBand Name="GroupFooter1" Top="322.4" Width="718.2" Height="37.8" Border.Lines="All" Fill.Color="WhiteSmoke">
-        <TextObject Name="Text60" Left="245.7" Width="94.5" Height="37.8" Text="Total :" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
-        <LineObject Name="Line22" Left="604.8" Height="37.8"/>
-        <TextObject Name="Text67" Left="604.8" Width="113.4" Height="37.8" Text="₹ [Total]" Format="Number" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 12pt, style=Bold" Trimming="EllipsisCharacter"/>
+        <TextObject Name="Text59" Left="595.35" Top="9.45" Width="113.4" Height="18.9" Text="₹ [Total]" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <TextObject Name="Text60" Left="245.7" Top="9.45" Width="94.5" Height="18.9" Text="Total :" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+        <LineObject Name="Line22" Left="595.35" Height="37.8"/>
         <ChildBand Name="Child2" Top="280.6" Width="718.2" Height="37.8" Border.Lines="Left, Right" FillUnusedSpace="true">
-          <LineObject Name="Line18" Left="302.4" Height="37.8"/>
-          <LineObject Name="Line19" Left="406.35" Height="37.8"/>
-          <LineObject Name="Line20" Left="510.3" Height="37.8"/>
-          <LineObject Name="Line21" Left="604.8" Height="37.8"/>
-          <LineObject Name="Line24" Left="217.35" Height="37.8"/>
+          <LineObject Name="Line18" Left="264.6" Height="37.8"/>
+          <LineObject Name="Line19" Left="387.45" Height="37.8"/>
+          <LineObject Name="Line20" Left="491.4" Height="37.8"/>
+          <LineObject Name="Line21" Left="595.35" Height="37.8"/>
         </ChildBand>
       </GroupFooterBand>
     </GroupHeaderBand>

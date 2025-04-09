@@ -5,6 +5,7 @@ using System.Linq;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models.Analysis;
 using KhodalKrupaERP.Models;
+using System.Collections.ObjectModel;
 
 namespace KhodalKrupaERP.Controllers
 {
@@ -67,11 +68,11 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        public static List<ChallanInfo> GetInfoOfAllChallans()
+        public static ObservableCollection<ChallanInfo> GetInfoOfAllChallans()
         {
             using (var context = new AppDbContext())
             {
-                return context.Database.SqlQuery<ChallanInfo>(
+                List<ChallanInfo> challanInfos = context.Database.SqlQuery<ChallanInfo>(
                      @"SELECT
                       c.ChallanId,
                       trans.DesignNo,
@@ -90,6 +91,8 @@ namespace KhodalKrupaERP.Controllers
                       c.ChallanId
                     ORDER BY c.ChallanDate desc"
                  ).ToList();
+
+                return new ObservableCollection<ChallanInfo>(challanInfos);
             }
         }
 

@@ -27,11 +27,18 @@ namespace KhodalKrupaERP.Forms
 
         private void refreshGrid()
         {
-            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
-            hideColumns();
+            try
+            {
+                sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
+                hideColumns();
 
-            Helper.addGrouping(sfDataGrid1, "CustomerId");
-            sfDataGrid1.ExpandAllGroup();
+                Helper.addGrouping(sfDataGrid1, "CustomerId");
+                sfDataGrid1.ExpandAllGroup();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Message : " + ex.Message);
+            }
         }
 
         private void hideColumns() => Helper.hideColumn(sfDataGrid1, "CustomerId", "ChallanDate", "Month", "Year", "ChallanTransactionId", "ChallanId", "UpdatedAt");
@@ -70,11 +77,18 @@ namespace KhodalKrupaERP.Forms
                 return;
             }
 
-            int? month = dteChallanDate.Value?.Month;
-            int? year = dteChallanDate.Value?.Year;
+            try
+            {
+                int? month = dteChallanDate.Value?.Month;
+                int? year = dteChallanDate.Value?.Year;
 
-            sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue,month,year);
-            hideColumns();
+                sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue,month,year);
+                hideColumns();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error Message : " + ex.Message);
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
