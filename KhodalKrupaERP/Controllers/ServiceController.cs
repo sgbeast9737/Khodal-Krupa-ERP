@@ -73,14 +73,18 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 var service = db.Services.Find(id);
-                if (service != null)
+                if (service == null)
                 {
-                    db.Services.Remove(service);
-                    db.SaveChanges();
+                    throw new Exception($"service not found of given id {id} for delete process");
+                }
+                else if (service.ChallanTransactions.Count > 0)
+                {
+                    throw new Exception($"Service can't be deleted it has related challan transactions in system.\n\nPlease remove all related challan transactions of {service.Name} service than delete service.");
                 }
                 else
                 {
-                    throw new Exception($"service not found of given id {id} for delete process");
+                    db.Services.Remove(service);
+                    db.SaveChanges();
                 }
             }
         }

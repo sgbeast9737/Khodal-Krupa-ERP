@@ -10,7 +10,7 @@ namespace KhodalKrupaERP.Models
         public event PropertyChangedEventHandler PropertyChanged;
 
         private int _diamond;
-        private float _rate;
+        private double _rate;
         private int _paper;
 
         [Key]
@@ -44,7 +44,7 @@ namespace KhodalKrupaERP.Models
             }
         }
 
-        public float Rate
+        public double Rate
         {
             get => _rate;
             set
@@ -72,17 +72,17 @@ namespace KhodalKrupaERP.Models
             }
         }
 
-        public float Total { get; private set; }
+        public double Total { get; private set; }
 
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public ChallanTransaction(int challanId, string designNo, int serviceId, int diamond, float rate, int paper)
+        public ChallanTransaction(int challanId, string designNo, int serviceId, int diamond, double rate, int paper)
         {
             this.ChallanId = challanId;
             this.DesignNo = designNo;
             this.ServiceId = serviceId;
             this.Diamond = diamond;
-            this.Rate = rate;
+            this.Rate = Math.Round(rate,4);
             this.Paper = paper;
             this.UpdatedAt = DateTime.Now;
             CalculateTotal();

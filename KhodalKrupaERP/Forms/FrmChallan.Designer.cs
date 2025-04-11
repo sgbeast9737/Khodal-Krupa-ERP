@@ -124,6 +124,7 @@
             this.sfDataGrid1.TabIndex = 4;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
+            this.sfDataGrid1.RecordDeleting += new Syncfusion.WinForms.DataGrid.Events.RecordDeletingEventHandler(this.sfDataGrid1_RecordDeleting);
             // 
             // FrmChallan
             // 

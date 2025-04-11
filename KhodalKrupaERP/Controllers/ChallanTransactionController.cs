@@ -11,7 +11,7 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanTransactionController
     {
         // ✅ Create a new ChallanTransaction
-        public static void AddChallanTransaction(AppDbContext context,int challanId, string designNo, int serviceId, int diamond, float rate, int paper)
+        public static void AddChallanTransaction(AppDbContext context,int challanId, string designNo, int serviceId, int diamond, double rate, int paper)
         {
             var transaction = new ChallanTransaction(challanId, designNo, serviceId, diamond, rate, paper);
             context.ChallanTransactions.Add(transaction);
@@ -115,7 +115,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Create a new ChallanTransaction
-        public static void AddChallanTransaction(int challanId, string designNo, int serviceId,int diamond, float rate, int paper)
+        public static void AddChallanTransaction(int challanId, string designNo, int serviceId,int diamond, double rate, int paper)
         {
             using (var db = new AppDbContext())
             {
@@ -126,7 +126,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a ChallanTransaction
-        public static void UpdateChallanTransaction(int id, int diamond, float rate, int paper)
+        public static void UpdateChallanTransaction(int id, int diamond, double rate, int paper)
         {
             using (var db = new AppDbContext())
             {
@@ -146,7 +146,7 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a ChallanTransaction
-        public static void UpdateChallanTransaction(AppDbContext context, int id, int diamond, float rate, int paper)
+        public static void UpdateChallanTransaction(AppDbContext context, int id, int diamond, double rate, int paper)
         {
             var transaction = context.ChallanTransactions.Find(id);
             if (transaction != null)

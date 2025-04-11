@@ -84,6 +84,8 @@ namespace KhodalKrupaERP.Forms
                 Helper.hideColumn(sfDataGrid1, "ChallanTransactionId", "ChallanId", "UpdatedAt");
 
                 Helper.addSummary(sfDataGrid1, "Total");
+
+               
             }
             catch (Exception ex)
             {
@@ -229,6 +231,31 @@ namespace KhodalKrupaERP.Forms
                     MessageBox.Show(e.ErrorMessage, "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     e.IsValid = false;
                 }
+            }
+        }
+
+        private void sfDataGrid1_RecordDeleting(object sender, Syncfusion.WinForms.DataGrid.Events.RecordDeletingEventArgs e)
+        {
+            try
+            {
+                DialogResult result = MessageBox.Show("Are sure you want to delete this challan transaction ?", "Delete challan transaction", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    foreach (ChallanTransaction challanTransaction in e.Items)
+                    {
+                        ChallanTransactionController.DeleteChallanTransaction(challanTransaction.ChallanTransactionId);
+                    }
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                e.Cancel = true;
+                MessageBox.Show("Error while deleting record \nError : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

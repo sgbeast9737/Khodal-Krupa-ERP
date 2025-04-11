@@ -17,9 +17,9 @@ namespace KhodalKrupaERP.Models.Analysis
         public int ChallanTransactionId { get; set; }
         public int ChallanId { get; set; }
         public int Diamond { get; set; }
-        public float Rate { get; set; }
+        public double Rate { get; set; }
         public int Paper { get; set; }
-        public float Total { get; set; }
+        public double Total { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
 }

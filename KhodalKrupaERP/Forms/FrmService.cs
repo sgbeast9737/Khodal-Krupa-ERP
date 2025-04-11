@@ -71,7 +71,7 @@ namespace KhodalKrupaERP.Forms
             catch (Exception ex)
             {
                 e.Cancel = true;
-                MessageBox.Show("Error occured", "Error while deleting record : " + ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error while deleting record : \n\n" + ex.Message, "Error occured", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -6,6 +6,7 @@ using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models.Analysis;
 using KhodalKrupaERP.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Controllers
 {
@@ -53,17 +54,37 @@ namespace KhodalKrupaERP.Controllers
         // ✅ Delete a Challan
         public static void DeleteChallan(int id)
         {
-            using (var db = new AppDbContext())
+            using (var context = new AppDbContext())
             {
-                var challan = db.Challans.Find(id);
-                if (challan != null)
+                using (var transaction = context.Database.BeginTransaction())
                 {
-                    db.Challans.Remove(challan);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception($"challan not found of given id {id} for delete process");
+                    try
+                    {
+                        var challan = context.Challans.Find(id);
+                        if (challan != null)
+                        {
+                            var transIds = (from challanTrans in challan.ChallanTransactions select challanTrans.ChallanTransactionId).ToList();
+
+                            foreach (int transId in transIds)
+                            {
+                                ChallanTransactionController.DeleteChallanTransaction(context,transId);
+                            }
+
+                            context.Challans.Remove(challan);
+                            context.SaveChanges();
+
+                            transaction.Commit();
+                        }
+                        else
+                        {
+                            throw new Exception($"challan not found of given id {id} for delete process");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
                 }
             }
         }

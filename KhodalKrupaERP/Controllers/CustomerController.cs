@@ -75,14 +75,19 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 var customer = db.Customers.Find(id);
-                if (customer != null)
+
+                if (customer == null)
                 {
-                    db.Customers.Remove(customer);
-                    db.SaveChanges();
+                    throw new Exception($"Customer not found of given id {id} for delete process");
+                }
+                else if(customer.Challans.Count > 0)
+                {
+                    throw new Exception($"Customer can't be deleted it has related challans in system.\n\nPlease remove all related challans of {customer.Name} customer than delete customer.");
                 }
                 else
                 {
-                    throw new Exception($"customer not found of given id {id} for delete process");
+                    db.Customers.Remove(customer);
+                    db.SaveChanges();
                 }
             }
         }
