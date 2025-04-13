@@ -86,10 +86,12 @@ namespace KhodalKrupaERP.Controllers
             }
         }
 
-        public static List<ChallanTransactionInfo> GetInfoOfAllChallanTransactions(int? customerId = null,int? month = null,int? year = null)
+        public static List<ChallanTransactionInfo> GetInfoOfAllChallanTransactions(int? customerId = null, DateTime? fromDate = null,DateTime? toDate = null)
         {
+            
             using (var context = new AppDbContext())
             {
+
                 return context.Database.SqlQuery<ChallanTransactionInfo>(
                      $@"SELECT 
 	                    cus.CustomerId,
@@ -106,8 +108,7 @@ namespace KhodalKrupaERP.Controllers
                     WHERE
                         1 = 1
 	                    {(customerId == null ? "" : "AND c.CustomerId = " + customerId)} 
-                        {(month == null ? "" : "AND CAST(strftime('%m', c.ChallanDate) AS INTEGER) = " + month)} 
-                        {(year == null ? "" : "AND CAST(strftime('%Y', c.ChallanDate) AS INTEGER) = " + year)} 
+                        {(fromDate == null || toDate == null ? "" : $"AND Date(c.ChallanDate) BETWEEN '{fromDate.Value.ToString("yyyy-MM-dd")}' AND '{toDate.Value.ToString("yyyy-MM-dd")}'")} 
                     ORDER BY c.ChallanDate DESC"
                  ).ToList();
             }

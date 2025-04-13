@@ -4,6 +4,7 @@ using KhodalKrupaERP.Models;
 using KhodalKrupaERP.Models.Analysis;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -29,6 +30,8 @@ namespace KhodalKrupaERP.Forms
 
                 Helper.addGrouping(sfDataGrid1, "CustomerId");
                 sfDataGrid1.ExpandAllGroup();
+
+                cbCustomer.Focus();
             }
             catch (Exception ex)
             {
@@ -36,14 +39,29 @@ namespace KhodalKrupaERP.Forms
             }
         }
 
-        private void hideColumns() => Helper.hideColumn(sfDataGrid1, "CustomerId", "ChallanDate", "Month", "Year", "ChallanTransactionId", "ChallanId", "UpdatedAt");
+        private void hideColumns() => Helper.hideColumn(sfDataGrid1, "CustomerId", "Month", "Year", "ChallanTransactionId", "ChallanId", "UpdatedAt");
 
         private void FrmChallanTransactionList_Load(object sender, EventArgs e)
         {
             setCustomerDropDown(CustomerController.GetAllCustomers());
             refreshGrid();
 
-            dteChallanDate.Value = DateTime.Now;
+            DateTime now = DateTime.Now;
+            DateTime startDate = new DateTime(now.Year, now.Month, 1);
+            DateTime endDate = startDate.AddMonths(1).AddDays(-1);
+
+            dteChallanDateFrom.Value = startDate;
+            dteChallanDateTo.Value = endDate;
+
+            dteChallanDateFrom.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            dteChallanDateFrom.Format = "dd / MM / yyyy";
+
+            dteChallanDateTo.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+            dteChallanDateTo.Format = "dd / MM / yyyy";
+
+            lblChallanDateFrom.ForeColor = Color.Black;
+            lblChallanDateTo.ForeColor = Color.Black;
+            lblCustomer.ForeColor = Color.Black;
         }
 
         private void setCustomerDropDown(List<Customer> customers)
@@ -53,15 +71,6 @@ namespace KhodalKrupaERP.Forms
             cbCustomer.DisplayMember = "Name";
             cbCustomer.ValueMember = "CustomerId";
             cbCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
-
-            cbCustomer.Validating += (cbSender, cbE) =>
-            {
-                if (!customers.Contains(cbCustomer.SelectedItem))
-                {
-                    MessageBox.Show("Select valid customer");
-                    cbE.Cancel = true;
-                }
-            };
         }
 
         private void btnGet_Click(object sender, EventArgs e)
@@ -74,10 +83,7 @@ namespace KhodalKrupaERP.Forms
 
             try
             {
-                int? month = dteChallanDate.Value?.Month;
-                int? year = dteChallanDate.Value?.Year;
-
-                sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue,month,year);
+                sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions((int)cbCustomer.SelectedValue, dteChallanDateFrom.Value,dteChallanDateTo.Value);
                 hideColumns();
             }
             catch (Exception ex)

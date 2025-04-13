@@ -21,7 +21,9 @@ namespace KhodalKrupaERP
             Application.SetCompatibleTextRenderingDefault(false);
 
             mainForm = new Main();
+
             Application.Run(mainForm);
+            //Application.Run(new FrmChallanTransactionList());
         }
 
         public static void AddFormToTab(Form childForm,string tabName)

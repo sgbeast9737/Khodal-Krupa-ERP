@@ -199,6 +199,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Core\database_seeder.sql" />
     <Content Include="Core\DB_creation_script.sql" />
     <Content Include="read.txt" />
   </ItemGroup>

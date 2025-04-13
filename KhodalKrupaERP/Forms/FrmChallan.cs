@@ -6,6 +6,7 @@ using Syncfusion.WinForms.ListView.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -62,6 +63,9 @@ namespace KhodalKrupaERP.Forms
                 else
                     dtChallanDate.Value = DateTime.Now;
 
+                dtChallanDate.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
+                dtChallanDate.Format = "dd / MM / yyyy";
+
                 if (this.challan != null)
                 {
                     cbCustomer.SelectedValue = this.challan.CustomerId;
@@ -80,7 +84,8 @@ namespace KhodalKrupaERP.Forms
 
                 Helper.addSummary(sfDataGrid1, "Total", true);
 
-               
+                lblCustomer.ForeColor = Color.Black;
+                lblChallanDate.ForeColor = Color.Black;
             }
             catch (Exception ex)
             {
@@ -124,6 +129,7 @@ namespace KhodalKrupaERP.Forms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+
             if (!isValid()) return;
 
             using (var context = new AppDbContext())

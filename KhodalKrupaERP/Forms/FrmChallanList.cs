@@ -8,44 +8,39 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using KhodalKrupaERP.Reports;
-using System.Collections.ObjectModel;
 
 namespace KhodalKrupaERP.Forms
 {
 
     public partial class FrmChallanList : Form
     {
-        private ObservableCollection<ChallanInfo> challanInfo = null;
         private ColumnChooserPopup columnChooser;
+        private GridButtonColumn gridButtonColumn;
         string[] columnsToHide = new string[] { "ChallanId", "Year", "Month", "PhoneNo" };
 
         public FrmChallanList()
         {
             InitializeComponent();
             columnChooser = new ColumnChooserPopup(this.sfDataGrid1);
+
+            gridButtonColumn = new GridButtonColumn()
+            {
+                MappingName = "ChallanId",
+                HeaderText = "Generate Report",
+                Image = SystemIcons.Information.ToBitmap(),
+                ImageSize = new Size(16, 16),
+                TextImageRelation = TextImageRelation.ImageBeforeText,
+            };
         }
 
         private void FrmChallanList_Load(object sender, EventArgs e)
         {
             try
             {
-                challanInfo = ChallanController.GetInfoOfAllChallans();
-                sfDataGrid1.DataSource = challanInfo;
+                refreshGrid();
 
                 Helper.setAnalysisConfig(sfDataGrid1, true);
                 sfDataGrid1.AllowDeleting = true;
-
-                Helper.hideColumn(sfDataGrid1, columnsToHide);
-
-                //add button column 
-                this.sfDataGrid1.Columns.Add(new GridButtonColumn()
-                {
-                    MappingName = "ChallanId",
-                    HeaderText = "Generate Report",
-                    Image = SystemIcons.Information.ToBitmap(),
-                    ImageSize = new Size(16, 16),
-                    TextImageRelation = TextImageRelation.ImageBeforeText,
-                });
 
                 this.sfDataGrid1.Style.ButtonStyle.BackColor = Color.SkyBlue;
                 this.sfDataGrid1.Style.ButtonStyle.TextColor = Color.White;
@@ -56,6 +51,19 @@ namespace KhodalKrupaERP.Forms
             {
                 MessageBox.Show("error : " + ex.Message);
             }
+        }
+
+        //temp method to refresh grid
+        public void refreshGrid()
+        {
+            sfDataGrid1.DataSource = ChallanController.GetInfoOfAllChallans();
+            Helper.hideColumn(sfDataGrid1, columnsToHide);
+
+            //add button column
+            if (!this.sfDataGrid1.Columns.Contains(gridButtonColumn))
+                this.sfDataGrid1.Columns.Add(gridButtonColumn);
+            else
+                gridButtonColumn.Visible = true;
         }
 
         private void summaryConfig()

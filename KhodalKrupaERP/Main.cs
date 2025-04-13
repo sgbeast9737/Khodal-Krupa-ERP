@@ -10,6 +10,26 @@ namespace KhodalKrupaERP
         public Main()
         {
             InitializeComponent();
+
+            //Refresh grid data of form challan list
+            tabControlMain.SelectedIndexChanged += (sender, e) =>
+            {
+                // Get the selected tab
+                var selectedTab = tabControlMain.SelectedTab;
+
+                // Get the first control in the tab (you can adjust this if needed)
+                if (selectedTab.Controls.Count > 0)
+                {
+                    var control = selectedTab.Controls[0];
+
+                    // Check if it's the control you're targeting
+                    if (control is FrmChallanList frmChallanList)
+                    {
+                        // Call your refresh method
+                        frmChallanList.refreshGrid();
+                    }
+                }
+            };
         }
 
         public void AddFormToTab(Form childForm, string tabName)

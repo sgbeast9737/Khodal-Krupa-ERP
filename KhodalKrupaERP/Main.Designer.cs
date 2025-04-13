@@ -55,7 +55,7 @@
             this.toolBar.Location = new System.Drawing.Point(0, 0);
             this.toolBar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.toolBar.Name = "toolBar";
-            this.toolBar.Size = new System.Drawing.Size(1181, 38);
+            this.toolBar.Size = new System.Drawing.Size(1212, 38);
             this.toolBar.Style = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
             this.toolBar.TabIndex = 0;
             this.toolBar.Text = "Tool Bar";
@@ -149,11 +149,12 @@
             this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControlMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tabControlMain.Location = new System.Drawing.Point(2, 44);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.ShowCloseButtonHighLightBackColor = true;
             this.tabControlMain.ShowTabCloseButton = true;
-            this.tabControlMain.Size = new System.Drawing.Size(1176, 625);
+            this.tabControlMain.Size = new System.Drawing.Size(1207, 628);
             this.tabControlMain.TabIndex = 1;
             this.tabControlMain.ThemeStyle.PrimitiveButtonStyle.DisabledNextPageImage = null;
             // 
@@ -161,11 +162,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1181, 670);
+            this.ClientSize = new System.Drawing.Size(1212, 673);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolBar);
             this.ForeColor = System.Drawing.Color.White;
-            this.MinimumSize = new System.Drawing.Size(1010, 670);
+            this.MinimumSize = new System.Drawing.Size(1230, 720);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Khodal Krupa ERP";
