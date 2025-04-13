@@ -52,17 +52,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 61);
+            this.panel1.Size = new System.Drawing.Size(800, 79);
             this.panel1.TabIndex = 0;
             // 
             // btnAddChallan
             // 
             this.btnAddChallan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddChallan.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddChallan.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddChallan.Location = new System.Drawing.Point(667, 8);
+            this.btnAddChallan.BackColor = System.Drawing.Color.LightBlue;
+            this.btnAddChallan.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddChallan.ForeColor = System.Drawing.Color.White;
+            this.btnAddChallan.Location = new System.Drawing.Point(631, 17);
             this.btnAddChallan.Name = "btnAddChallan";
-            this.btnAddChallan.Size = new System.Drawing.Size(121, 45);
+            this.btnAddChallan.Size = new System.Drawing.Size(149, 45);
             this.btnAddChallan.TabIndex = 1;
             this.btnAddChallan.Text = "Add Challan";
             this.btnAddChallan.UseVisualStyleBackColor = false;
@@ -72,10 +73,10 @@
             // 
             this.sfDataGrid1.AccessibleName = "Table";
             this.sfDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sfDataGrid1.Location = new System.Drawing.Point(0, 61);
+            this.sfDataGrid1.Location = new System.Drawing.Point(0, 79);
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
-            this.sfDataGrid1.Size = new System.Drawing.Size(800, 389);
+            this.sfDataGrid1.Size = new System.Drawing.Size(800, 371);
             this.sfDataGrid1.TabIndex = 1;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);

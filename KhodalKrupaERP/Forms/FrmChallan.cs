@@ -101,15 +101,6 @@ namespace KhodalKrupaERP.Forms
             cbCustomer.DisplayMember = "Name";
             cbCustomer.ValueMember = "CustomerId";
             cbCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
-
-            cbCustomer.Validating += (cbSender, cbE) =>
-            {
-                if (!customers.Contains(cbCustomer.SelectedItem))
-                {
-                    MessageBox.Show("Select valid customer");
-                    cbE.Cancel = true;
-                }
-            };
         }
 
         private void setServiceDropDown(List<Service> services)

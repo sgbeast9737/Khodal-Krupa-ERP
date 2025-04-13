@@ -36,6 +36,8 @@ namespace KhodalKrupaERP.Core
             dataGrid.AllowDraggingColumns = true;
             dataGrid.AllowFiltering = true;
 
+            dataGrid.AllowResizingColumns = true;
+
             dataGrid.AllowDeleting = false;
             dataGrid.AllowEditing = false;
         }
