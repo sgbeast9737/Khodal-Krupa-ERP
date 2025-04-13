@@ -2,6 +2,7 @@
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
 using KhodalKrupaERP.Models.Analysis;
+using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -102,6 +103,11 @@ namespace KhodalKrupaERP.Forms
             {
                 Program.AddFormToTab(new FrmChallan(challanTransactionInfo.ChallanId), "Edit Challan");
             }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

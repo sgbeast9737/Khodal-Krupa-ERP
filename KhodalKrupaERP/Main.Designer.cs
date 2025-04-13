@@ -51,10 +51,11 @@
             this.pbiBills,
             this.pbiReports});
             this.toolBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.toolBar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolBar.Location = new System.Drawing.Point(0, 0);
             this.toolBar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.toolBar.Name = "toolBar";
-            this.toolBar.Size = new System.Drawing.Size(1181, 30);
+            this.toolBar.Size = new System.Drawing.Size(1181, 38);
             this.toolBar.Style = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
             this.toolBar.TabIndex = 0;
             this.toolBar.Text = "Tool Bar";
@@ -63,6 +64,7 @@
             // pbiMaster
             // 
             this.pbiMaster.BarName = "pbiMaster";
+            this.pbiMaster.CustomTextFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pbiMaster.ID = "Masters";
             this.pbiMaster.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.biCustomer,
@@ -96,6 +98,7 @@
             // pbiBills
             // 
             this.pbiBills.BarName = "pbiBills";
+            this.pbiBills.CustomTextFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pbiBills.ID = "Bills";
             this.pbiBills.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.biChallan});
@@ -119,6 +122,7 @@
             // pbiReports
             // 
             this.pbiReports.BarName = "pbiReports";
+            this.pbiReports.CustomTextFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pbiReports.ID = "Reports";
             this.pbiReports.Items.AddRange(new Syncfusion.Windows.Forms.Tools.XPMenus.BarItem[] {
             this.biMonthlyBillReport});
@@ -145,11 +149,11 @@
             this.tabControlMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControlMain.Location = new System.Drawing.Point(2, 34);
+            this.tabControlMain.Location = new System.Drawing.Point(2, 44);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.ShowCloseButtonHighLightBackColor = true;
             this.tabControlMain.ShowTabCloseButton = true;
-            this.tabControlMain.Size = new System.Drawing.Size(1176, 635);
+            this.tabControlMain.Size = new System.Drawing.Size(1176, 625);
             this.tabControlMain.TabIndex = 1;
             this.tabControlMain.ThemeStyle.PrimitiveButtonStyle.DisabledNextPageImage = null;
             // 
@@ -157,10 +161,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1181, 670);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.toolBar);
+            this.ForeColor = System.Drawing.Color.White;
             this.MinimumSize = new System.Drawing.Size(1010, 670);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -176,12 +180,12 @@
         private Syncfusion.Windows.Forms.Tools.XPMenus.XPToolBar toolBar;
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem pbiMaster;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biCustomer;
-        private Syncfusion.Windows.Forms.Tools.TabControlAdv tabControlMain;
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem pbiBills;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biChallan;
         private Syncfusion.Windows.Forms.Tools.XPMenus.ParentBarItem pbiReports;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biMonthlyBillReport;
         private Syncfusion.Windows.Forms.Tools.XPMenus.BarItem biService;
+        private Syncfusion.Windows.Forms.Tools.TabControlAdv tabControlMain;
     }
 }
 

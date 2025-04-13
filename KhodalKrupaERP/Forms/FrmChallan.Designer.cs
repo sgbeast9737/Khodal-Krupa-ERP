@@ -35,6 +35,7 @@
             this.cbCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
             this.dtChallanDate = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.lblCust = new System.Windows.Forms.Label();
             this.inputPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
@@ -42,6 +43,7 @@
             // 
             // inputPanel
             // 
+            this.inputPanel.Controls.Add(this.lblCust);
             this.inputPanel.Controls.Add(this.btnSave);
             this.inputPanel.Controls.Add(this.lblCustomer);
             this.inputPanel.Controls.Add(this.lblChallanDate);
@@ -50,7 +52,7 @@
             this.inputPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.inputPanel.Location = new System.Drawing.Point(0, 0);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(958, 133);
+            this.inputPanel.Size = new System.Drawing.Size(958, 116);
             this.inputPanel.TabIndex = 0;
             // 
             // btnSave
@@ -58,9 +60,9 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.LightGray;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(829, 76);
+            this.btnSave.Location = new System.Drawing.Point(829, 60);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(117, 46);
+            this.btnSave.Size = new System.Drawing.Size(117, 42);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -70,7 +72,7 @@
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(49, 21);
+            this.lblCustomer.Location = new System.Drawing.Point(532, 21);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(96, 28);
             this.lblCustomer.TabIndex = 6;
@@ -80,7 +82,7 @@
             // 
             this.lblChallanDate.AutoSize = true;
             this.lblChallanDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChallanDate.Location = new System.Drawing.Point(18, 76);
+            this.lblChallanDate.Location = new System.Drawing.Point(532, 67);
             this.lblChallanDate.Name = "lblChallanDate";
             this.lblChallanDate.Size = new System.Drawing.Size(127, 28);
             this.lblChallanDate.TabIndex = 5;
@@ -90,9 +92,9 @@
             // 
             this.cbCustomer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
             this.cbCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCustomer.Location = new System.Drawing.Point(188, 21);
+            this.cbCustomer.Location = new System.Drawing.Point(224, 21);
             this.cbCustomer.Name = "cbCustomer";
-            this.cbCustomer.Size = new System.Drawing.Size(239, 31);
+            this.cbCustomer.Size = new System.Drawing.Size(239, 30);
             this.cbCustomer.Style.DropDownStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
             this.cbCustomer.Style.EditorStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCustomer.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -105,26 +107,34 @@
             // 
             this.dtChallanDate.DateTimeIcon = null;
             this.dtChallanDate.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtChallanDate.Location = new System.Drawing.Point(188, 76);
+            this.dtChallanDate.Location = new System.Drawing.Point(224, 68);
             this.dtChallanDate.Name = "dtChallanDate";
-            this.dtChallanDate.Size = new System.Drawing.Size(239, 36);
+            this.dtChallanDate.Size = new System.Drawing.Size(239, 30);
             this.dtChallanDate.TabIndex = 3;
             this.dtChallanDate.ToolTipText = "";
             // 
             // sfDataGrid1
             // 
             this.sfDataGrid1.AccessibleName = "Table";
-            this.sfDataGrid1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfDataGrid1.Location = new System.Drawing.Point(0, 138);
+            this.sfDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sfDataGrid1.Location = new System.Drawing.Point(0, 116);
             this.sfDataGrid1.Name = "sfDataGrid1";
             this.sfDataGrid1.PreviewRowHeight = 35;
-            this.sfDataGrid1.Size = new System.Drawing.Size(957, 472);
+            this.sfDataGrid1.Size = new System.Drawing.Size(958, 496);
             this.sfDataGrid1.TabIndex = 4;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.RowValidating += new Syncfusion.WinForms.DataGrid.Events.RowValidatingEventHandler(this.sfDataGrid1_RowValidating);
             this.sfDataGrid1.RecordDeleting += new Syncfusion.WinForms.DataGrid.Events.RecordDeletingEventHandler(this.sfDataGrid1_RecordDeleting);
+            // 
+            // lblCust
+            // 
+            this.lblCust.AutoSize = true;
+            this.lblCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCust.Location = new System.Drawing.Point(686, 37);
+            this.lblCust.Name = "lblCust";
+            this.lblCust.Size = new System.Drawing.Size(97, 25);
+            this.lblCust.TabIndex = 7;
+            this.lblCust.Text = "Customer";
             // 
             // FrmChallan
             // 
@@ -154,5 +164,6 @@
         private Syncfusion.WinForms.ListView.SfComboBox cbCustomer;
         private Syncfusion.WinForms.Input.SfDateTimeEdit dtChallanDate;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblCust;
     }
 }
