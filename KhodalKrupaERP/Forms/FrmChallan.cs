@@ -1,18 +1,12 @@
 ﻿using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
-using Syncfusion.Data;
 using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.ListView.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Syncfusion.WinForms.Controls;
 using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Forms
@@ -84,7 +78,7 @@ namespace KhodalKrupaERP.Forms
                 Helper.setDataInputConfig(sfDataGrid1);
                 Helper.hideColumn(sfDataGrid1, "ChallanTransactionId", "ChallanId", "UpdatedAt");
 
-                Helper.addSummary(sfDataGrid1, "Total");
+                Helper.addSummary(sfDataGrid1, "Total", true);
 
                
             }

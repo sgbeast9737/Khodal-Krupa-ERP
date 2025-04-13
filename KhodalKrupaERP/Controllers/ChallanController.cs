@@ -6,7 +6,6 @@ using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models.Analysis;
 using KhodalKrupaERP.Models;
 using System.Collections.ObjectModel;
-using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Controllers
 {
@@ -134,76 +133,5 @@ namespace KhodalKrupaERP.Controllers
                 return db.Challans.ToList();
             }
         }
-
-        #region less_used_methods
-
-        // ✅ Create a new Challan
-        public static void AddChallan(DateTime challanDate, string designNo, int customerId)
-        {
-            using (var db = new AppDbContext())
-            {
-                var challan = new Challan(customerId, challanDate);
-                db.Challans.Add(challan);
-                db.SaveChanges();
-            }
-        }
-   
-        // ✅ Update a Challan
-        public static void UpdateChallan(int id, int newCustomerId, DateTime newChallanDate)
-        {
-            using (var db = new AppDbContext())
-            {
-                var challan = db.Challans.Find(id);
-                if (challan != null)
-                {
-                    challan.CustomerId = newCustomerId;
-                    challan.ChallanDate = newChallanDate;
-                    challan.UpdatedAt = DateTime.Now; // Update the timestamp
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception($"challan not found of given id {id} for update process");
-                }
-            }
-        }
-
-        //Hybrid Approach – Pass Whole Object but Track Changes Manually
-
-        //Only Updates Modified Fields – Prevents unnecessary database writes.
-        //✔ No Need to Manually Pass Fields in Function Call – You pass the whole object, but only changed fields are updated.
-        //✔ Scalable – Works well even if the Customer model has 20+ properties.
-
-        public static void UpdateChallan(Challan challan)
-        {
-            if (challan == null)
-                throw new ArgumentNullException(nameof(challan), "Challan object cannot be null. error while updating record.");
-
-            using (var db = new AppDbContext())
-            {
-                var existingChallan = db.Challans.Find(challan.ChallanId);
-
-                if (existingChallan != null)
-                {
-                    // Update fields
-
-                    if (existingChallan.CustomerId != challan.CustomerId)
-                        existingChallan.CustomerId = challan.CustomerId;
-
-                    if (existingChallan.ChallanDate != challan.ChallanDate)
-                        existingChallan.ChallanDate = challan.ChallanDate;
-
-                    existingChallan.UpdatedAt = DateTime.Now;
-
-                    db.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception($"Challan with ID {challan.ChallanId} not found. error while updating record.");
-                }
-            }
-        }
-
-        #endregion less_used_methods
     }
 }

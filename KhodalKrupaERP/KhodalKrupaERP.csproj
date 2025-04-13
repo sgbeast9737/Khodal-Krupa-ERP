@@ -133,18 +133,6 @@
     <Compile Include="Forms\FrmCustomer.Designer.cs">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FrmTemp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FrmTemp.Designer.cs">
-      <DependentUpon>FrmTemp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\Temp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Temp.Designer.cs">
-      <DependentUpon>Temp.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,12 +162,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FrmTemp.resx">
-      <DependentUpon>FrmTemp.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Temp.resx">
-      <DependentUpon>Temp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

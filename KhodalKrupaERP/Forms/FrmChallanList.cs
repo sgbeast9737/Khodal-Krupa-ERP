@@ -1,23 +1,12 @@
-﻿using FastReport;
-using KhodalKrupaERP.Controllers;
+﻿using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models.Analysis;
-using Syncfusion.Data;
-using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.WinForms.DataGrid;
 using Syncfusion.WinForms.DataGrid.Interactivity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using FastReport.Export.PdfSimple;
 using KhodalKrupaERP.Reports;
 using System.Collections.ObjectModel;
 
@@ -115,12 +104,12 @@ namespace KhodalKrupaERP.Forms
 
         private void dateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Helper.addGrouping(sfDataGrid1, "Year", "Month");
+            Helper.addGrouping(sfDataGrid1,"Month");
         }
 
         private void customerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Helper.addGrouping(sfDataGrid1, "CustomerId", "Year", "Month");
+            Helper.addGrouping(sfDataGrid1, "CustomerId","Month");
         }
 
         private void expandeAllToolStripMenuItem_Click(object sender, EventArgs e)

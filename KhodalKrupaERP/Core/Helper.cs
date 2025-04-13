@@ -1,10 +1,5 @@
 ﻿using Syncfusion.Data;
 using Syncfusion.WinForms.DataGrid;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KhodalKrupaERP.Core
 {
@@ -67,13 +62,13 @@ namespace KhodalKrupaERP.Core
             dataGrid.ExpandAllGroup();
         }
 
-        public static void addSummary(SfDataGrid dataGrid, string columnName,string formate = "Grand Total: {Sum:C}")
+        public static void addSummary(SfDataGrid dataGrid, string columnName,bool insertSummary = false, string formate = "Grand Total: {Sum:C}")
         {
             GridTableSummaryRow summaryRow = new GridTableSummaryRow()
             {
                 Name = "Total summary",
                 ShowSummaryInRow = false,
-                CalculationUnit = Syncfusion.Data.SummaryCalculationUnit.Mixed,
+                CalculationUnit = insertSummary ? Syncfusion.Data.SummaryCalculationUnit.Mixed : Syncfusion.Data.SummaryCalculationUnit.AllRows,
                 Title = "Grand Total {ColumnName} : {Key}",
                 TitleColumnCount = 1,
                 SummaryColumns = new System.Collections.ObjectModel.ObservableCollection<ISummaryColumn>()
@@ -90,26 +85,6 @@ namespace KhodalKrupaERP.Core
 
             dataGrid.TableSummaryRows.Add(summaryRow);
         }
-
-        //public static void addSummary(SfDataGrid dataGrid, string columnName,string formate = "Grand Total: {Sum:C}")
-        //{
-        //    GridTableSummaryRow summaryRow = new GridTableSummaryRow()
-        //    {
-        //        Name = "TableSummary",
-        //        ShowSummaryInRow = false,
-        //    };
-
-        //    // Add Summary Column for "Total"
-        //    summaryRow.SummaryColumns.Add(new GridSummaryColumn()
-        //    {
-        //        Name = columnName,
-        //        MappingName = columnName,
-        //        Format = formate,
-        //        SummaryType = Syncfusion.Data.SummaryType.DoubleAggregate
-        //    });
-
-        //    dataGrid.TableSummaryRows.Add(summaryRow);
-        //}
 
         public static void addGroupSummary(SfDataGrid dataGrid,string columnName,string formate = "Total: {Sum:C}")
         {
