@@ -25,7 +25,7 @@ namespace KhodalKrupaERP.Forms
 
             gridButtonColumn = new GridButtonColumn()
             {
-                MappingName = "ChallanId",
+                MappingName = "PhoneNo",
                 HeaderText = "Generate Report",
                 Image = SystemIcons.Information.ToBitmap(),
                 ImageSize = new Size(16, 16),

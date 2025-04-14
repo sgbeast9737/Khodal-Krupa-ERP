@@ -102,6 +102,7 @@
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Core\AppDbContext.cs" />
+    <Compile Include="Core\BaseReport.cs" />
     <Compile Include="Core\Helper.cs" />
     <Compile Include="Forms\FrmChallan.cs">
       <SubType>Form</SubType>
@@ -148,6 +149,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\ChallanReport.cs" />
+    <Compile Include="Reports\CustomerChallanTransactionReport.cs" />
     <EmbeddedResource Include="Forms\FrmChallan.resx">
       <DependentUpon>FrmChallan.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +181,7 @@
     <None Include="bin\Debug\Report Design\old_report.frx" />
     <None Include="bin\Debug\Report Design\report.frx" />
     <None Include="bin\Debug\Report Design\test.frx" />
+    <None Include="bin\Debug\Report Design\transaction_test.frx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.Challan.datasource" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.ChallanTransaction.datasource" />
@@ -194,6 +197,7 @@
     </Compile>
     <None Include="ReportDesign\old_report.frx" />
     <None Include="ReportDesign\report.frx" />
+    <None Include="ReportDesign\transaction_test.frx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

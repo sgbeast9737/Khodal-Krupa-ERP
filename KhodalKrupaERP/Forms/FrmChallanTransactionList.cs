@@ -2,10 +2,10 @@
 using KhodalKrupaERP.Core;
 using KhodalKrupaERP.Models;
 using KhodalKrupaERP.Models.Analysis;
+using KhodalKrupaERP.Reports;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace KhodalKrupaERP.Forms
@@ -73,13 +73,20 @@ namespace KhodalKrupaERP.Forms
             cbCustomer.AutoCompleteMode = AutoCompleteMode.Suggest;
         }
 
-        private void btnGet_Click(object sender, EventArgs e)
+        private bool isValid()
         {
             if (cbCustomer.SelectedValue == null)
             {
                 MessageBox.Show("Plese select customer", "Invalid entry", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return false;
             }
+
+            return true;
+        }
+
+        private void btnGet_Click(object sender, EventArgs e)
+        {
+            if (!isValid()) return;
 
             try
             {
@@ -105,9 +112,22 @@ namespace KhodalKrupaERP.Forms
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void btnReport_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (!isValid()) return;
+                CustomerChallanTransactionReport report = new CustomerChallanTransactionReport((int)cbCustomer.SelectedValue, dteChallanDateFrom.Value.Value, dteChallanDateTo.Value.Value);
+                //ShowLoadingAnimation();
+                report.savePdf();
+                //HideLoadingAnimation();
 
+                MessageBox.Show("invoice saved successfully", "PDF Saved Succcessfully", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occured while generating report \nError Message : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -38,6 +38,7 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnGet = new System.Windows.Forms.Button();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.btnReport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
@@ -45,6 +46,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnReport);
             this.panel1.Controls.Add(this.lblChallanDateTo);
             this.panel1.Controls.Add(this.dteChallanDateTo);
             this.panel1.Controls.Add(this.lblChallanDateFrom);
@@ -58,7 +60,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 127);
             this.panel1.TabIndex = 3;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lblChallanDateTo
             // 
@@ -157,9 +158,9 @@
             this.btnGet.BackColor = System.Drawing.Color.LightBlue;
             this.btnGet.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGet.ForeColor = System.Drawing.Color.White;
-            this.btnGet.Location = new System.Drawing.Point(1044, 74);
+            this.btnGet.Location = new System.Drawing.Point(1058, 74);
             this.btnGet.Name = "btnGet";
-            this.btnGet.Size = new System.Drawing.Size(117, 43);
+            this.btnGet.Size = new System.Drawing.Size(103, 43);
             this.btnGet.TabIndex = 3;
             this.btnGet.Text = "Get";
             this.btnGet.UseVisualStyleBackColor = false;
@@ -179,6 +180,20 @@
             this.sfDataGrid1.TabIndex = 2;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.BackColor = System.Drawing.Color.LightBlue;
+            this.btnReport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Location = new System.Drawing.Point(922, 74);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(103, 43);
+            this.btnReport.TabIndex = 14;
+            this.btnReport.Text = "Report";
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // FrmChallanTransactionList
             // 
@@ -212,5 +227,6 @@
         private Syncfusion.WinForms.Input.SfDateTimeEdit dteChallanDateTo;
         private Syncfusion.Windows.Forms.Tools.AutoLabel lblChallanDateTo;
         private Syncfusion.WinForms.DataGrid.SfDataGrid sfDataGrid1;
+        private System.Windows.Forms.Button btnReport;
     }
 }

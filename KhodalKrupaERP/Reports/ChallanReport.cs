@@ -1,53 +1,31 @@
 ﻿using System;
 using System.Data;
 using System.Data.SQLite;
-using FastReport;
-using FastReport.Export.PdfSimple;
 using KhodalKrupaERP.Models.Analysis;
+using KhodalKrupaERP.Core;
 
 namespace KhodalKrupaERP.Reports
 {
-    class ChallanReport
+    class ChallanReport : BaseReport
     {
+        private string designFilePath = $@"{Environment.CurrentDirectory}\Report Design\test.frx"; // Load your designed invoice
         private ChallanInfo challanInfo;
-        private Report report;
 
         public ChallanReport(ChallanInfo challanInfo)
         {
             this.challanInfo = challanInfo;
         }
 
-        public void createReport()
-        {
-            // create report instance
-            Report report = new Report();
-
-            // load the existing report
-            report.Load($@"{Environment.CurrentDirectory}\Report Design\test.frx"); // Load your designed invoice
-
-            // register the dataset
-            report.RegisterData(getDataSource());
-
-            // prepare the report
-            report.Prepare();
-
-            this.report = report;
-        }
-
         public void savePdf()
         {
-            if (this.report is null)
-                createReport();
-
+            // load the existing report
             string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Invoice_{this.challanInfo.CustomerName}_{this.challanInfo.DesignNo}_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}_({DateTime.Now.Hour}_{DateTime.Now.Minute}_{DateTime.Now.Second}).pdf";
 
-            PDFSimpleExport pdfExport = new PDFSimpleExport();
-            pdfExport.Export(this.report, storagePath);
+            savePdf(getDataSource(), this.designFilePath, storagePath);
         }
 
         private DataSet getDataSource()
         {
-            
             // create simple dataset with one table
             DataSet dataSet = new DataSet();
 
