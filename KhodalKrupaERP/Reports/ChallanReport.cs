@@ -19,7 +19,10 @@ namespace KhodalKrupaERP.Reports
         public void savePdf()
         {
             // load the existing report
-            string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Invoice_{this.challanInfo.CustomerName}_{this.challanInfo.DesignNo}_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}_({DateTime.Now.Hour}_{DateTime.Now.Minute}_{DateTime.Now.Second}).pdf";
+            string timestamp = DateTime.Now.ToString("dd_MM_yyyy_(HH_mm_ss)");
+            string fileName = $"Invoice_{challanInfo.CustomerName}_{challanInfo.DesignNo}_{timestamp}.pdf";
+
+            string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Challan_invoice\{fileName}";
 
             savePdf(getDataSource(), this.designFilePath, storagePath);
         }

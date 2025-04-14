@@ -22,15 +22,17 @@ namespace KhodalKrupaERP.Reports
 
         public void savePdf()
         {
-            DataSet dataSet = getDataSource();
-            createReport(this.designFilePath, dataSet);
+            Report report = createReport(this.designFilePath, getDataSource());
 
-            this.report.SetParameterValue("FromDate", fromDate.ToString("yyyy-MM-dd"));
-            this.report.SetParameterValue("ToDate", toDate.ToString("yyyy-MM-dd"));
+            report.SetParameterValue("FromDate", fromDate.ToString("yyyy-MM-dd"));
+            report.SetParameterValue("ToDate", toDate.ToString("yyyy-MM-dd"));
 
-            string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Customer_challan_Invoice_{this.customerId}_{DateTime.Now.Day}_{DateTime.Now.Month}_{DateTime.Now.Year}_({DateTime.Now.Hour}_{DateTime.Now.Minute}_{DateTime.Now.Second}).pdf";
+            string timestamp = DateTime.Now.ToString("dd_MM_yyyy_(HH_mm_ss)");
+            string fileName = $"Customer_challan_Invoice_{this.customerId}_{timestamp}.pdf";
 
-            savePdf(dataSet,designFilePath,storagePath);
+            string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Monthly_invoice\{fileName}";
+
+            savePdf(report,storagePath);
         }
 
         private DataSet getDataSource()
