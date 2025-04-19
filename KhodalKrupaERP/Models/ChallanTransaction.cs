@@ -27,7 +27,7 @@ namespace KhodalKrupaERP.Models
 
         // Foreign Key
         [Required]
-        public int ServiceId { get; private set; }
+        public int ServiceId { get; set; }
         public virtual Service Service { get; set; } // Navigation Property
 
         public int Diamond
@@ -74,7 +74,7 @@ namespace KhodalKrupaERP.Models
 
         public double Total { get; private set; }
 
-        public DateTime UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; }
 
         public ChallanTransaction(int challanId, string designNo, int serviceId, int diamond, double rate, int paper)
         {
@@ -90,7 +90,10 @@ namespace KhodalKrupaERP.Models
 
         private void CalculateTotal()
         {
-            this.Total = this.Diamond * this.Rate + this.Paper;
+            this.Rate = Math.Round(this.Rate, 4);
+            double total = this.Diamond * this.Rate + this.Paper;
+
+            this.Total = Math.Round(total,4);
             this.UpdatedAt = DateTime.Now;
         }
 
@@ -98,7 +101,6 @@ namespace KhodalKrupaERP.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         // Empty Constructor for EF
         public ChallanTransaction() { }

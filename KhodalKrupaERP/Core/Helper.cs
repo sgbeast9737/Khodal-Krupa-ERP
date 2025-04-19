@@ -51,7 +51,7 @@ namespace KhodalKrupaERP.Core
         public static void addGrouping(SfDataGrid dataGrid, params string[] columnNames)
         {
             dataGrid.ClearGrouping();
-            foreach (string column  in columnNames)
+            foreach (string column in columnNames)
             {
                 dataGrid.GroupColumnDescriptions.Add(new GroupColumnDescription()
                 {

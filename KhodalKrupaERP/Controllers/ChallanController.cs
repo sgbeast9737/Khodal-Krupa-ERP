@@ -11,14 +11,21 @@ namespace KhodalKrupaERP.Controllers
     public class ChallanController
     {
         // ✅ Get a specific Challan by ID
-        public static Challan GetChallanById(int id)
+        public static Challan GetChallanById(int challanId)
         {
             using (var db = new AppDbContext())
             {
-                Challan challan = db.Challans.Find(id);
-                var transactions = challan.ChallanTransactions;
+                Challan challan = db.Challans.Find(challanId);
 
-                return challan;
+                if(challan == null)
+                {
+                    throw new Exception("No challan record found of id " + challanId);
+                }
+                else
+                {
+                    var transactions = challan.ChallanTransactions;
+                    return challan;
+                }
             }
         }
 
@@ -33,24 +40,27 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Update a Challan
-        public static void UpdateChallan(AppDbContext context, int id, int newCustomerId, DateTime newChallanDate)
+        public static void UpdateChallan(AppDbContext context, int challanId, int newCustomerId, DateTime newChallanDate)
         {
-            var challan = context.Challans.Find(id);
+            var challan = context.Challans.Find(challanId);
             if (challan != null)
             {
-                challan.CustomerId = newCustomerId;
-                challan.ChallanDate = newChallanDate;
+                if (challan.CustomerId != newCustomerId)
+                    challan.CustomerId = newCustomerId;
+                if (challan.ChallanDate != newChallanDate)
+                    challan.ChallanDate = newChallanDate;
+
                 challan.UpdatedAt = DateTime.Now; // Update the timestamp
                 context.SaveChanges();
             }
             else
             {
-                throw new Exception($"challan not found of given id {id} for update process");
+                throw new Exception($"challan not found of given id {challanId} for update process");
             }
         }
 
         // ✅ Delete a Challan
-        public static void DeleteChallan(int id)
+        public static void DeleteChallan(int challanId)
         {
             using (var context = new AppDbContext())
             {
@@ -58,7 +68,7 @@ namespace KhodalKrupaERP.Controllers
                 {
                     try
                     {
-                        var challan = context.Challans.Find(id);
+                        var challan = context.Challans.Find(challanId);
                         if (challan != null)
                         {
                             var transIds = (from challanTrans in challan.ChallanTransactions select challanTrans.ChallanTransactionId).ToList();
@@ -75,7 +85,7 @@ namespace KhodalKrupaERP.Controllers
                         }
                         else
                         {
-                            throw new Exception($"challan not found of given id {id} for delete process");
+                            throw new Exception($"challan not found of given id {challanId} for delete process");
                         }
                     }
                     catch (Exception ex)

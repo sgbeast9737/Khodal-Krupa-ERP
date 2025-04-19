@@ -28,11 +28,19 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Get a specific service by ID
-        public static Service GetServiceById(int id)
+        public static Service GetServiceById(int serviceId)
         {
             using (var db = new AppDbContext())
             {
-                return db.Services.Find(id);
+                Service service = db.Services.Find(serviceId);
+                if (service == null)
+                {
+                    throw new Exception("No Service record found of id " + serviceId);
+                }
+                else
+                {
+                    return service;
+                }
             }
         }
 
@@ -44,16 +52,16 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 // Check if the service already exists in the database
-                //var existingService = db.Services.AsNoTracking().FirstOrDefault(c => c.ServiceId == service.ServiceId);
                 Service existingService = db.Services.Find(service.ServiceId);
 
                 if (existingService != null)
                 {
                     // If the entity exists, update it
                     if (existingService.Name != service.Name)
+                    {
                         existingService.Name = service.Name;
-
-                    existingService.UpdatedAt = DateTime.Now;
+                        existingService.UpdatedAt = DateTime.Now;
+                    }
                 }
                 else
                 {
@@ -67,14 +75,14 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Delete a service
-        public static void DeleteService(int id)
+        public static void DeleteService(int serviceId)
         {
             using (var db = new AppDbContext())
             {
-                var service = db.Services.Find(id);
+                var service = db.Services.Find(serviceId);
                 if (service == null)
                 {
-                    throw new Exception($"service not found of given id {id} for delete process");
+                    throw new Exception($"service not found of given id {serviceId} for delete process");
                 }
                 else if (service.ChallanTransactions.Count > 0)
                 {

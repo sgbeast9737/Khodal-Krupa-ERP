@@ -8,7 +8,7 @@ namespace KhodalKrupaERP.Reports
 {
     class ChallanReport : BaseReport
     {
-        private string designFilePath = $@"{Environment.CurrentDirectory}\Report Design\test.frx"; // Load your designed invoice
+        private string designFilePath = $@"{Environment.CurrentDirectory}\Report Design\report.frx"; // Load your designed invoice
         private ChallanInfo challanInfo;
 
         public ChallanReport(ChallanInfo challanInfo)
@@ -20,7 +20,7 @@ namespace KhodalKrupaERP.Reports
         {
             // load the existing report
             string timestamp = DateTime.Now.ToString("dd_MM_yyyy_(HH_mm_ss)");
-            string fileName = $"Invoice_{challanInfo.CustomerName}_{challanInfo.DesignNo}_{timestamp}.pdf";
+            string fileName = $"Invoice_{challanInfo.DesignNo}_{challanInfo.CustomerName.Replace(" ","_")}_{timestamp}.pdf";
 
             string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Challan_invoice\{fileName}";
 

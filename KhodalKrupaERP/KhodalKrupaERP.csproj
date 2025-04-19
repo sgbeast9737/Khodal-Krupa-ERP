@@ -134,6 +134,12 @@
     <Compile Include="Forms\FrmCustomer.Designer.cs">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Support\FrmSearchBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Support\FrmSearchBox.Designer.cs">
+      <DependentUpon>FrmSearchBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     <EmbeddedResource Include="Forms\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Support\FrmSearchBox.resx">
+      <DependentUpon>FrmSearchBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,7 +190,7 @@
     <None Include="bin\Debug\Report Design\old_report.frx" />
     <None Include="bin\Debug\Report Design\report.frx" />
     <None Include="bin\Debug\Report Design\test.frx" />
-    <None Include="bin\Debug\Report Design\transaction_test.frx" />
+    <None Include="bin\Debug\Report Design\Monthly_invoice.frx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.Challan.datasource" />
     <None Include="Properties\DataSources\KhodalKrupaERP.Models.ChallanTransaction.datasource" />
@@ -195,9 +204,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="ReportDesign\old_report.frx" />
+    <None Include="ReportDesign\Monthly_invoice.frx" />
     <None Include="ReportDesign\report.frx" />
-    <None Include="ReportDesign\transaction_test.frx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

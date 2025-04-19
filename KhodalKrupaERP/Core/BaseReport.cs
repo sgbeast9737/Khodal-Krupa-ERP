@@ -1,6 +1,5 @@
 ﻿using FastReport;
 using FastReport.Export.PdfSimple;
-using System;
 using System.Data;
 
 namespace KhodalKrupaERP.Core

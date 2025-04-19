@@ -17,8 +17,8 @@ namespace KhodalKrupaERP.Models
         [Required]
         [Index(IsUnique = true)]
         public string PhoneNo { get; set; }
-        public DateTime? CreatedAt { get; private set; } = DateTime.Now;
-        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; set; }
 
         //Navigation Property for Relationship(One Customer can have multiple Challans)
         public virtual ICollection<Challan> Challans { get; set; }

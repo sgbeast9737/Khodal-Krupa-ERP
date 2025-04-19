@@ -9,7 +9,7 @@ namespace KhodalKrupaERP.Reports
 {
     class CustomerChallanTransactionReport : BaseReport
     {
-        private string designFilePath = $@"{Environment.CurrentDirectory}\Report Design\transaction_test.frx"; // Load your designed invoice
+        private string designFilePath = $@"{Environment.CurrentDirectory}\Report Design\Monthly_invoice.frx"; // Load your designed invoice
         private int customerId;
         DateTime fromDate, toDate;
 
@@ -28,7 +28,7 @@ namespace KhodalKrupaERP.Reports
             report.SetParameterValue("ToDate", toDate.ToString("yyyy-MM-dd"));
 
             string timestamp = DateTime.Now.ToString("dd_MM_yyyy_(HH_mm_ss)");
-            string fileName = $"Customer_challan_Invoice_{this.customerId}_{timestamp}.pdf";
+            string fileName = $"Monthly_{this.customerId}_invoice_{timestamp}.pdf";
 
             string storagePath = $@"{Environment.CurrentDirectory}\Invoices\Monthly_invoice\{fileName}";
 

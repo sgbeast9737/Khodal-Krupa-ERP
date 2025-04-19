@@ -1,5 +1,6 @@
 ﻿using KhodalKrupaERP.Controllers;
 using KhodalKrupaERP.Core;
+using KhodalKrupaERP.Support;
 using KhodalKrupaERP.Models;
 using KhodalKrupaERP.Models.Analysis;
 using KhodalKrupaERP.Reports;
@@ -12,6 +13,8 @@ namespace KhodalKrupaERP.Forms
 {
     public partial class FrmChallanTransactionList : Form
     {
+        private FrmSearchBox findForm;
+
         public FrmChallanTransactionList()
         {
             InitializeComponent();
@@ -25,6 +28,7 @@ namespace KhodalKrupaERP.Forms
         {
             try
             {
+                this.sfDataGrid1.SearchController.Search("r");
                 sfDataGrid1.DataSource = ChallanTransactionController.GetInfoOfAllChallanTransactions();
                 hideColumns();
 
@@ -127,6 +131,40 @@ namespace KhodalKrupaERP.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("Error occured while generating report \nError Message : " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FrmChallanTransactionList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode == Keys.F)
+            {
+                if (findForm == null || findForm.IsDisposed)
+                {
+                    findForm = new FrmSearchBox();
+                    findForm.OnSearch = (searchText) =>
+                    {
+                        sfDataGrid1.SearchController.Search(searchText);
+                    };
+                }
+            }
+
+            findForm.Location = new Point(this.Location.X + 100, this.Location.Y + 100); // adjust as needed
+            findForm.Show();
+            findForm.BringToFront();
+        }
+
+        private void sfDataGrid1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.F)
+            {
+                if (findForm == null || findForm.IsDisposed)
+                {
+                    findForm = new FrmSearchBox();
+                    findForm.OnSearch = (searchText) =>
+                    {
+                        sfDataGrid1.SearchController.Search(searchText);
+                    };
+                }
             }
         }
     }

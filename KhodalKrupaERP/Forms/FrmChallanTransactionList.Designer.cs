@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReport = new System.Windows.Forms.Button();
             this.lblChallanDateTo = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.dteChallanDateTo = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.lblChallanDateFrom = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -38,7 +39,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnGet = new System.Windows.Forms.Button();
             this.sfDataGrid1 = new Syncfusion.WinForms.DataGrid.SfDataGrid();
-            this.btnReport = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sfDataGrid1)).BeginInit();
@@ -60,6 +60,20 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1185, 127);
             this.panel1.TabIndex = 3;
+            // 
+            // btnReport
+            // 
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.BackColor = System.Drawing.Color.LightBlue;
+            this.btnReport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.Location = new System.Drawing.Point(922, 74);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(103, 43);
+            this.btnReport.TabIndex = 14;
+            this.btnReport.Text = "Report";
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // lblChallanDateTo
             // 
@@ -180,20 +194,7 @@
             this.sfDataGrid1.TabIndex = 2;
             this.sfDataGrid1.Text = "sfDataGrid1";
             this.sfDataGrid1.CellDoubleClick += new Syncfusion.WinForms.DataGrid.Events.CellClickEventHandler(this.sfDataGrid1_CellDoubleClick);
-            // 
-            // btnReport
-            // 
-            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReport.BackColor = System.Drawing.Color.LightBlue;
-            this.btnReport.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReport.ForeColor = System.Drawing.Color.White;
-            this.btnReport.Location = new System.Drawing.Point(922, 74);
-            this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(103, 43);
-            this.btnReport.TabIndex = 14;
-            this.btnReport.Text = "Report";
-            this.btnReport.UseVisualStyleBackColor = false;
-            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            this.sfDataGrid1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sfDataGrid1_KeyDown);
             // 
             // FrmChallanTransactionList
             // 
@@ -208,6 +209,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Challan Transaction List";
             this.Load += new System.EventHandler(this.FrmChallanTransactionList_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmChallanTransactionList_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cbCustomer)).EndInit();

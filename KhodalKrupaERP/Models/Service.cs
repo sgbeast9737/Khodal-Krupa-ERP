@@ -14,8 +14,8 @@ namespace KhodalKrupaERP.Models
         [Required]
         public string Name { get; set; }
 
-        public DateTime? CreatedAt { get; private set; } = DateTime.Now;
-        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; set; }
 
         //Navigation Property for Relationship(One Service can have multiple ChallanTransactions)
         public virtual ICollection<ChallanTransaction> ChallanTransactions { get; set; }

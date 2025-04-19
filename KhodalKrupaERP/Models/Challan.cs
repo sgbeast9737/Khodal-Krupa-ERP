@@ -18,8 +18,8 @@ namespace KhodalKrupaERP.Models
         [Required]
         public DateTime ChallanDate { get; set; }
 
-        public DateTime? CreatedAt { get; private set; } = DateTime.Now;
-        public DateTime? UpdatedAt { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; private set; }
+        public DateTime? UpdatedAt { get; set; }
 
         // Navigation Properties
         public virtual Customer Customer { get; set; }

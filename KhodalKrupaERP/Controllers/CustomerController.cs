@@ -3,7 +3,6 @@ using KhodalKrupaERP.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 
 namespace KhodalKrupaERP.Controllers
@@ -29,11 +28,19 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Get a specific customer by ID
-        public static Customer GetCustomerById(int id)
+        public static Customer GetCustomerById(int customerId)
         {
             using (var db = new AppDbContext())
             {
-                return db.Customers.Find(id);
+                Customer customer = db.Customers.Find(customerId);
+                if (customer == null)
+                {
+                    throw new Exception("No Customer record found of id " + customerId);
+                }
+                else
+                {
+                    return customer;
+                }
             }
         }
 
@@ -45,7 +52,6 @@ namespace KhodalKrupaERP.Controllers
             using (var db = new AppDbContext())
             {
                 // Check if the customer already exists in the database
-                //var existingCustomer = db.Customers.AsNoTracking().FirstOrDefault(c => c.CustomerId == customer.CustomerId);
                 Customer existingCustomer = db.Customers.Find(customer.CustomerId);
 
                 if (existingCustomer != null)
@@ -70,15 +76,15 @@ namespace KhodalKrupaERP.Controllers
         }
 
         // ✅ Delete a customer
-        public static void DeleteCustomer(int id)
+        public static void DeleteCustomer(int customerId)
         {
             using (var db = new AppDbContext())
             {
-                var customer = db.Customers.Find(id);
+                var customer = db.Customers.Find(customerId);
 
                 if (customer == null)
                 {
-                    throw new Exception($"Customer not found of given id {id} for delete process");
+                    throw new Exception($"Customer not found of given id {customerId} for delete process");
                 }
                 else if(customer.Challans.Count > 0)
                 {
